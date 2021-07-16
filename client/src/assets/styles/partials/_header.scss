@@ -1,0 +1,41 @@
+@import "./variables";
+
+.header {
+background-color: white;
+  .MuiLink-underlineHover:hover {
+    text-decoration: unset;
+  }
+
+  .head-icon {
+    display: none;
+    color: #444444;
+
+    &:active {
+      color: #000000;
+    }
+  }
+
+  .head-label {
+    font-style: normal;
+    color: #444444;
+    font-size: 1.1em;
+    font-weight: 600;
+
+    &:hover {
+      color: #000000;
+      font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .header {
+    .head-label {
+      display: none;
+    }
+
+    .head-icon {
+      display: block;
+    }
+  }
+}

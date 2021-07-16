@@ -42,7 +42,9 @@ $icon-size: 35px;
   }
 
   .sidebar-toggle-btn-col {
+    padding-top: 2px;
     .btn-toggle {
+      vertical-align: center;
       cursor: pointer;
       width: 35px;
       height: 35px;
