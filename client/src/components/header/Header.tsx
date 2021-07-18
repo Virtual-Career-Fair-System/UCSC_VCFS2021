@@ -21,7 +21,6 @@ const Header: React.FC<HeaderProps> = (props) => {
   const {title} = props;
   const [isRedirectCurrentEvents, setIsRedirectCurrentEvents] = useState(false);
   const [isHomeRedirect, setIsHomeRedirect] = useState(false);
-  const [isRedirectNews, setIsRedirectNews] = useState(false);
   const [isRedirectLogin, setIsRedirectLogin] = useState(false);
   const [isRedirectStudents, setIsRedirectStudents] = useState(false);
   const [isRedirectCompanies, setIsRedirectCompanies] = useState(false);
@@ -31,9 +30,6 @@ const Header: React.FC<HeaderProps> = (props) => {
   }
   const onclickRouteLogin = () => {
     setIsRedirectLogin(true);
-  }
-  const onclickRouteNews = () => {
-    setIsRedirectNews(true);
   }
   const onclickRouteStudents = () => {
     setIsRedirectStudents(true);
