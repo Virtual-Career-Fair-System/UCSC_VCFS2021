@@ -6,6 +6,11 @@ import Link from '@material-ui/core/Link';
 import useStyles from "./headerConstants";
 import {Container} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
+import {AiFillHome} from "react-icons/all";
+import {RiCalendarEventLine} from "react-icons/all";
+import {HiUserGroup} from "react-icons/all";
+import {FaRegBuilding} from "react-icons/all";
+import {FaUserGraduate} from "react-icons/all";
 
 type HeaderProps = {
   title: string
@@ -43,7 +48,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     setIsRedirectCurrentEvents(true);
   }
   return (
-    <Container fluid={true}>
+    <Container fluid={true} className='header sticky-top'>
       <Toolbar className={classes.toolbar}>
         <Typography
           component="h2"
@@ -70,7 +75,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickHomeRoute}
           className={classes.toolbarLink}
         >
-          Home
+          <i className='head-label'>Home</i><i className='head-icon'><AiFillHome size='1.6em'/></i>
         </Link>
         {isRedirectCurrentEvents && <Redirect to='/currentEvents'/>}
         <Link
@@ -81,7 +86,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteCurrentEvents}
           className={classes.toolbarLink}
         >
-          Current Events
+          <i className='head-label'>Current Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
         <Link
@@ -92,7 +97,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteAboutUs}
           className={classes.toolbarLink}
         >
-          About Us
+          <i className='head-label'>About Us</i><i className='head-icon'><HiUserGroup size='1.6em'/></i>
         </Link>
         {isRedirectCompanies && <Redirect to='/companies'/>}
         <Link
@@ -103,7 +108,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteCompanies}
           className={classes.toolbarLink}
         >
-          Companies
+          <i className='head-label'>Companies</i><i className='head-icon'><FaRegBuilding size='1.6em'/></i>
         </Link>
         {isRedirectStudents && <Redirect to='/students'/>}
         <Link
@@ -114,18 +119,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteStudents}
           className={classes.toolbarLink}
         >
-          Students
-        </Link>
-        {isRedirectNews && <Redirect to='/news'/>}
-        <Link
-          color="inherit"
-          noWrap
-          key={'News'}
-          variant="body2"
-          onClick={onclickRouteNews}
-          className={classes.toolbarLink}
-        >
-          News
+          <i className='head-label'>Students</i><i className='head-icon'><FaUserGraduate size='1.6em'/></i>
         </Link>
       </Toolbar>
     </Container>
