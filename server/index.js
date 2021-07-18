@@ -37,13 +37,14 @@ app.post('/create',(req,res)=>{
 })
 })
 
-app.get('/login',(req,res)=>{
+app.post('/login',(req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
     bcrypt.hash(password,10, function(err, hash) {
     db.query('SELECT * FROM student WHERE email = ? AND password = ? ',[email,hash], function (err, result, fields){
         if(err) throw err;
-            res.send({err: err})
+            
+            console.log("success");
             res.send({
                 message: 'Table Data',
                 Total_record:result.length,
