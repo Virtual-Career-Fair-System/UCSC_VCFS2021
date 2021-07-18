@@ -33,6 +33,26 @@ app.post('/create',(req,res)=>{
     })
 })
 
+app.post('/login',(req,res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+
+    db.query('SELECT * FROM student WHERE email = ? AND pasword = ? ',[email,password], (err, result)=>{
+        if(err){
+            res.send({err: err})
+        }
+        
+        if(result){
+            // console.log(email);
+        res.send(result);
+        }
+        else{
+            res.send({message: "Wrong Combination"});
+        }
+        
+    })
+})
+
 app.listen(3001,()=>{
     console.log("server is running on port 3001")
 })
