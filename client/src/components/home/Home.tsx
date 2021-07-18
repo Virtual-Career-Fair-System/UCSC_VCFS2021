@@ -36,8 +36,7 @@ const Home:React.FC = () => {
                     </Grid>
                 </main>
             </Container>
-            <SignUp/>
-            <CvUpload/>
+           {/* <CvUpload/>*/}
             <Footer title="Footer" description="Something here to give the footer a purpose!"/>
         </React.Fragment>
     );
