@@ -1,13 +1,14 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import App from '../App/App';
-import AboutUs from "../components/aboutUs/AboutUs";
-import Companies from "../components/companies/Companies";
-import CurrentEvents from "../components/currentEvents/CurrentEvents";
-import Students from "../components/student/Students";
+import AboutUs from "../Pages/aboutUs/AboutUs";
+import Companies from "../Pages/companies/Companies";
+import CurrentEvents from "../Pages/currentEvents/CurrentEvents";
+import Students from "../Pages/student/Students";
 import Login from "../components/login/Login";
-import Register from "../components/register/Register";
-import News from "../components/news/News";
+import Register from "../Pages/register/Register";
+import News from "../Pages/news/News";
+import Event from "../Pages/event/Event";
 
 const Routes = () => {
   return(
@@ -17,10 +18,11 @@ const Routes = () => {
         <Route exact path="/aboutUs" component={AboutUs} />
         <Route exact path="/companies" component={Companies} />
         <Route exact path="/currentEvents" component={CurrentEvents} />
-        <Route path="/students" component={Students} />
-        <Route path="/login" component={Login} />
-        <Route path="/news" component={News} />
-        <Route path="/Register" component={Register}/>
+        <Route exact path="/currentEvents/:eventId" component={Event}/>
+        <Route exact path="/students" component={Students} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/news" component={News} />
+        <Route exact path="/Register" component={Register}/>
       </Switch>
     </BrowserRouter>
   );
