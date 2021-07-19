@@ -4,6 +4,8 @@ const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
 
+var bcrypt = require('bcrypt');
+
 app.use(cors());
 app.use(express.json());
 
@@ -23,34 +25,34 @@ app.post('/create',(req,res)=>{
     const lname = req.body.lname;
     const email = req.body.email;
     const password = req.body.password;
-
-    db.query('INSERT INTO student(firstname,lastname,email,pasword) VALUES (?,?,?,?);',[fname,lname,email,password], (err, result)=>{
-        if(err){
-            console.log(err)
-        }else{
-            res.send("Value Inserted");
-        }
+    bcrypt.hash(password,10, function(err, hash) {
+    db.query('INSERT INTO student(firstname,lastname,email,password) VALUES (?,?,?,?);',[fname,lname,email,hash], function (err, result, fields){
+        if(err) throw err;
+        res.send({
+            message: 'Table Data',
+            Total_record:result.length,
+            result:result
+            });
     })
+})
 })
 
 app.post('/login',(req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
-
-    db.query('SELECT * FROM student WHERE email = ? AND pasword = ? ',[email,password], (err, result)=>{
-        if(err){
-            res.send({err: err})
-        }
-        
-        if(result){
-            // console.log(email);
-        res.send(result);
-        }
-        else{
-            res.send({message: "Wrong Combination"});
-        }
+    bcrypt.hash(password,10, function(err, hash) {
+    db.query('SELECT * FROM student WHERE email = ? AND password = ? ',[email,hash], function (err, result, fields){
+        if(err) throw err;
+            
+            console.log("success");
+            res.send({
+                message: 'Table Data',
+                Total_record:result.length,
+                result:result
+                });
         
     })
+})
 })
 
 app.listen(3001,()=>{

@@ -17,6 +17,7 @@ import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 import ProfilePage from "../profile/ProfilePage";
 import {Redirect} from "react-router-dom";
+import EditProfile from "../editprofile/EditProfile";
 // import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,12 +60,8 @@ const SignIn = () => {
     Axios.post('http://localhost:3001/login', {
       email: email,
       password: password,
-    }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message)
-      } else {
-        setLoginStatus(response.data[0].email)
-      }
+    }).then(() => {
+      console.log("success");
     });
   };
 
@@ -142,6 +139,7 @@ const SignIn = () => {
         <h1>{loginStatus}</h1>
       </Container>
       <ProfilePage/>
+      <EditProfile/>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
   );
