@@ -2,13 +2,13 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import {Container} from "react-bootstrap";
-import Header from '../header/Header';
+import Header from '../../components/header/Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Sidebar from './Sidebar';
-import Footer from '../footer/Footer';
-import SignUp from '../signup/SignUp';
-// import CvUpload from '../cvcpload/CvUpload';
+import Footer from '../../components/footer/Footer';
+import SignUp from '../../components/signup/SignUp';
+import CvUpload from '../../components/cvcpload/CvUpload';
 import {featuredPosts,mainFeaturedPost,useStyles,sidebar} from './homeConstants';
 
 const Home:React.FC = () => {
