@@ -8,7 +8,7 @@ import FeaturedPost from './FeaturedPost';
 import Sidebar from './Sidebar';
 import Footer from '../footer/Footer';
 import SignUp from '../signup/SignUp';
-import CvUpload from '../cvcpload/CvUpload';
+// import CvUpload from '../cvcpload/CvUpload';
 import {featuredPosts,mainFeaturedPost,useStyles,sidebar} from './homeConstants';
 
 const Home:React.FC = () => {
@@ -36,7 +36,7 @@ const Home:React.FC = () => {
                     </Grid>
                 </main>
             </Container>
-           {/* <CvUpload/>*/}
+           {/* <CvUpload/> */}
             <Footer title="Footer" description="Something here to give the footer a purpose!"/>
         </React.Fragment>
     );

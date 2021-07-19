@@ -55,6 +55,22 @@ app.post('/login',(req,res)=>{
 })
 })
 
+app.post('/cvupload',(req,res)=>{
+    // console.log(req.body)
+    const fname = req.body.fname;
+    const email = req.body.email;
+    const filePath = req.body.File;
+    db.query('INSERT INTO student_cv(student_name,email,cv_path) VALUES (?,?,?);',[fname,email,filePath], function (err, result, fields){
+        if(err) throw err;
+        res.send({
+            message: 'Table Data',
+            Total_record:result.length,
+            result:result
+            });
+    })
+
+})
+
 app.listen(3001,()=>{
     console.log("server is running on port 3001")
 })
