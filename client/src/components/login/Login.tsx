@@ -15,9 +15,12 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
-import ProfilePage from "../profile/ProfilePage";
+import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
+import CvUpload from "../cvcpload/CvUpload";
+import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+
 // import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,9 +63,9 @@ const SignIn = () => {
     Axios.post('http://localhost:3001/login', {
       email: email,
       password: password,
-    }).then(() => {
-      console.log("success");
-    });
+    }).then((responce) => {
+      console.log(responce);
+    }) ;
   };
 
   return (
@@ -138,8 +141,10 @@ const SignIn = () => {
         </div>
         <h1>{loginStatus}</h1>
       </Container>
-      <ProfilePage/>
+      <Profile/>
       <EditProfile/>
+      <JobAdPage/>
+      <CvUpload/>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
   );
