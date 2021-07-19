@@ -1,4 +1,5 @@
-import {makeStyles} from "@material-ui/core/styles";
+
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -14,8 +15,19 @@ const useStyles = makeStyles((theme) => ({
     toolbarLink: {
         padding: theme.spacing(1),
         flexShrink: 0,
-        cursor:"pointer",
+        cursor: "pointer",
     },
 }));
 
-export default useStyles;
+const useStyles2 = makeStyles((theme) =>
+    createStyles({
+        root: {
+            '& > *': {
+                margin: theme.spacing(2),
+                cursor: 'pointer'
+            },
+        },
+    }),
+);
+
+export  {useStyles,useStyles2};
