@@ -1,18 +1,36 @@
 import React, {useState} from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Header from "../header/Header";
+import Header from "../../components/header/Header";
 import {Container, Col, Row,Button} from "react-bootstrap";
-import Footer from "../footer/Footer";
+import Footer from "../../components/footer/Footer";
 import SideBar from "./SideBar";
 import {FaBars} from "react-icons/all";
 import {IoNotificationsCircle} from "react-icons/all";
+import Event from "./event/Event";
 
 const CurrentEvents = () => {
   const [toggled, setToggled] = useState(false);
-  const [events,setEvents]=useState([{eventName:'carier fair 2021'},{eventName:'carier fair 2021'},{eventName:'carier fair 2020'},{eventName:'carier fair 2019'}]);
+  const [events,setEvents]=useState([
+    {id:1,eventName:'carier fair 2021',eventCode:'1careerFare2021'},
+    {id:2,eventName:'carier fair 2021',eventCode:'2careerFare2020'},
+    {id:3,eventName:'carier fair 2020',eventCode:'3careerFare2019'},
+    {id:4,eventName:'carier fair 2019',eventCode:'4careerFare2018'}
+  ]);
+
   const handleToggleSidebar = (value: boolean) => {
     setToggled(value);
   };
+
+  /*const renderEvents = () =>{
+    return(
+      events.map((event)=>{
+        <Event eventName={event.eventName}
+               id={event.id}
+               key={event.id}
+        />
+      })
+    );
+  }*/
   return (
     <React.Fragment>
       <CssBaseline/>
@@ -28,11 +46,13 @@ const CurrentEvents = () => {
               </div>
             </Col>
             <Col xs={6} className='text-info text-right'>
-              <IoNotificationsCircle size='2.5em'/>
+              <IoNotificationsCircle size='2.7em'/>
             </Col>
           </Row>
-          <Row>
-          </Row>
+          <Event event={events[0]}/>
+          <Event event={events[1]}/>
+          <Event event={events[2]}/>
+          <Event event={events[3]}/>
         </main>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
