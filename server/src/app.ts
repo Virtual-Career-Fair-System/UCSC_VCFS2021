@@ -12,7 +12,7 @@ const db: any = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'career_fair_2021'
+  database: 'password@123'
 });
 
 app.use(cors());

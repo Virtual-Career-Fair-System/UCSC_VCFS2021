@@ -19,14 +19,10 @@ import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
 import CvUpload from "../cvcpload/CvUpload";
-<<<<<<< HEAD
 import { StudentViewNotification } from "../../Pages/student/StudentViewNotification";
 // import JobAdPage from "../../Pages/jobadpage/JobAdPage";
-=======
 import JobAdPage from "../../Pages/jobadpage/JobAdPage";
 import {Row} from 'react-bootstrap';
->>>>>>> b64d450e9e904ebc25744fdf19ecde0e1774f10c
-
 // import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({

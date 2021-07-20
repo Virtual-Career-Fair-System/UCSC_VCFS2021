@@ -47,9 +47,14 @@ const Home: React.FC = () => {
                 </main>
             </Container>
             {/* <CvUpload/> */}
+            <ScheduleMeeting/>
+            <PublishAd/>
+            <CompanyProfile/>
+            <AdminProfile/>
             <Footer title="Footer"
                     description="Something here to give the footer a purpose!"
             />
+            <CompanyViewNotification/>
         </React.Fragment>
     );
 }
