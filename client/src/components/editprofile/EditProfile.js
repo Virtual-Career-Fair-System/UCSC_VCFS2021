@@ -74,7 +74,7 @@ function EditProfile() {
                 My Project1
               </label>
               <Form.Control
-                placeholder="My Projects"
+                placeholder="Project Description"
                 type="text"
               ></Form.Control>
             </Form.Group>
@@ -88,7 +88,7 @@ function EditProfile() {
                 My Project2
               </label>
               <Form.Control
-                placeholder="My Projects"
+                placeholder="Project Description"
                 type="text"
               ></Form.Control>
             </Form.Group>
@@ -102,7 +102,7 @@ function EditProfile() {
                 My Project3
               </label>
               <Form.Control
-                placeholder="My Projects"
+                placeholder="Project Description"
                 type="text"
               ></Form.Control>
             </Form.Group>
