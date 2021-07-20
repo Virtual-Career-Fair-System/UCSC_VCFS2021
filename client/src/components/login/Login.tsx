@@ -19,9 +19,10 @@ import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
 import CvUpload from "../cvcpload/CvUpload";
+import { StudentViewNotification } from "../../Pages/student/StudentViewNotification";
+// import JobAdPage from "../../Pages/jobadpage/JobAdPage";
 import JobAdPage from "../../Pages/jobadpage/JobAdPage";
 import {Row} from 'react-bootstrap';
-
 // import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
@@ -155,7 +156,7 @@ const SignIn = () => {
       </Container>
       <Profile/>
       <EditProfile/>
-      <JobAdPage/>
+      <StudentViewNotification/>
       <CvUpload/>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
