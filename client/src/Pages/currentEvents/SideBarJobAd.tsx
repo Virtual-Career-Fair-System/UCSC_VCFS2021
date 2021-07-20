@@ -16,7 +16,7 @@ type SideBarProps = {
   handleToggleSidebar: any
 }
 
-const SideBar: React.FC<SideBarProps> = (props) => {
+const SideBarJobAd: React.FC<SideBarProps> = (props) => {
   const { toggled, handleToggleSidebar } = props;
   console.log(toggled);
 
@@ -53,43 +53,15 @@ const SideBar: React.FC<SideBarProps> = (props) => {
             icon={<FaTachometerAlt />}
             suffix={<span className="badge red"></span>}
           >
-            Edit Profile
+            Notice
           </MenuItem>
-          <MenuItem icon={<FaGem />}> Notification</MenuItem>
+          <MenuItem icon={<FaGem />}> Rules</MenuItem>
         </Menu>
         <Menu iconShape="circle">
-          <SubMenu
-            suffix={<span className="badge yellow">3</span>}
-            title='Recomended Vacancy'
-            icon={<FaRegLaughWink />}
-          >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
-          </SubMenu>
-          <SubMenu
-            title='Interviews'
-            icon={<FaHeart />}
-          >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
-          </SubMenu>
-          <SubMenu title='Accepted Cv' icon={<FaList />}>
-            <MenuItem>sudesh 1 </MenuItem>
-            <MenuItem>sudesh 2 </MenuItem>
-            <SubMenu title='sudesh 3'>
-              <MenuItem>sudesh 3.1 </MenuItem>
-              <MenuItem>sudesh 3.2 </MenuItem>
-              <SubMenu title={`sudesh 3.3`}>
-                <MenuItem>sudesh 3.3.1 </MenuItem>
-                <MenuItem>sudesh 3.3.2 </MenuItem>
-                <MenuItem>sudesh 3.3.3 </MenuItem>
-              </SubMenu>
-            </SubMenu>
-          </SubMenu>
+          <Calendar/>
+          
+          
         </Menu>
-        <Calendar/>
       </SidebarContent>
 
       <SidebarFooter style={{ textAlign: 'center' }}>
@@ -114,4 +86,4 @@ const SideBar: React.FC<SideBarProps> = (props) => {
   );
 };
 
-export default SideBar;
+export default SideBarJobAd;
