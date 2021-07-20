@@ -18,6 +18,7 @@ $icon-size: 35px;
 
   .pro-sidebar {
     margin-right: 0;
+    height: auto;
     .pro-sidebar-inner {
       min-height: 100vh;
     }
@@ -57,6 +58,39 @@ $icon-size: 35px;
       font-size: 15px;
       display: none;
     }
+  }
+  .event{
+    &:hover{
+      background-color: #eeeeee;
+    }
+    border: solid #00ff38 1px;
+    border-radius: 10px;
+    padding:10px 10px;
+    margin: 1em 1em;
+    .event-detail{
+      .event-name{
+        text-transform: capitalize;
+        font-size: 1.5em;
+      }
+      .event-date{
+        opacity: 0.5;
+      }
+      .event-content{
+        color: #363636;
+      }
+      .go-event-button{
+        background-color: #0019c6;
+        margin: 0;
+        text-transform: capitalize;
+      }
+    }
+    .event-image-col{
+      .event-cover-image{
+        width: 100%;
+        height: auto;
+      }
+    }
+
   }
 
 }
