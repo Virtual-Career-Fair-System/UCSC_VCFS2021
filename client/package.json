@@ -18,6 +18,7 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-calendar": "^3.4.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-intl": "^5.20.4",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/node-sass": "^4.11.2",
+    "@types/react-calendar": "^3.4.2",
     "prop-types": "^15.7.2"
   }
 }
