@@ -9,7 +9,7 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import {FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart} from 'react-icons/fa';
 
 type SideBarProps = {
   toggled: boolean
@@ -17,7 +17,7 @@ type SideBarProps = {
 }
 
 const SideBar: React.FC<SideBarProps> = (props) => {
-  const { toggled, handleToggleSidebar } = props;
+  const {toggled, handleToggleSidebar} = props;
   console.log(toggled);
 
   return (
@@ -50,18 +50,18 @@ const SideBar: React.FC<SideBarProps> = (props) => {
       <SidebarContent>
         <Menu iconShape="circle">
           <MenuItem
-            icon={<FaTachometerAlt />}
+            icon={<FaTachometerAlt/>}
             suffix={<span className="badge red"></span>}
           >
             Edit Profile
           </MenuItem>
-          <MenuItem icon={<FaGem />}> Notification</MenuItem>
+          <MenuItem icon={<FaGem/>}> Notification</MenuItem>
         </Menu>
         <Menu iconShape="circle">
           <SubMenu
             suffix={<span className="badge yellow">3</span>}
             title='Recomended Vacancy'
-            icon={<FaRegLaughWink />}
+            icon={<FaRegLaughWink/>}
           >
             <MenuItem>sudesh 1</MenuItem>
             <MenuItem>sudesh 2</MenuItem>
@@ -69,13 +69,13 @@ const SideBar: React.FC<SideBarProps> = (props) => {
           </SubMenu>
           <SubMenu
             title='Interviews'
-            icon={<FaHeart />}
+            icon={<FaHeart/>}
           >
             <MenuItem>sudesh 1</MenuItem>
             <MenuItem>sudesh 2</MenuItem>
             <MenuItem>sudesh 3</MenuItem>
           </SubMenu>
-          <SubMenu title='Accepted Cv' icon={<FaList />}>
+          <SubMenu title='Accepted Cv' icon={<FaList/>}>
             <MenuItem>sudesh 1 </MenuItem>
             <MenuItem>sudesh 2 </MenuItem>
             <SubMenu title='sudesh 3'>
@@ -89,27 +89,10 @@ const SideBar: React.FC<SideBarProps> = (props) => {
             </SubMenu>
           </SubMenu>
         </Menu>
-        <Calendar/>
-      </SidebarContent>
-
-      <SidebarFooter style={{ textAlign: 'center' }}>
-        <div
-          className="sidebar-btn-wrapper"
-          style={{
-            padding: '20px 24px',
-          }}
-        >
-          <a
-            href="#"
-            target="_blank"
-            className="sidebar-btn"
-            rel="noopener noreferrer"
-          >
-            <FaGithub />
-            <span> sudesh</span>
-          </a>
+        <div className='px-2'>
+          <Calendar/>
         </div>
-      </SidebarFooter>
+      </SidebarContent>
     </ProSidebar>
   );
 };

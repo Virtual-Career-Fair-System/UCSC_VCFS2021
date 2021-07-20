@@ -2,6 +2,11 @@ import {makeStyles} from "@material-ui/core/styles";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
+import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
+import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
+
+import {Image} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -13,9 +18,9 @@ const mainFeaturedPost = {
     title: 'Title of a longer featured blog post',
     description:
         "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: 'https://source.unsplash.com/random',
+    image: careerFareCover,
     imgText: 'main image description',
-    linkText: 'Continue reading…',
+    linkText: 'Continue…',
 };
 
 const featuredPosts = [
@@ -24,7 +29,7 @@ const featuredPosts = [
         date: 'Nov 12',
         description:
             'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
+        image: companyPhoto,
         imageText: 'Image Text',
     },
     {
@@ -32,7 +37,7 @@ const featuredPosts = [
         date: 'Nov 11',
         description:
             'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
+        image: studentPhoto,
         imageText: 'Image Text',
     },
 ];
@@ -53,12 +58,7 @@ const sidebar = {
         {title: 'June 1999', url: '#'},
         {title: 'May 1999', url: '#'},
         {title: 'April 1999', url: '#'},
-    ],
-    social: [
-        {name: 'GitHub', icon: GitHubIcon},
-        {name: 'Twitter', icon: TwitterIcon},
-        {name: 'Facebook', icon: FacebookIcon},
-    ],
+    ]
 }
 
 export {featuredPosts,mainFeaturedPost,useStyles,sidebar};

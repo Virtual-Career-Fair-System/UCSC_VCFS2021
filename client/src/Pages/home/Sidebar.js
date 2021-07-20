@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar(props) {
   const classes = useStyles();
-  const { archives, description, social, title } = props;
+  const { archives, description, title } = props;
 
   return (
     <Grid item xs={12} md={4}>
@@ -36,19 +36,6 @@ export default function Sidebar(props) {
           {archive.title}
         </Link>
       ))}
-      <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-        Social
-      </Typography>
-      {social.map((network) => (
-        <Link display="block" variant="body1" href="#" key={network}>
-          <Grid container direction="row" spacing={1} alignItems="center">
-            <Grid item>
-              <network.icon />
-            </Grid>
-            <Grid item>{network.name}</Grid>
-          </Grid>
-        </Link>
-      ))}
     </Grid>
   );
 }
@@ -56,6 +43,5 @@ export default function Sidebar(props) {
 Sidebar.propTypes = {
   archives: PropTypes.array,
   description: PropTypes.string,
-  social: PropTypes.array,
   title: PropTypes.string,
 };

@@ -19,8 +19,13 @@ import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
 import CvUpload from "../cvcpload/CvUpload";
+<<<<<<< HEAD
 import { StudentViewNotification } from "../../Pages/student/StudentViewNotification";
 // import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+=======
+import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+import {Row} from 'react-bootstrap';
+>>>>>>> b64d450e9e904ebc25744fdf19ecde0e1774f10c
 
 // import { response } from 'express';
 
@@ -54,23 +59,31 @@ const SignIn = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
-  const [isRedirectRegister, setisRedirectRegister] = useState(false);
+  const [loginStatus, setLoginStatus] = useState<boolean>(false);
+  const [isRedirectRegister, setIsRedirectRegister] = useState(false);
+  const [loginError, setLoginError] = useState<null|string>(null);
+
 
   const routeToRegister = () => {
-    setisRedirectRegister(true);
+    setIsRedirectRegister(true);
   }
-  const fetchLogin = () => {
-    Axios.post('http://localhost:3001/login', {
+   const fetchLogin = (event:any) => {
+    event.preventDefault();
+    Axios.post('http://localhost:5000/login',{
       email: email,
       password: password,
-    }).then((responce) => {
-      console.log(responce);
-    }) ;
+    }).then((responce:any) => {
+      if(responce.data.login){
+        setLoginStatus(true);
+      }else {
+        setLoginError(responce.data.message);
+      }
+    });
   };
 
   return (
       <div className='login'>
+        {loginStatus && <Redirect to='/'/>}
       <Header title="Career Fair UCSC"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -114,6 +127,9 @@ const SignIn = () => {
               control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
+            <Row className='login-error-label'>
+              <label>{loginError && loginError}</label>
+            </Row>
             <Button
               type="submit"
               fullWidth

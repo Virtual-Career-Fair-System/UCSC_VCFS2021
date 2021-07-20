@@ -28,7 +28,6 @@ const Home: React.FC = () => {
 
     return (
         <React.Fragment>
-            <CssBaseline />
             <Header title="Career Fair UCSC" />
             <Container fluid={true}>
                 <main>
@@ -43,19 +42,14 @@ const Home: React.FC = () => {
                             title={sidebar.title}
                             description={sidebar.description}
                             archives={sidebar.archives}
-                            social={sidebar.social}
                         />
                     </Grid>
                 </main>
             </Container>
-            
-            <ScheduleMeeting/>
-            <CompanyProfile/>
-            <PublishAd/>
-            <AdminProfile/>
-            
-            <Footer title="Footer" description="Something here to give the footer a purpose!" />
-            <CompanyViewNotification/>
+            {/* <CvUpload/> */}
+            <Footer title="Footer"
+                    description="Something here to give the footer a purpose!"
+            />
         </React.Fragment>
     );
 }

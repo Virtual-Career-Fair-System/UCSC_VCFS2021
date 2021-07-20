@@ -7,14 +7,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-// import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 import {Redirect} from "react-router-dom";
-// import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -39,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
     const [fname, setFname] = useState("");
+    const [registered, setRegistered] = useState<true|false>(false);
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -47,15 +46,19 @@ export default function SignUp() {
         setIsRedirectLogin(true);
     }
 
-    const fetchAddStudent = () => {
+    const fetchAddStudent = (event:any) => {
+        event.preventDefault();
         console.log(fname);
-        Axios.post('http://localhost:3001/create', {
+        Axios.post('http://localhost:5000/create', {
             fname: fname,
             lname: lname,
             email: email,
             password: password,
-        }).then(() => {
-            console.log("success")
+        }).then((responce) => {
+            console.log(responce);
+            if(responce){
+                setRegistered(true);
+            }
         });
     };
 
@@ -77,6 +80,7 @@ export default function SignUp() {
                                     autoComplete="fname"
                                     name="firstName"
                                     variant="outlined"
+                                    value={fname}
                                     required
                                     fullWidth
                                     id="firstName"
@@ -92,6 +96,7 @@ export default function SignUp() {
                                     variant="outlined"
                                     required
                                     fullWidth
+                                    value={lname}
                                     id="lastName"
                                     label="Last Name"
                                     name="lastName"
@@ -106,6 +111,7 @@ export default function SignUp() {
                                     variant="outlined"
                                     required
                                     fullWidth
+                                    value={email}
                                     id="email"
                                     label="Email Address"
                                     name="email"
@@ -120,6 +126,7 @@ export default function SignUp() {
                                     variant="outlined"
                                     required
                                     fullWidth
+                                    value={password}
                                     name="password"
                                     label="Password"
                                     type="password"
@@ -149,7 +156,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                {isRedirectLogin && <Redirect to='/login'/>}
+                                {(isRedirectLogin || registered) && <Redirect to='/login'/>}
                                 <Link variant="body2"
                                       onClick={redirectToLogin}>
                                     Already have an account? Sign in
