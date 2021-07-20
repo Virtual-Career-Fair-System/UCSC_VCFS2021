@@ -1,5 +1,6 @@
 import React from "react";
 import {Button, Col, Row} from 'react-bootstrap';
+import {IoNotificationsCircle} from "react-icons/all";
 
 type NotificationProps = {
   notification: any
@@ -8,18 +9,12 @@ const Notification: React.FC<NotificationProps> = (props) => {
   const {notification} = props;
   return (
     <Row>
-      <Col>
-        <Row>
-          <Col xs={10} className='notification-title'>
-            {notification.title}
-          </Col>
-          <Col xs={2}>
-
-          </Col>
+      <Col xs={1} className='px-2'><IoNotificationsCircle color='blue' size='1.5em'/></Col>
+      <Col xs={5} ><Row> {notification.title}</Row>
+        <Row>The standard chunk of Lorem
         </Row>
-        <Row className='notification-date'>{notification.date}</Row>
-        <Row><Button>check</Button></Row>
       </Col>
+      <Col xs={2} ><Button size={"sm"}>check</Button></Col>
     </Row>
   );
 }

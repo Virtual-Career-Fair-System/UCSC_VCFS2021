@@ -68,11 +68,7 @@ const SignIn = () => {
       password: password,
     }).then((responce) => {
       console.log(responce);
-<<<<<<< HEAD
-    });
-=======
     }) ;
->>>>>>> 54b5acc77276dba7023c301a234544bb2b0bf1ea
   };
 
   return (
