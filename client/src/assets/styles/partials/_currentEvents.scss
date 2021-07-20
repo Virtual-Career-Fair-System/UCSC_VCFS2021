@@ -90,9 +90,7 @@ $icon-size: 35px;
         height: auto;
       }
     }
-
   }
-
 }
 
 @media (max-width: $breakpoint-md) {
@@ -100,6 +98,14 @@ $icon-size: 35px;
     .sidebar-toggle-btn-col {
       .btn-toggle {
         display: flex;
+      }
+    }
+    .event{
+      .event-image-col{
+        .event-cover-image{
+          height: 100%;
+
+        }
       }
     }
   }
