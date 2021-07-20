@@ -5,6 +5,7 @@ import {useStyles2} from "../headerConstants";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Popover from 'react-bootstrap/Popover';
 import Notification from "./Notification";
+import {Col} from 'react-bootstrap';
 
 const NotificationPanel = () => {
   const [notification, setNotification] = useState(
@@ -32,15 +33,15 @@ const NotificationPanel = () => {
     </Popover>
   );
   return (
-    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-      <div className='pr-4 pt-2'>
-        <div className={classes.root}><Badge badgeContent={1000}
-                                             max={999}
-                                             color='secondary'
-                                             children={<NotificationsNoneIcon fontSize='large'/>}/>
-        </div>
-      </div>
-    </OverlayTrigger>
+    <div className='px-3'>
+      <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+          <div className={classes.root}><Badge badgeContent={3}
+                                               max={999}
+                                               color='secondary'
+                                               children={<NotificationsNoneIcon fontSize='large'/>}/>
+          </div>
+      </OverlayTrigger>
+    </div>
   );
 }
 

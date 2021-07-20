@@ -20,6 +20,7 @@ import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
 import CvUpload from "../cvcpload/CvUpload";
 import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+import {Row} from 'react-bootstrap';
 
 // import { response } from 'express';
 
@@ -53,30 +54,31 @@ const SignIn = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
-  const [isRedirectRegister, setisRedirectRegister] = useState(false);
-  const [registered, setRegistered] = useState<true|false>(false);
+  const [loginStatus, setLoginStatus] = useState<boolean>(false);
+  const [isRedirectRegister, setIsRedirectRegister] = useState(false);
+  const [loginError, setLoginError] = useState<null|string>(null);
 
 
   const routeToRegister = () => {
-    setisRedirectRegister(true);
+    setIsRedirectRegister(true);
   }
-  const fetchLogin = (event:any) => {
+   const fetchLogin = (event:any) => {
     event.preventDefault();
-    Axios.post('http://localhost:5000/login', {
+    Axios.post('http://localhost:5000/login',{
       email: email,
       password: password,
-    }).then((responce) => {
-      console.log(responce);
-<<<<<<< HEAD
+    }).then((responce:any) => {
+      if(responce.data.login){
+        setLoginStatus(true);
+      }else {
+        setLoginError(responce.data.message);
+      }
     });
-=======
-    }) ;
->>>>>>> 54b5acc77276dba7023c301a234544bb2b0bf1ea
   };
 
   return (
       <div className='login'>
+        {loginStatus && <Redirect to='/'/>}
       <Header title="Career Fair UCSC"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -120,6 +122,9 @@ const SignIn = () => {
               control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
+            <Row className='login-error-label'>
+              <label>{loginError && loginError}</label>
+            </Row>
             <Button
               type="submit"
               fullWidth

@@ -156,7 +156,7 @@ export default function SignUp() {
                         </Button>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                {isRedirectLogin || registered && <Redirect to='/login'/>}
+                                {(isRedirectLogin || registered) && <Redirect to='/login'/>}
                                 <Link variant="body2"
                                       onClick={redirectToLogin}>
                                     Already have an account? Sign in
