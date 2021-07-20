@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import './cvupload.css'
 // Import the main component
 import { Viewer } from '@react-pdf-viewer/core'; // install this library
 // Plugins
