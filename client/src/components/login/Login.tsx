@@ -52,16 +52,19 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const [isRedirectRegister, setisRedirectRegister] = useState(false);
+  const [registered, setRegistered] = useState<true|false>(false);
+
 
   const routeToRegister = () => {
     setisRedirectRegister(true);
   }
-  const fetchLogin = () => {
-    Axios.post('http://localhost:3001/login', {
+  const fetchLogin = (event:any) => {
+    event.preventDefault();
+    Axios.post('http://localhost:5000/login', {
       email: email,
       password: password,
-    }).then(() => {
-      console.log("success");
+    }).then((responce) => {
+      console.log(responce);
     });
   };
 
