@@ -9,6 +9,11 @@ import Login from "../components/login/Login";
 import Register from "../Pages/register/Register";
 import News from "../Pages/news/News";
 import Event from "../Pages/event/Event";
+// import Profile from "../Pages/profile/Profile";
+import EditProfile from "../components/editprofile/EditProfile";
+import { StudentViewNotification } from "../Pages/student/StudentViewNotification";
+import Album from "../components/editprofile/Album";
+
 
 const Routes = () => {
   return(
@@ -23,6 +28,10 @@ const Routes = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/news" component={News} />
         <Route exact path="/Register" component={Register}/>
+        <Route exact path="/editprofile" component={EditProfile}/>
+        <Route exact path="/notification" component={StudentViewNotification}/>
+        {/* <Route exact path="/vacancy" component={Album}/> */}
+        {/* <Route exact path="/viewad" component={Album}/> */}
       </Switch>
     </BrowserRouter>
   );

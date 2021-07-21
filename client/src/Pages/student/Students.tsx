@@ -3,6 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../../components/header/Header";
 import {Container} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
+import Profile from "../profile/Profile";
 
 const Students = () => {
   return(
@@ -10,7 +11,7 @@ const Students = () => {
       <CssBaseline/>
       <Header title="Career Fair UCSC"/>
       <Container fluid={true}>
-        Students
+        <Profile/>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </React.Fragment>

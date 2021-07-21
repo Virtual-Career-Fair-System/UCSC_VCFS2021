@@ -15,7 +15,7 @@ function EditProfile() {
   return (
 
     <Card.Body>
-      <h1>Edit Profile</h1>
+      {/* <h1>Edit Profile</h1> */}
       <Form>
         <Row>
           <Col className="pr-1" md="12">

@@ -22,7 +22,7 @@ export default function Rightbar({ profile }) {
       <>
         <h2 className="rightbarTitle">
           Projects
-          <br></br>
+          
           <br></br>
           A Terminal Chat application, Terminal Chat Network
           It is prototype of console chat apps like the one we saw in Die Hard 4.
@@ -45,21 +45,21 @@ export default function Rightbar({ profile }) {
           <br></br>
           My Personal Website, kickresume.ml
           It is designed with basic HTML and CSS skills</h2>
-        {/* <h4 className="rightbarTitle">Contact me</h4> */}
+        <h4 className="rightbarTitle">Contact me</h4>
 
-        {/* <div className="rightbarInfo"> */}
-        {/* <div className="rightbarInfoItem">
+        <div className="rightbarInfo">
+          <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
             <span className="rightbarInfoValue">No: 13/6,
-Baron waidya rathna mw,
-Matara.
-</span>
-</div>
+              Baron waidya rathna mw,
+              Matara.
+            </span>
+          </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Tel:</span>
             <span className="rightbarInfoValue">+94770062833</span>
           </div>
-       
+
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Email:</span>
             <span className="rightbarInfoValue">tharindu.infor@gmail.com</span>
@@ -67,28 +67,17 @@ Matara.
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Linkedin:</span>
             <span className="rightbarInfoValue">https://github.com/tharindu-31
-</span>
+            </span>
           </div>
-          </div> */}
-          <br></br>
-          <br></br>
-          <br></br>
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
 
         <h4 className="rightbarTitle">Skills</h4>
-        Programming Languages
-        <br></br>
-        Python
-        <br></br>
-        R
-        <br></br>
-        JAVA
-        <br></br>
-        JavaScript
-        <br></br>
-        Node.js
-        <br></br>
 
-        {/* <div className="rightbarFollowings">
+
+        <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
               src="assets/person/3.PNG"
@@ -145,7 +134,7 @@ Matara.
             />
             <span className="rightbarFollowingName">C++</span>
           </div>
-        </div> */}
+        </div>
       </>
     );
   };
