@@ -82,14 +82,14 @@ export const Applicants = React.memo(function KanbanCard() {
   }
   return (
     <div align="center">
-      <CompanyHeader/>
+      <CompanyHeader />
       <br></br>
       <br></br>
       <Card className={cx(styles.card)} elevation={0}>
-        <Avatar src={'https://i.pravatar.cc/300'} className={styles.avatar} />
+        <Avatar src={'https://media-exp1.licdn.com/dms/image/C5103AQG4mUuen0cOlQ/profile-displayphoto-shrink_200_200/0/1575784022184?e=1631750400&v=beta&t=tOtvdSoyKpo_13CKAX65uCiZHsRJaK7D24hHqkT4rI8'} className={styles.avatar} />
         <Box>
-          <h3 className={styles.heading}>Sarah Onella</h3>
-          <p className={styles.subheader}>23 y.o • Canada</p>
+          <h3 className={styles.heading}>Praveen Himantha</h3>
+          {/* <p className={styles.subheader}>23 y.o • Sri Lanka</p> */}
 
         </Box>
         <Row p={2} gap={2} position={'bottom'}>
@@ -116,6 +116,41 @@ export const Applicants = React.memo(function KanbanCard() {
               color={'primary'}
               disableRipple
             >
+              Available
+            </Button>
+          </Item>
+        </Row>
+      </Card>
+      <br></br>
+      <Card className={cx(styles.card)} elevation={0}>
+        <Avatar src={'https://storage.googleapis.com/kaggle-avatars/images/7043707-gr.jpg'} className={styles.avatar} />
+        <Box>
+          <h3 className={styles.heading}>Nimantha Aravinda</h3>
+          {/* <p className={styles.subheader}>23 y.o • Sri Lanka</p> */}
+
+        </Box>
+        <Row p={2} gap={2} position={'bottom'}>
+
+          <Item position={'middle-right'}>
+            <Button
+
+              variant={'contained'}
+              color={'primary'}
+              disableRipple
+            >
+              View
+            </Button>
+          </Item>
+        </Row>
+        <Row p={2} gap={2} position={'bottom'}>
+
+          <Item position={'middle-right'}>
+            <Button
+
+              variant={'contained'}
+              color={'secondary'}
+              disableRipple
+            >
               Not Available
             </Button>
           </Item>
@@ -123,10 +158,45 @@ export const Applicants = React.memo(function KanbanCard() {
       </Card>
       <br></br>
       <Card className={cx(styles.card)} elevation={0}>
-        <Avatar src={'https://i.pravatar.cc/300'} className={styles.avatar} />
+        <Avatar src={'https://media-exp1.licdn.com/dms/image/C4D03AQF6PF0gSJvMrA/profile-displayphoto-shrink_100_100/0/1619644603260?e=1630540800&v=beta&t=SIke1EVVMXE5sZwUNXmjmvEvaVGSZIS8-8mUY-U4WBY'} className={styles.avatar} />
         <Box>
-          <h3 className={styles.heading}>Sarah Onella</h3>
-          <p className={styles.subheader}>23 y.o • Canada</p>
+          <h3 className={styles.heading}>Sudesh Bandara</h3>
+          {/* <p className={styles.subheader}>23 y.o • Sri Lanaka</p> */}
+
+        </Box>
+        <Row p={2} gap={2} position={'bottom'}>
+
+          <Item position={'middle-right'}>
+            <Button
+
+              variant={'contained'}
+              color={'primary'}
+              disableRipple
+            >
+              View
+            </Button>
+          </Item>
+        </Row>
+        <Row p={2} gap={2} position={'bottom'}>
+
+          <Item position={'middle-right'}>
+            <Button
+
+              variant={'contained'}
+              color={'secondary'}
+              disableRipple
+            >
+              Not Available
+            </Button>
+          </Item>
+        </Row>
+      </Card>
+      <br></br>
+      <Card className={cx(styles.card)} elevation={0}>
+        <Avatar src={'https://media-exp3.licdn.com/dms/image/C5103AQFxhlQutqOtbA/profile-displayphoto-shrink_100_100/0/1561217095242?e=1631750400&v=beta&t=FbuWPV1kByuCsvbu6rEVbgLZv3vrIsW1dkHOTPRU7rU'} className={styles.avatar} />
+        <Box>
+          <h3 className={styles.heading}>Pasindu Chanusha</h3>
+          {/* <p className={styles.subheader}>23 y.o • Sri Lanka</p> */}
 
         </Box>
         <Row p={2} gap={2} position={'bottom'}>
@@ -151,17 +221,17 @@ export const Applicants = React.memo(function KanbanCard() {
               color={'primary'}
               disableRipple
             >
-              Not Available
+              Available
             </Button>
           </Item>
         </Row>
       </Card>
       <br></br>
       <Card className={cx(styles.card)} elevation={0}>
-        <Avatar src={'https://i.pravatar.cc/300'} className={styles.avatar} />
+        <Avatar src={'https://media-exp1.licdn.com/dms/image/C5103AQF51MV_dlkC5Q/profile-displayphoto-shrink_200_200/0/1570947463618?e=1631750400&v=beta&t=CI2gs97ZaqBfZTu7IGDkCQt5Z6mzae3HcCdeQVt5Apk'} className={styles.avatar} />
         <Box>
-          <h3 className={styles.heading}>Sarah Onella</h3>
-          <p className={styles.subheader}>23 y.o • Canada</p>
+          <h3 className={styles.heading}>Lahiru Udayanga</h3>
+          {/* <p className={styles.subheader}>25 y.o • Sri Lanka</p> */}
 
         </Box>
         <Row p={2} gap={2} position={'bottom'}>
@@ -183,45 +253,10 @@ export const Applicants = React.memo(function KanbanCard() {
             <Button
 
               variant={'contained'}
-              color={'primary'}
+              color={'secondary'}
               disableRipple
             >
-              Not Available
-            </Button>
-          </Item>
-        </Row>
-      </Card>
-      <br></br>
-      <Card className={cx(styles.card)} elevation={0}>
-        <Avatar src={'https://i.pravatar.cc/300'} className={styles.avatar} />
-        <Box>
-          <h3 className={styles.heading}>Sarah Onella</h3>
-          <p className={styles.subheader}>23 y.o • Canada</p>
-
-        </Box>
-        <Row p={2} gap={2} position={'bottom'}>
-
-          <Item position={'middle-right'}>
-            <Button
-
-              variant={'contained'}
-              color={'primary'}
-              disableRipple
-            >
-              View
-            </Button>
-          </Item>
-        </Row>
-        <Row p={2} gap={2} position={'bottom'}>
-
-          <Item position={'middle-right'}>
-            <Button
-
-              variant={'contained'}
-              color={'primary'}
-              disableRipple
-            >
-              Not Available
+             Not Available
             </Button>
           </Item>
         </Row>

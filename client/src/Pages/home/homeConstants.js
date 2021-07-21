@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const mainFeaturedPost = {
-    title: 'Title of a longer featured blog post',
+    title: 'UCSC Virual Career Fair 2021',
     description:
         "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
     image: careerFareCover,
@@ -28,7 +28,7 @@ const featuredPosts = [
         title: 'Students',
         date: 'Nov 12',
         description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
+            'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, you should highlight your academic successes at the beginning of your resume, before the “Experience” description. If you have completed any projects or taken courses related to the job you are applying for, you can include these as well. Invitation to all UCSC undergraduates and graduates!, Invitation to all UCSC undergraduates and graduates!.',
         image: companyPhoto,
         imageText: 'Image Text',
     },
@@ -36,13 +36,14 @@ const featuredPosts = [
         title: 'Companies',
         date: 'Nov 11',
         description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
+            'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and conduct interviews, recruitment, and company presentations to showcase their organization and to inform of every available career opportunity.\nIf you are looking for skilled, talented, and innovative fresh graduates to make a difference in your company, Join Now.!\nSkilled and talented graduates await your call!!',
         image: studentPhoto,
         imageText: 'Image Text',
     },
 ];
 
 const sidebar = {
+    
     title: 'About',
     description:
         'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
