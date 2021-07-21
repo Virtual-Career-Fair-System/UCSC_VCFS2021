@@ -1,18 +1,17 @@
-import React, {useState} from 'react';
+import React ,{useState}from 'react';
 import GoogleFontLoader from 'react-google-font-loader';
 import NoSsr from '@material-ui/core/NoSsr';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 // import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import {Redirect} from "react-router-dom";
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { Info, InfoSubtitle, InfoTitle } from '@mui-treasury/components/info';
 import { useApexInfoStyles } from '@mui-treasury/styles/info/apex';
 import { useGraphicBtnStyles } from '@mui-treasury/styles/button/graphic';
-import StudentHeader from '../../Pages/profile/StudentHeader';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -76,6 +75,13 @@ const CustomCard = ({
 }) => {
   const styles = useStyles();
   const btnStyles = useGraphicBtnStyles();
+  const [isCompRedirect, setIsCompRedirect] = useState(false);
+  const onclickCompRoute = () => {
+    // console.log('Nim');
+    setIsCompRedirect(true);
+    
+  }
+
   return (
     <div className={styles.root}>
       <Column className={styles.card}>
@@ -96,7 +102,7 @@ const CustomCard = ({
           {description}
         </Box>
         <Row p={2} gap={2} position={'bottom'}>
-
+          
           <Item position={'middle-right'}>
             <Button
               className={styles.join}
@@ -105,7 +111,32 @@ const CustomCard = ({
               color={'primary'}
               disableRipple
             >
-              View
+                   Edit
+            </Button>
+          </Item>
+          
+          <Item position={'middle-left'}>
+            <Button
+              className={styles.join}
+              classes={btnStyles}
+              variant={'contained'}
+              color={'secondary'}
+              disableRipple
+              onClick={onclickCompRoute}
+            >
+                   applicants
+                   {isCompRedirect && <Redirect to='/applicant'/>}
+            </Button>
+          </Item>
+          <Item position={'middle-left'}>
+            <Button
+              className={styles.join}
+              classes={btnStyles}
+              variant={'contained'}
+              color={'secondary'}
+              disableRipple
+            >
+                   view
             </Button>
           </Item>
         </Row>
@@ -114,22 +145,16 @@ const CustomCard = ({
   );
 };
 
-export const Carde = React.memo(function TeamCard() {
-  const [isAddRedirect, setIsAddRedirect] = useState(false);
-  const onclickAddRoute = () => {
-    console.log('Nim');
-    setIsAddRedirect(true);
-    
-  }
+export const Comp = React.memo(function TeamCard() {
+ 
+  
   return (
     <>
-    {/* */}
-    <br></br>
       <NoSsr>
         <GoogleFontLoader fonts={[{ font: 'Ubuntu', weights: [400, 700] }]} />
       </NoSsr>
-      <Grid container spacing={4} >
-        <Grid item xs={12} md={6} lg={4} onClick={onclickAddRoute}>
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={6} lg={4}>
           <CustomCard
             thumbnail={
               'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
@@ -142,7 +167,6 @@ export const Carde = React.memo(function TeamCard() {
               </>
             }
           />
-          {isAddRedirect && <Redirect to='/adview'/>}
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <CustomCard
@@ -209,4 +233,4 @@ export const Carde = React.memo(function TeamCard() {
     </>
   );
 });
-export default Carde
+export default Comp

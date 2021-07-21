@@ -1,5 +1,6 @@
 import React from 'react';
 import Color from 'color';
+import {Redirect} from "react-router-dom";
 import GoogleFont from 'react-google-font-loader';
 import { makeStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -16,6 +17,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { useState } from 'react';
+import StudentHeader from '../../Pages/profile/StudentHeader';
 // import Carde from './Carde';
 
 const useGridStyles = makeStyles(({ breakpoints }) => ({
@@ -87,18 +90,25 @@ const CustomCard = ({ classes, image, title, subtitle }) => {
 };
 
 export const Album = React.memo(function SolidGameCard() {
+  const [isJobRedirect, setIsJobRedirect] = useState(false);
   const gridStyles = useGridStyles();
+  const onclickJobRoute = () => {
+    console.log('Nim');
+    setIsJobRedirect(true);
+    
+  }
   const styles = useStyles({ color: '#203f52' });
   const styles2 = useStyles({ color: '#4d137f' });
   const styles3 = useStyles({ color: '#ff9900' });
   const styles4 = useStyles({ color: '#34241e' });
   return (
     <>
+    <StudentHeader/>
       <Grid classes={gridStyles} container spacing={4} wrap={'nowrap'}>
       {/* <Switch>
       <Route path="./Carde"> */}
-        <Grid item>
-      
+        <Grid item onClick={onclickJobRoute}>
+
           <CustomCard
          
             classes={styles}
@@ -107,8 +117,10 @@ export const Album = React.memo(function SolidGameCard() {
             image={
               '/assets/se3.jfif'
             }
+            
           
           />
+          {isJobRedirect && <Redirect to='/job'/>}
         </Grid>
         {/* </Route> */}
         <Grid item>

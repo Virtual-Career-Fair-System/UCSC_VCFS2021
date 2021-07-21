@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+import CompanyHeader from './CompanyHeader';
 
 const usePersonStyles = makeStyles(() => ({
   text: {
@@ -100,7 +101,8 @@ export const CompanyViewNotification = React.memo(function SocialCard() {
   const styles = useStyles();
   return (
     <div align="center">
-    <h1>Company View Notification</h1>
+      <CompanyHeader/>
+    {/* <h1>Company View Notification</h1> */}
       <NoSsr>
         <GoogleFontLoader fonts={[{ font: 'Barlow', weights: [400, 600] }]} />
       </NoSsr>

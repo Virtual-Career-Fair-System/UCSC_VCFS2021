@@ -10,11 +10,14 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import StudentHeader from '../../Pages/profile/StudentHeader';
 
 function EditProfile() {
   return (
+    
 
     <Card.Body>
+      <StudentHeader/>
       {/* <h1>Edit Profile</h1> */}
       <Form>
         <Row>

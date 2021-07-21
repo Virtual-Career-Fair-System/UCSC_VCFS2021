@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Calendar from 'react-calendar';
-import { Redirect } from "react-router-dom";
-import Link from '@material-ui/core/Link';
+import {Redirect} from "react-router-dom";
 import {
   ProSidebar,
   Menu,
@@ -11,7 +10,7 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
+import {FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart} from 'react-icons/fa';
 
 type SideBarProps = {
   toggled: boolean
@@ -21,7 +20,7 @@ type SideBarProps = {
 
 
 const SideBar: React.FC<SideBarProps> = (props) => {
-  const { toggled, handleToggleSidebar, title } = props;
+  const {toggled, handleToggleSidebar, title} = props;
   const [isEditProfileRedirect, setIsEditProfileRedirect] = useState(false);
   const [isStudentNotificationRedirect, setIsStudentNotificationRedirect] = useState(false);
   const [isVacancyRedirect, setIsVacancyRedirect] = useState(false);
@@ -35,8 +34,8 @@ const SideBar: React.FC<SideBarProps> = (props) => {
   const onclickVacancyRoute = () => {
     setIsVacancyRedirect(true);
   }
-  return (
 
+  return (
     <ProSidebar
       image={undefined}
       rtl={false}
@@ -45,7 +44,6 @@ const SideBar: React.FC<SideBarProps> = (props) => {
       breakPoint="md"
       onToggle={handleToggleSidebar}
     >
-
       <SidebarHeader>
         <div
           style={{
@@ -66,64 +64,42 @@ const SideBar: React.FC<SideBarProps> = (props) => {
 
       <SidebarContent>
         <Menu iconShape="circle">
-          {isEditProfileRedirect && <Redirect to='/editprofile' />}
-          <Link
-            color="inherit"
-            noWrap
-            key={'students'}
-            variant="body2"
-
-
+        {/* {isEditProfileRedirect && <Redirect to='/editprofile'/>} */}
+       
+          <MenuItem
+            icon={<FaTachometerAlt/>}
+            suffix={<span className="badge red"></span>}
+            onClick={onclickEditProfileRoute}
           >
-
-{isEditProfileRedirect && <Redirect to='/editprofile' />}
-            <MenuItem
-              icon={<FaTachometerAlt />}
-              suffix={<span className="badge red"></span>}
-              onClick={onclickEditProfileRoute}
-            >
-              Edit Profile
-            </MenuItem>
-          </Link>
-          {isStudentNotificationRedirect && <Redirect to='/notification' />}
-          <Link
-            color="inherit"
-            noWrap
-            key={'students'}
-            variant="body2"
+            {isEditProfileRedirect && <Redirect to='/editprofile'/>}
+            Edit Profile
+          </MenuItem>
+          
+          <MenuItem icon={<FaGem/>}
+            onClick={onclickStudentNotificationRoute}
           >
-
-            <MenuItem icon={<FaGem />} onClick={onclickStudentNotificationRoute}> Notification</MenuItem>
-          </Link>
-
-          {isVacancyRedirect && <Redirect to='/vacancy' />}
-          <Link
-            color="inherit"
-            noWrap
-            key={'students'}
-            variant="body2"
+          {isStudentNotificationRedirect && <Redirect to='/notification'/>}
+             Notification
+             </MenuItem>
+        </Menu>
+        <Menu iconShape="circle">
+          <SubMenu
+            suffix={<span className="badge yellow"></span>}
+            title='Vacancy'
+            icon={<FaRegLaughWink/>}
+            onClick={onclickVacancyRoute}
           >
-
-
-            <SubMenu
-              suffix={<span className="badge yellow">3</span>}
-              title='Vacancy'
-              icon={<FaRegLaughWink />}
-              onClick={onclickVacancyRoute}
-
-            >
-
-            </SubMenu>
-          </Link>
+            {isVacancyRedirect && <Redirect to='/vacancy'/>}
+          </SubMenu>
           <SubMenu
             title='Interviews'
-            icon={<FaHeart />}
+            icon={<FaHeart/>}
           >
             <MenuItem>sudesh 1</MenuItem>
             <MenuItem>sudesh 2</MenuItem>
             <MenuItem>sudesh 3</MenuItem>
           </SubMenu>
-          <SubMenu title='Accepted Cv' icon={<FaList />}>
+          <SubMenu title='Accepted Cv' icon={<FaList/>}>
             <MenuItem>sudesh 1 </MenuItem>
             <MenuItem>sudesh 2 </MenuItem>
             <SubMenu title='sudesh 3'>
@@ -138,7 +114,7 @@ const SideBar: React.FC<SideBarProps> = (props) => {
           </SubMenu>
         </Menu>
         <div className='px-2'>
-          <Calendar />
+          <Calendar/>
         </div>
       </SidebarContent>
     </ProSidebar>

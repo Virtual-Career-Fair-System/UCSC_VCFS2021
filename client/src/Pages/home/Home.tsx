@@ -9,18 +9,14 @@ import Sidebar from './Sidebar';
 import Footer from '../../components/footer/Footer';
 // import CvUpload from '../../components/cvcpload/CvUpload';
 import { featuredPosts, mainFeaturedPost, useStyles, sidebar } from './homeConstants';
-// import Create from '../company/Create';
-// import Upload from '../company/Upload'
-import ScheduleMeeting from '../company/ScheduleMeeting';
-import { CompanyViewNotification } from '../company/CompanyViewNotification';
-import CompanyProfile from '../company/CompanyProfile';
-import PublishAd from '../company/PublishAd';
+
+
 import AdminProfile from '../admin/AdminProfile';
+import Dashboard from '../admin/Dashboard';
 
 
 
-// import Notes from '../Notes'
-// import Profile from "../../Pages/profile/Profile";
+
 
 
 const Home: React.FC = () => {
@@ -46,15 +42,12 @@ const Home: React.FC = () => {
                     </Grid>
                 </main>
             </Container>
-            {/* <CvUpload/> */}
-            <ScheduleMeeting/>
-            <PublishAd/>
-            <CompanyProfile/>
-            <AdminProfile/>
+            
+            {/* <AdminProfile /> */}
             <Footer title="Footer"
-                    description="Something here to give the footer a purpose!"
+                description="Something here to give the footer a purpose!"
             />
-            <CompanyViewNotification/>
+            {/* <Dashboard/> */}
         </React.Fragment>
     );
 }
