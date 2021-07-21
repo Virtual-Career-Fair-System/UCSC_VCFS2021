@@ -36,7 +36,6 @@ const NotificationPanel = () => {
     <div className='px-3'>
       <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
           <div className={classes.root}><Badge badgeContent={3}
-                                               max={999}
                                                color='secondary'
                                                children={<NotificationsNoneIcon fontSize='large'/>}/>
           </div>
