@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.scss';
 import CareerFairApp from '../views/CareerFairApp'
 
-const App: React.FC = () => {
+const App: React.FC = () => {;
   return (<CareerFairApp/>);
 }
 

@@ -12,33 +12,43 @@ const db: any = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'password@123'
+  database: 'career_fair_2021'
 });
 
 app.use(cors());
 app.use(express.json())
 
-app.post('/create', (req, res) => {
+app.post('/createStudent', (req, res) => {
   // console.log(req.body)
   const fname = req.body.fname;
   const lname = req.body.lname;
   const email = req.body.email;
+  const regNo = req.body.regNo;
   const password = req.body.password;
   const PasswordSh1 = crypto.createHash('md5').update(password).digest('hex');
-  db.query('INSERT INTO student(f_name,l_name,email,password) VALUES (?,?,?,?);', [fname, lname, email, PasswordSh1], (err: any, result: any, fields: any) => {
+  db.query('INSERT INTO student(f_name,l_name,email,password,reg_no) VALUES (?,?,?,?,?);', [fname, lname, email, PasswordSh1,regNo], (err: any, result: any, fields: any) => {
     if (err) {
-      res.send({err: err});
+      res.send({
+        registered:false,
+        result:err
+      });
     }
     if (result) {
-      res.send(result);
+      res.send({
+        registered:true,
+        result:result
+      });
     } else {
       res.send({
-        message: 'Failed to Register...'
+        message: 'Somthing went wrong...'
       });
     }
   });
 });
 
+app.post('/createCompany', (req, res) => {
+
+});
 app.post('/login', (req, res) => {
   const email: string = req.body.email;
   const password: string = req.body.password;
@@ -54,7 +64,7 @@ app.post('/login', (req, res) => {
       });
     } else {
       res.send({
-        login:false,
+        login: false,
         message: 'Incorrect User Name or PassWord'
       });
     }
@@ -63,7 +73,7 @@ app.post('/login', (req, res) => {
 ;
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  const sqlInsert = "INSERT INTO student(f_name,l_name,email,password) VALUES ('sudesh','bandara','swelikotuwa@gmail.com','sudesh')";
+  const sqlInsert = "INSERT INTO student(f_name,l_name,email,password,reg_no) VALUES ('sudesh','bandara','swelikotuwa@gmail.com','sudesh','2018cs023')";
   db.query(sqlInsert, (err: any, result: any) => {
     res.send(err);
   })

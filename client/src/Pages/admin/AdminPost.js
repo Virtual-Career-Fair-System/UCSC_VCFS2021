@@ -1,13 +1,6 @@
 import "./AdminPost.css";
-import { MoreVert } from "@material-ui/icons";
-import { Users } from "../../dummyData";
-import { useState } from "react";
-
 import AdminSideBar from "./AdminSideBar";
-
 export default function AdminPost({ AdminPost }) {
-
-
   return (
     <div className="AdminPost">
       <AdminSideBar/>

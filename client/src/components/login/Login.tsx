@@ -143,7 +143,7 @@ const SignIn = () => {
                 </Link>
               </Grid>
               <Grid item>
-                {isRedirectRegister && <Redirect to='/register'/>}
+                {isRedirectRegister && <Redirect to='/chooseRegisterForm'/>}
                 <Link variant="body2"
                       onClick={routeToRegister}>
                   Don't have an account? Sign Up

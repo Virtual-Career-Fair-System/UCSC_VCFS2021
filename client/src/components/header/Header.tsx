@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import {useStyles,useStyles2} from "./headerConstants";
+import {useStyles, useStyles2} from "./headerConstants";
 import {Container} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
@@ -11,9 +11,6 @@ import {RiCalendarEventLine} from "react-icons/all";
 import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
 import {FaUserGraduate} from "react-icons/all";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationPanel from "./notification/NotificationPanel";
 
 type HeaderProps = {
@@ -21,6 +18,7 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
+
   const classes = useStyles();
   const {title} = props;
   const [isRedirectCurrentEvents, setIsRedirectCurrentEvents] = useState(false);
@@ -63,7 +61,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         <NotificationPanel/>
         {isRedirectLogin && <Redirect to='/login'/>}
         <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
-          Sign IN
+            Sign IN
         </Button>
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
