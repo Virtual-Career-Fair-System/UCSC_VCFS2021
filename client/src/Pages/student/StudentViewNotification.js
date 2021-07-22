@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { useDynamicAvatarStyles } from '@mui-treasury/styles/avatar/dynamic';
+import StudentHeader from '../profile/StudentHeader';
 
 const usePersonStyles = makeStyles(() => ({
   text: {
@@ -100,6 +101,7 @@ export const StudentViewNotification = React.memo(function SocialCard() {
   const styles = useStyles();
   return (
     <div align="center">
+      <StudentHeader/>
     <h1> Student View Notification</h1>
       <NoSsr>
         <GoogleFontLoader fonts={[{ font: 'Barlow', weights: [400, 600] }]} />

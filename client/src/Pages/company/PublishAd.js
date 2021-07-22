@@ -10,10 +10,12 @@ import {
     Row,
     Col,
 } from "react-bootstrap";
+import CompanyHeader from './CompanyHeader';
 
 export default function PublishAd() {
     return (
         <div>
+            <CompanyHeader/>
             <Card.Body>
                 <h1>Publish Ad</h1>
                 <Form>

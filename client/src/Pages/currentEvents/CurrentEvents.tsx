@@ -36,8 +36,8 @@ const CurrentEvents = () => {
       <CssBaseline/>
       <Header title="Career Fair UCSC"/>
       <Container fluid={true}  className='current-events'>
-        <SideBar toggled={toggled}
-                 handleToggleSidebar={handleToggleSidebar}/>
+        {/* <SideBar toggled={toggled}
+                 handleToggleSidebar={handleToggleSidebar}/> */}
         <main>
           <Row>
             <Col xs={6} className='sidebar-toggle-btn-col'>

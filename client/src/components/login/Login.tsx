@@ -154,10 +154,7 @@ const SignIn = () => {
         </div>
         <h1>{loginStatus}</h1>
       </Container>
-      <Profile/>
-      <EditProfile/>
-      <StudentViewNotification/>
-      <CvUpload/>
+      
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
   );
