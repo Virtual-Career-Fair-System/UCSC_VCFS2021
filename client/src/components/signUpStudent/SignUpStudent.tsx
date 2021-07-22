@@ -98,7 +98,7 @@ export default function SignUpStudent() {
     return re.test(regNo);
   }
 
-  const validation = () => {
+  const validation = async () => {
     setErrorFName(null);
     setErrorLName(null);
     setErrorEmail(null);
@@ -108,46 +108,46 @@ export default function SignUpStudent() {
 
     console.log(fname)
     if (fname === '' || !fname) {
-      setErrorFName("Required");
+      await setErrorFName("Required");
     } else if (!isOnlyLetters(fname)) {
-      setErrorFName("Enter valid first name");
+      await setErrorFName("Enter valid first name");
     }
 
     if (lname === '' || !lname) {
-      setErrorLName("Required");
+      await setErrorLName("Required");
     } else if (!isOnlyLetters(lname)) {
-      setErrorLName("Enter valid last name");
+      await setErrorLName("Enter valid last name");
     }
 
     if (!email||email==='') {
-      setErrorEmail("Required");
+      await setErrorEmail("Required");
     } else if (!isValidEmail(email)) {
-      setErrorEmail("Enter valid email");
+      await setErrorEmail("Enter valid email");
     }
 
     if (password === '' || !password) {
-      setErrorPassword("Required");
+      await setErrorPassword("Required");
     } else if (!isValidPassword(password)) {
       console.log(isValidPassword(password));
       console.log(password);
-      setErrorPassword("Minimum length of this field must be equal or greater than 8");
+      await setErrorPassword("Minimum length of this field must be equal or greater than 8");
     }
     if (confirmPassword === ''||!confirmPassword) {
-      setErrorConfirmPassword("Required");
+      await setErrorConfirmPassword("Required");
     } else if (!isPasswordConfirmed()) {
-      setErrorConfirmPassword("Password not matched");
+      await setErrorConfirmPassword("Password not matched");
     }
 
     if (regNo === '' || !regNo) {
-      setErrorRegNo("Required");
+      await setErrorRegNo("Required");
     } else if (!isValidRegNo()) {
-      setErrorRegNo('Registration number is not valid')
+      await  setErrorRegNo('Registration number is not valid')
     }
   }
 
-  const fetchAddStudent =  (event: any) => {
-    event.preventDefault();
-    validation();
+  const fetchAddStudent =  async (event: any) => {
+    await event.preventDefault();
+   await validation();
     if(errorFName||errorLName||errorEmail||errorPassword||errorConfirmPassword||errorRegNo||!fname||!lname||!email||!password||!confirmPassword||!regNo){
       console.log("errorFName "+errorFName);
       console.log("errorLName "+errorLName);

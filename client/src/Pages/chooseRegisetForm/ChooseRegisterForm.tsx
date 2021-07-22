@@ -32,8 +32,13 @@ const ChooseRegisterForm = () => {
               <Card.Body>
                 <Card.Title>Student</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  Invitation to all UCSC undergraduates and graduates!,
+                  Highlight Your Education. As a student, you should
+                  highlight your academic successes at the beginning
+                  of your resume, before the “Experience” description.
+                  If you have completed any projects or taken courses
+                  related to the job you are applying for, you can include these as well.
+                  Invitation to all UCSC undergraduates and graduates!,
                 </Card.Text>
                 <Button variant="primary" onClick={onClickRegisterAsStudent}>Register as Student</Button>
               </Card.Body>
@@ -45,8 +50,13 @@ const ChooseRegisterForm = () => {
               <Card.Body>
                 <Card.Title>Company</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the bulk of
-                  the card's content.
+                  Organizations from the IT industry get an exclusive
+                  opportunity to meet with outstanding students and
+                  conduct interviews, recruitment, and company presentations
+                  to showcase their organization and to inform of every
+                  available career opportunity.\nIf you are looking for skilled,
+                  talented, and innovative fresh graduates to make a difference in your company,
+                  Join Now!. Skilled and talented graduates await your call!!',
                 </Card.Text>
                 <Button variant="primary" onClick={onClickRegisterAsCompany}>Register as Company</Button>
               </Card.Body>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import { Redirect } from "react-router-dom";
 import {
     ProSidebar,
     Menu,
@@ -17,8 +18,20 @@ type SideBarProps = {
 }
 
 const CompanySideBar: React.FC<SideBarProps> = (props) => {
+    const [isPublishAdRedirect, setIsPublishAdRedirect] = useState(false);
+    const [isCompanyViewNotificationRedirect, setIsCompanyViewNotificationRedirect] = useState(false);
     const { toggled, handleToggleSidebar } = props;
     console.log(toggled);
+    const onclickPublishAdRoute = () => {
+        // console.log('Nim');
+        setIsPublishAdRedirect(true);
+
+    }
+    const onclickCompanyViewNotificationRoute = () => {
+        // console.log('Nim');
+        setIsCompanyViewNotificationRedirect(true);
+
+    }
 
     return (
         <ProSidebar
@@ -52,39 +65,25 @@ const CompanySideBar: React.FC<SideBarProps> = (props) => {
                     <MenuItem
                         icon={<FaTachometerAlt />}
                         suffix={<span className="badge red"></span>}
+                        onClick={onclickPublishAdRoute}
                     >
                         Publish New Ad
+                        {isPublishAdRedirect && <Redirect to='/publishad' />}
                     </MenuItem>
                     <MenuItem
                         icon={<FaTachometerAlt />}
                         suffix={<span className="badge red"></span>}
+                        onClick={onclickCompanyViewNotificationRoute}
                     >
-                        Notices
+                        Notification
+                        {isCompanyViewNotificationRedirect && <Redirect to='/companyviewnotification' />}
                     </MenuItem>
                     <MenuItem icon={<FaGem />}> Rules</MenuItem>
                 </Menu>
-
-                <Calendar />
+<div className='px-2'>
+    <Calendar />
+</div>
             </SidebarContent>
-
-            <SidebarFooter style={{ textAlign: 'center' }}>
-                <div
-                    className="sidebar-btn-wrapper"
-                    style={{
-                        padding: '20px 24px',
-                    }}
-                >
-                    <a
-                        href="#"
-                        target="_blank"
-                        className="sidebar-btn"
-                        rel="noopener noreferrer"
-                    >
-                        <FaGithub />
-                        <span> sudesh</span>
-                    </a>
-                </div>
-            </SidebarFooter>
         </ProSidebar>
     );
 };

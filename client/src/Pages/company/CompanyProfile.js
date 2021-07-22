@@ -10,22 +10,7 @@ export default function CompanyProfile() {
 
         <div className="profileRight">
 
-          <div className="profileRightTop">
-
-            <div className="profileCover">
-
-
-
-
-            </div>
-
-            <br></br>
-            <br></br>
-            <div className="profileInfo">
-              
-            </div>
-          </div>
-          <h1>Company Profile</h1>
+          
           <div className="profileRightBottom">
 
 

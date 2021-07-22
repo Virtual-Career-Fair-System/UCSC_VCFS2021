@@ -18,16 +18,16 @@ export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>UCSC PDC</Title>
+      <Title>Recent Deposits</Title>
       <Typography component="p" variant="h4">
-        Site Viewers 34
+        $3,024.00
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-         22 July, 2021
+        on 15 March, 2019
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>
-          View calendar 
+          View balance
         </Link>
       </div>
     </React.Fragment>

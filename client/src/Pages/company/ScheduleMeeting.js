@@ -10,11 +10,14 @@ import {
     Row,
     Col,
 } from "react-bootstrap";
+import CompanyHeader from './CompanyHeader';
 
 export default function ScheduleMeeting() {
     return (
         <div>
+            <CompanyHeader/>
             <Card.Body>
+
                 <h1>Schedule Meeting</h1>
                 <Form>
                 

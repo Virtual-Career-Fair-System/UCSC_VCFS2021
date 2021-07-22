@@ -9,21 +9,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
-import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
-import EditProfile from "../editprofile/EditProfile";
-import CvUpload from "../cvcpload/CvUpload";
-import { StudentViewNotification } from "../../Pages/student/StudentViewNotification";
-// import JobAdPage from "../../Pages/jobadpage/JobAdPage";
-import JobAdPage from "../../Pages/jobadpage/JobAdPage";
 import {Row} from 'react-bootstrap';
-// import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -79,7 +71,7 @@ const SignIn = () => {
 
   return (
       <div className='login'>
-        {loginStatus && <Redirect to='/'/>}
+        {loginStatus && <Redirect to='/students'/>}
       <Header title="Career Fair UCSC"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -154,10 +146,6 @@ const SignIn = () => {
         </div>
         <h1>{loginStatus}</h1>
       </Container>
-      <Profile/>
-      <EditProfile/>
-      <StudentViewNotification/>
-      <CvUpload/>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
   );
