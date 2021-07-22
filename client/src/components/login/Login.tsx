@@ -15,9 +15,14 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
-import ProfilePage from "../profile/ProfilePage";
+import Profile from "../../Pages/profile/Profile";
 import {Redirect} from "react-router-dom";
 import EditProfile from "../editprofile/EditProfile";
+import CvUpload from "../cvcpload/CvUpload";
+import { StudentViewNotification } from "../../Pages/student/StudentViewNotification";
+// import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+import JobAdPage from "../../Pages/jobadpage/JobAdPage";
+import {Row} from 'react-bootstrap';
 // import { response } from 'express';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,23 +55,31 @@ const SignIn = () => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
-  const [isRedirectRegister, setisRedirectRegister] = useState(false);
+  const [loginStatus, setLoginStatus] = useState<boolean>(false);
+  const [isRedirectRegister, setIsRedirectRegister] = useState(false);
+  const [loginError, setLoginError] = useState<null|string>(null);
+
 
   const routeToRegister = () => {
-    setisRedirectRegister(true);
+    setIsRedirectRegister(true);
   }
-  const fetchLogin = () => {
-    Axios.post('http://localhost:3001/login', {
+   const fetchLogin = (event:any) => {
+    event.preventDefault();
+    Axios.post('http://localhost:5000/login',{
       email: email,
       password: password,
-    }).then(() => {
-      console.log("success");
+    }).then((responce:any) => {
+      if(responce.data.login){
+        setLoginStatus(true);
+      }else {
+        setLoginError(responce.data.message);
+      }
     });
   };
 
   return (
       <div className='login'>
+        {loginStatus && <Redirect to='/'/>}
       <Header title="Career Fair UCSC"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -110,6 +123,9 @@ const SignIn = () => {
               control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
+            <Row className='login-error-label'>
+              <label>{loginError && loginError}</label>
+            </Row>
             <Button
               type="submit"
               fullWidth
@@ -138,8 +154,7 @@ const SignIn = () => {
         </div>
         <h1>{loginStatus}</h1>
       </Container>
-      <ProfilePage/>
-      <EditProfile/>
+      
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>
   );

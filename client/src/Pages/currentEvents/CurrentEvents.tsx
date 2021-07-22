@@ -12,9 +12,9 @@ const CurrentEvents = () => {
   const [toggled, setToggled] = useState(false);
   const [events,setEvents]=useState([
     {id:1,eventName:'carier fair 2021',eventCode:'1careerFare2021'},
-    {id:2,eventName:'carier fair 2021',eventCode:'2careerFare2020'},
-    {id:3,eventName:'carier fair 2020',eventCode:'3careerFare2019'},
-    {id:4,eventName:'carier fair 2019',eventCode:'4careerFare2018'}
+    {id:2,eventName:'carier fair 2020',eventCode:'2careerFare2020'},
+    {id:3,eventName:'carier fair 2019',eventCode:'3careerFare2019'},
+    {id:4,eventName:'carier fair 2018',eventCode:'4careerFare2018'}
   ]);
 
   const handleToggleSidebar = (value: boolean) => {
@@ -36,17 +36,14 @@ const CurrentEvents = () => {
       <CssBaseline/>
       <Header title="Career Fair UCSC"/>
       <Container fluid={true}  className='current-events'>
-        <SideBar toggled={toggled}
-                 handleToggleSidebar={handleToggleSidebar}/>
+        {/* <SideBar toggled={toggled}
+                 handleToggleSidebar={handleToggleSidebar}/> */}
         <main>
           <Row>
             <Col xs={6} className='sidebar-toggle-btn-col'>
               <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
                 <FaBars/>
               </div>
-            </Col>
-            <Col xs={6} className='text-info text-right'>
-              <IoNotificationsCircle size='2.7em'/>
             </Col>
           </Row>
           <Event event={events[0]}/>

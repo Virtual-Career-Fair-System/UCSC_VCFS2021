@@ -1,0 +1,23 @@
+.popover {
+  background-color: #f8f8ff;
+  min-width: 400px;
+  z-index: 2000 !important;
+
+  .popover-body {
+    max-width: 100%;
+
+    .notification {
+      .notification-title {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+
+      .notification-date {
+        opacity: 0.6;
+      }
+
+      border: solid 1px black;
+      border-radius: 10px;
+    }
+  }
+}

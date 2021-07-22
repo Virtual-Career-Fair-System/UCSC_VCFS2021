@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import useStyles from "./headerConstants";
+import {useStyles,useStyles2} from "./headerConstants";
 import {Container} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
@@ -11,6 +11,10 @@ import {RiCalendarEventLine} from "react-icons/all";
 import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
 import {FaUserGraduate} from "react-icons/all";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Badge from '@material-ui/core/Badge';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationPanel from "./notification/NotificationPanel";
 
 type HeaderProps = {
   title: string
@@ -56,6 +60,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
+        <NotificationPanel/>
         {isRedirectLogin && <Redirect to='/login'/>}
         <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
           Sign IN

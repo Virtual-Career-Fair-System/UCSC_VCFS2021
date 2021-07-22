@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import { Redirect } from "react-router-dom";
+import {Button} from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import {
   ProSidebar,
   Menu,
@@ -8,16 +13,30 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import {FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart} from 'react-icons/fa';
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 
 type SideBarProps = {
   toggled: boolean
   handleToggleSidebar: any
+  title: any
 }
 
+
 const SideBar: React.FC<SideBarProps> = (props) => {
-  const {toggled, handleToggleSidebar} = props;
+  const { toggled, handleToggleSidebar, title } = props;
+  const [isEditProfileRedirect, setIsEditProfileRedirect] = useState(false);
+  const [isStudentNotificationRedirect, setIsStudentNotificationRedirect] = useState(false);
+  const [isVacancyRedirect, setIsVacancyRedirect] = useState(false);
   console.log(toggled);
+  const onclickEditProfileRoute = () => {
+    setIsEditProfileRedirect(true);
+  }
+  const onclickStudentNotificationRoute = () => {
+    setIsStudentNotificationRedirect(true);
+  }
+  const onclickVacancyRoute = () => {
+    setIsVacancyRedirect(true);
+  }
 
   return (
     <ProSidebar
@@ -35,79 +54,71 @@ const SideBar: React.FC<SideBarProps> = (props) => {
             textTransform: 'uppercase',
             fontWeight: 'bold',
             fontSize: 14,
-            
+
             letterSpacing: '1px',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
           }}
         >
-          sudesh
+
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <Menu iconShape="circle">
           <MenuItem
-            icon={<FaTachometerAlt/>}
-            suffix={<span className="badge red">sudesh</span>}
+            suffix={<span className="badge red"></span>}
+            align="center"
           >
-            sudesh
+            <Button variant="contained" color="secondary">
+            unavailable
+            </Button>
           </MenuItem>
-          <MenuItem icon={<FaGem/>}> sudesh</MenuItem>
+          {/* {isEditProfileRedirect && <Redirect to='/editprofile'/>} */}
+
+          <MenuItem
+            icon={<FaTachometerAlt />}
+            suffix={<span className="badge red"></span>}
+            onClick={onclickEditProfileRoute}
+          >
+            {isEditProfileRedirect && <Redirect to='/editprofile' />}
+            Edit Profile
+          </MenuItem>
+
+          <MenuItem icon={<NotificationsActiveIcon />}
+            onClick={onclickStudentNotificationRoute}
+          >
+            {isStudentNotificationRedirect && <Redirect to='/notification' />}
+            Notification
+          </MenuItem>
         </Menu>
         <Menu iconShape="circle">
           <SubMenu
-            suffix={<span className="badge yellow">3</span>}
-            title='sudesh'
-            icon={<FaRegLaughWink/>}
+            suffix={<span className="badge yellow"></span>}
+            title='Vacancy'
+            icon={<FaRegLaughWink />}
+            onClick={onclickVacancyRoute}
           >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
+            {isVacancyRedirect && <Redirect to='/vacancy' />}
           </SubMenu>
           <SubMenu
-            title='sudesh'
-            icon={<FaHeart/>}
+            title='Interviews'
+            icon={<FaHeart />}
           >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
+            
           </SubMenu>
-          <SubMenu title='sudesh' icon={<FaList/>}>
-            <MenuItem>sudesh 1 </MenuItem>
-            <MenuItem>sudesh 2 </MenuItem>
-            <SubMenu title='sudesh 3'>
-              <MenuItem>sudesh 3.1 </MenuItem>
-              <MenuItem>sudesh 3.2 </MenuItem>
-              <SubMenu title={`sudesh 3.3`}>
-                <MenuItem>sudesh 3.3.1 </MenuItem>
-                <MenuItem>sudesh 3.3.2 </MenuItem>
-                <MenuItem>sudesh 3.3.3 </MenuItem>
-              </SubMenu>
-            </SubMenu>
-          </SubMenu>
+          <MenuItem icon={<ExitToAppIcon />}
+           
+          >
+           
+            LogOut
+          </MenuItem>
         </Menu>
-      </SidebarContent>
-
-      <SidebarFooter style={{textAlign: 'center'}}>
-        <div
-          className="sidebar-btn-wrapper"
-          style={{
-            padding: '20px 24px',
-          }}
-        >
-          <a
-            href="https://github.com/azouaoui-med/react-pro-sidebar"
-            target="_blank"
-            className="sidebar-btn"
-            rel="noopener noreferrer"
-          >
-            <FaGithub/>
-            <span> sudesh</span>
-          </a>
+        <div className='px-2'>
+          <Calendar />
         </div>
-      </SidebarFooter>
+      </SidebarContent>
     </ProSidebar>
   );
 };

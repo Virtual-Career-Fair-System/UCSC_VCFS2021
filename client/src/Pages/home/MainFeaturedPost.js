@@ -5,6 +5,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
+import {Image} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -12,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: careerFareCover,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -40,9 +42,8 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/74316894_2396838977197234_5358648227828596736_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=cdbe9c&_nc_ohc=om5XpqoPh80AX8TMh-c&_nc_ht=scontent.fcmb1-2.fna&oh=729588eb386781beff63d8fa6bcf7468&oe=60FDC916)` }}>
+      {/* {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />} */}
       <div className={classes.overlay} />
       <Grid container>
         <Grid item md={6}>

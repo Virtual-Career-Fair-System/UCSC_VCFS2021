@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import './cvupload.css'
 // Import the main component
 import { Viewer } from '@react-pdf-viewer/core'; // install this library
 // Plugins
@@ -8,6 +9,7 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 // Worker
 import { Worker } from '@react-pdf-viewer/core'; // install this library
+import StudentHeader from '../../Pages/profile/StudentHeader';
 
 export const CvUpload = () => {
 
@@ -56,7 +58,8 @@ export const CvUpload = () => {
   }
 
   return (
-    <div className='container'>
+    <div >
+      <StudentHeader/>
 
     <br></br>
     
