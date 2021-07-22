@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Redirect } from "react-router-dom";
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {
     ProSidebar,
     Menu,
@@ -71,7 +73,7 @@ const CompanySideBar: React.FC<SideBarProps> = (props) => {
                         {isPublishAdRedirect && <Redirect to='/publishad' />}
                     </MenuItem>
                     <MenuItem
-                        icon={<FaTachometerAlt />}
+                        icon={<NotificationsActiveIcon />}
                         suffix={<span className="badge red"></span>}
                         onClick={onclickCompanyViewNotificationRoute}
                     >
@@ -79,6 +81,14 @@ const CompanySideBar: React.FC<SideBarProps> = (props) => {
                         {isCompanyViewNotificationRedirect && <Redirect to='/companyviewnotification' />}
                     </MenuItem>
                     <MenuItem icon={<FaGem />}> Rules</MenuItem>
+                    <MenuItem
+                        icon={<ExitToAppIcon />}
+                        suffix={<span className="badge red"></span>}
+                        
+                    >
+                        LogOut
+                        
+                    </MenuItem>
                 </Menu>
 
                 <Calendar />

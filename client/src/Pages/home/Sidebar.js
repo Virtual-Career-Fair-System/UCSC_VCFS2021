@@ -19,18 +19,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidebar(props) {
   const classes = useStyles();
-  const { archives, description, title } = props;
+  const { archives, description, title, description1, title1 } = props;
 
   return (
-    <Grid item xs={12} md={6}>
+    
+    <Grid item xs={12} md={12}>
       
       
-      {/* <Paper elevation={0} className={classes.sidebarAboutBox}>
+      <Paper elevation={0} className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
         <Typography>{description}</Typography>
-      </Paper> */}
+      </Paper>
+      <br></br>
+      <Paper elevation={0} className={classes.sidebarAboutBox}>
+        <Typography variant="h6" gutterBottom>
+          {title}
+        </Typography>
+        <Typography>{description}</Typography>
+      </Paper>
+      <br></br>
+      <Paper elevation={0} className={classes.sidebarAboutBox}>
+        <Typography variant="h6" gutterBottom>
+          {title}
+        </Typography>
+        <Typography>{description}</Typography>
+      </Paper>
       <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
         Reports
       </Typography>

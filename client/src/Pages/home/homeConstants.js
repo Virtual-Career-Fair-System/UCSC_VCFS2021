@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -6,7 +6,7 @@ import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.w
 import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
 import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
 
-import {Image} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -43,23 +43,26 @@ const featuredPosts = [
 ];
 
 const sidebar = {
-    
-    title: 'About',
+
+    title: 'Our Vission',
+    title1: 'Our Mission',
     description:
-        'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    description1:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     archives: [
-        {title: 'March 2020', url: '#'},
-        {title: 'February 2020', url: '#'},
-        {title: 'January 2020', url: '#'},
-        {title: 'November 1999', url: '#'},
-        {title: 'October 1999', url: '#'},
-        {title: 'September 1999', url: '#'},
-        {title: 'August 1999', url: '#'},
-        {title: 'July 1999', url: '#'},
-        {title: 'June 1999', url: '#'},
-        {title: 'May 1999', url: '#'},
-        {title: 'April 1999', url: '#'},
+        { title: 'March 2020', url: '#' },
+        { title: 'February 2020', url: '#' },
+        { title: 'January 2020', url: '#' },
+        { title: 'November 1999', url: '#' },
+        { title: 'October 1999', url: '#' },
+        { title: 'September 1999', url: '#' },
+        { title: 'August 1999', url: '#' },
+        { title: 'July 1999', url: '#' },
+        { title: 'June 1999', url: '#' },
+        { title: 'May 1999', url: '#' },
+        { title: 'April 1999', url: '#' },
     ]
 }
 
-export {featuredPosts,mainFeaturedPost,useStyles,sidebar};
+export { featuredPosts, mainFeaturedPost, useStyles, sidebar };
