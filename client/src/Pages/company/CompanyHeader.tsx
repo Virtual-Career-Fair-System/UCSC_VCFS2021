@@ -10,10 +10,6 @@ import {AiFillHome} from "react-icons/all";
 import {RiCalendarEventLine} from "react-icons/all";
 import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
-import {FaUserGraduate} from "react-icons/all";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationPanel from '../../components/header/notification/NotificationPanel';
 // import NotificationPanel from "./notification/NotificationPanel";
 

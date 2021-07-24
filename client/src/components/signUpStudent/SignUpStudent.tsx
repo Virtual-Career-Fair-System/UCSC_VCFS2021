@@ -7,36 +7,16 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import {inputStyle,useStyles} from "../../Pages/registerStudent/RegisterStudentsConstants";
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 import {Redirect} from "react-router-dom";
-import {Alert, AlertTitle} from '@material-ui/lab';
-import {Row} from 'react-bootstrap'
+import {Alert} from '@material-ui/lab';
+import {Row} from 'react-bootstrap';
+import Swal from 'sweetalert2'
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
-const inputStyle = {fontSize: 1, backgroundColor: 'unset', paddingBottom: 0};
-
-export default function SignUpStudent() {
+const SignUpStudent:React.FC=()=>{
   const classes = useStyles();
   const [registered, setRegistered] = useState<true | false>(false);
 
@@ -55,14 +35,21 @@ export default function SignUpStudent() {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<null | string>(null);
   const [errorRegNo, setErrorRegNo] = useState<null | string>(null);
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
   const [isRedirectLogin, setIsRedirectLogin] = useState(false);
   const redirectToLogin = () => {
     setIsRedirectLogin(true);
-  }
-
-  const x=(event:any)=>{
-    console.log(event.target.value)
-    setFname(event.target.value);
   }
 
   const isOnlyLetters = (text: string) => {
@@ -98,72 +85,65 @@ export default function SignUpStudent() {
     return re.test(regNo);
   }
 
-  const validation = async () => {
-    setErrorFName(null);
-    setErrorLName(null);
-    setErrorEmail(null);
-    setErrorRegNo(null);
-    setErrorPassword(null);
-    setErrorConfirmPassword(null);
-
-    console.log(fname)
+  const validation = () => {
+    let errorFNameTemp:string='';
+    let errorLNameTemp:string='';
+    let errorEmailTemp:string='';
+    let errorRegNoTemp:string='';
+    let errorPasswordTemp:string='';
+    let errorConfirmPasswordTemp:string='';
     if (fname === '' || !fname) {
-      await setErrorFName("Required");
+      errorFNameTemp="Required";
     } else if (!isOnlyLetters(fname)) {
-      await setErrorFName("Enter valid first name");
+      errorFNameTemp="Enter valid first name";
     }
 
     if (lname === '' || !lname) {
-      await setErrorLName("Required");
+      errorLNameTemp="Required";
     } else if (!isOnlyLetters(lname)) {
-      await setErrorLName("Enter valid last name");
+      errorLNameTemp="Enter valid last name";
     }
 
     if (!email||email==='') {
-      await setErrorEmail("Required");
+      errorEmailTemp="Required";
     } else if (!isValidEmail(email)) {
-      await setErrorEmail("Enter valid email");
+      errorEmailTemp="Enter valid email";
     }
 
     if (password === '' || !password) {
-      await setErrorPassword("Required");
+      errorPasswordTemp="Required";
     } else if (!isValidPassword(password)) {
-      console.log(isValidPassword(password));
-      console.log(password);
-      await setErrorPassword("Minimum length of this field must be equal or greater than 8");
+      errorPasswordTemp="Minimum length of this field must be equal or greater than 8";
     }
     if (confirmPassword === ''||!confirmPassword) {
-      await setErrorConfirmPassword("Required");
+      errorConfirmPasswordTemp="Required";
     } else if (!isPasswordConfirmed()) {
-      await setErrorConfirmPassword("Password not matched");
+      errorConfirmPasswordTemp="Password not matched";
     }
 
     if (regNo === '' || !regNo) {
-      await setErrorRegNo("Required");
+      errorRegNoTemp="Required";
     } else if (!isValidRegNo()) {
-      await  setErrorRegNo('Registration number is not valid')
+      errorRegNoTemp='Registration number is not valid';
     }
+
+    setErrorFName(errorFNameTemp);
+    setErrorLName(errorLNameTemp);
+    setErrorEmail(errorEmailTemp);
+    setErrorPassword(errorPasswordTemp);
+    setErrorConfirmPassword(errorConfirmPasswordTemp);
+    setErrorRegNo(errorRegNoTemp);
+
+    return !(errorFNameTemp !== '' || errorLNameTemp !== '' || errorEmailTemp !== '' || errorRegNoTemp !== '' || errorPasswordTemp !== '' || errorConfirmPasswordTemp !== '');
+
   }
 
-  const fetchAddStudent =  async (event: any) => {
-    await event.preventDefault();
-   await validation();
-    if(errorFName||errorLName||errorEmail||errorPassword||errorConfirmPassword||errorRegNo||!fname||!lname||!email||!password||!confirmPassword||!regNo){
-      console.log("errorFName "+errorFName);
-      console.log("errorLName "+errorLName);
-      console.log("errorPassword "+errorPassword);
-      console.log("errorConfirmPassword "+errorConfirmPassword);
-      console.log("errorregNo "+errorRegNo);
-      console.log("erroremail "+errorEmail);
-      console.log("return");
+  const fetchAddStudent =   (event: any) => {
+    event.preventDefault();
+    console.log('5'+validation());
+    if(!validation()){
       return;
     }else{
-      console.log(errorFName);
-      console.log(errorLName);
-      console.log(errorPassword);
-      console.log(errorConfirmPassword);
-      console.log(errorFName);
-      console.log(errorFName);
       Axios.post('http://localhost:5000/createStudent', {
         fname: fname,
         lname: lname,
@@ -171,18 +151,38 @@ export default function SignUpStudent() {
         password: password,
         regNo:regNo,
       }).then((responce) => {
+        console.log(responce.data.registered);
+        console.log(responce.data.message);
         if(responce.data.registered){
           setRegistered(true);
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed up successfully'
+          })
         }else {
           setRegistered(false);
-          setRegisterError(responce.data.message);
+          if(responce.data.emailErrorMassage){
+            Toast.fire({
+              icon: 'warning',
+              title: responce.data.emailErrorMassage
+            })
+            setErrorEmail(responce.data.emailErrorMassage);
+          } else if(responce.data.regNoErrorMassage){
+            setRegistered(false);
+            Toast.fire({
+              icon: 'warning',
+              title: responce.data.regNoErrorMassage
+            })
+            setErrorRegNo(responce.data.regNoErrorMassage)
+          }else {
+            setRegistered(false);
+            Toast.fire({
+              icon: 'warning',
+              title: responce.data.message
+            })
+
+          }
         }
-        setErrorFName(null);
-        setErrorLName(null);
-        setErrorEmail(null);
-        setErrorRegNo(null);
-        setErrorPassword(null);
-        setErrorConfirmPassword(null);
       });
     }
   };
@@ -216,7 +216,9 @@ export default function SignUpStudent() {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  onChange={(event) =>{x(event)}}
+                  onChange={(event) => {
+                    setFname(event.target.value);
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -350,3 +352,5 @@ export default function SignUpStudent() {
     </div>
   );
 }
+
+export default SignUpStudent;
