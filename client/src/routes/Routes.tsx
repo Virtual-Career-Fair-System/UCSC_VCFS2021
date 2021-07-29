@@ -24,8 +24,16 @@ import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
 import DashBoard from "../Pages/admin/DashBoard";
+import {ApolloClient, InMemoryCache,ApolloProvider} from "@apollo/client";
+
 const Routes = () => {
+
+  const client = new ApolloClient({
+    uri: 'http://localhost:3001/graphql',
+    cache: new InMemoryCache()
+  });
   return (
+    <ApolloProvider client={client}>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App} />
@@ -54,6 +62,7 @@ const Routes = () => {
         <Route exact path="/schedule" component={ScheduleMeeting} />
       </Switch>
     </BrowserRouter>
+      </ApolloProvider >
   );
 }
 

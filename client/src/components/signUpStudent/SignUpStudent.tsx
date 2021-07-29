@@ -7,17 +7,20 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {inputStyle,useStyles} from "../../Pages/registerStudent/RegisterStudentsConstants";
+import {inputStyle, useStyles} from "../../Pages/registerStudent/RegisterStudentsConstants";
 import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 import {Redirect} from "react-router-dom";
 import {Alert} from '@material-ui/lab';
 import {Row} from 'react-bootstrap';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import {CREATE_STUDENT} from "../../grapgQl/student/mutation";
+import {useMutation} from "@apollo/client";
 
-
-const SignUpStudent:React.FC=()=>{
+const SignUpStudent: React.FC = () => {
   const classes = useStyles();
+  const [createStudent] = useMutation(CREATE_STUDENT);
+
   const [registered, setRegistered] = useState<true | false>(false);
 
   const [fname, setFname] = useState<null | string>(null);
@@ -86,45 +89,45 @@ const SignUpStudent:React.FC=()=>{
   }
 
   const validation = () => {
-    let errorFNameTemp:string='';
-    let errorLNameTemp:string='';
-    let errorEmailTemp:string='';
-    let errorRegNoTemp:string='';
-    let errorPasswordTemp:string='';
-    let errorConfirmPasswordTemp:string='';
+    let errorFNameTemp: string = '';
+    let errorLNameTemp: string = '';
+    let errorEmailTemp: string = '';
+    let errorRegNoTemp: string = '';
+    let errorPasswordTemp: string = '';
+    let errorConfirmPasswordTemp: string = '';
     if (fname === '' || !fname) {
-      errorFNameTemp="Required";
+      errorFNameTemp = "Required";
     } else if (!isOnlyLetters(fname)) {
-      errorFNameTemp="Enter valid first name";
+      errorFNameTemp = "Enter valid first name";
     }
 
     if (lname === '' || !lname) {
-      errorLNameTemp="Required";
+      errorLNameTemp = "Required";
     } else if (!isOnlyLetters(lname)) {
-      errorLNameTemp="Enter valid last name";
+      errorLNameTemp = "Enter valid last name";
     }
 
-    if (!email||email==='') {
-      errorEmailTemp="Required";
+    if (!email || email === '') {
+      errorEmailTemp = "Required";
     } else if (!isValidEmail(email)) {
-      errorEmailTemp="Enter valid email";
+      errorEmailTemp = "Enter valid email";
     }
 
     if (password === '' || !password) {
-      errorPasswordTemp="Required";
+      errorPasswordTemp = "Required";
     } else if (!isValidPassword(password)) {
-      errorPasswordTemp="Minimum length of this field must be equal or greater than 8";
+      errorPasswordTemp = "Minimum length of this field must be equal or greater than 8";
     }
-    if (confirmPassword === ''||!confirmPassword) {
-      errorConfirmPasswordTemp="Required";
+    if (confirmPassword === '' || !confirmPassword) {
+      errorConfirmPasswordTemp = "Required";
     } else if (!isPasswordConfirmed()) {
-      errorConfirmPasswordTemp="Password not matched";
+      errorConfirmPasswordTemp = "Password not matched";
     }
 
     if (regNo === '' || !regNo) {
-      errorRegNoTemp="Required";
+      errorRegNoTemp = "Required";
     } else if (!isValidRegNo()) {
-      errorRegNoTemp='Registration number is not valid';
+      errorRegNoTemp = 'Registration number is not valid';
     }
 
     setErrorFName(errorFNameTemp);
@@ -134,56 +137,33 @@ const SignUpStudent:React.FC=()=>{
     setErrorConfirmPassword(errorConfirmPasswordTemp);
     setErrorRegNo(errorRegNoTemp);
 
-    return !(errorFNameTemp !== '' || errorLNameTemp !== '' || errorEmailTemp !== '' || errorRegNoTemp !== '' || errorPasswordTemp !== '' || errorConfirmPasswordTemp !== '');
+    return !(errorFNameTemp !== '' || errorLNameTemp !== '' || errorEmailTemp !== '' || errorRegNoTemp !== '' ||
+      errorPasswordTemp !== '' || errorConfirmPasswordTemp !== '');
 
   }
 
-  const fetchAddStudent =   (event: any) => {
+  const fetchAddStudent = (event: any) => {
     event.preventDefault();
-    console.log('5'+validation());
-    if(!validation()){
+    if (!validation()) {
       return;
-    }else{
-      Axios.post('http://localhost:5000/createStudent', {
-        fname: fname,
-        lname: lname,
-        email: email,
-        password: password,
-        regNo:regNo,
-      }).then((responce) => {
-        console.log(responce.data.registered);
-        console.log(responce.data.message);
-        if(responce.data.registered){
-          setRegistered(true);
-          Toast.fire({
-            icon: 'success',
-            title: 'Signed up successfully'
-          })
-        }else {
-          setRegistered(false);
-          if(responce.data.emailErrorMassage){
-            Toast.fire({
-              icon: 'warning',
-              title: responce.data.emailErrorMassage
-            })
-            setErrorEmail(responce.data.emailErrorMassage);
-          } else if(responce.data.regNoErrorMassage){
-            setRegistered(false);
-            Toast.fire({
-              icon: 'warning',
-              title: responce.data.regNoErrorMassage
-            })
-            setErrorRegNo(responce.data.regNoErrorMassage)
-          }else {
-            setRegistered(false);
-            Toast.fire({
-              icon: 'warning',
-              title: responce.data.message
-            })
-
-          }
-        }
-      });
+    } else {
+      createStudent({
+        variables: { fname: fname, lname: lname, email: email, password: password, regNo: regNo,}
+      }).then((data)=>{
+        /*setRegistered(data.data.createStudent.successful);*/
+       if(data.data.createStudent.successful){
+         Toast.fire({
+           icon: 'success',
+           title: 'Signed up successfully'
+         });
+       }else{
+         Toast.fire({
+           icon: 'warning',
+           title: data.data.createStudent.message
+         });
+       }
+      })
+      ;
     }
   };
 

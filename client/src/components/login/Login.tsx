@@ -57,7 +57,7 @@ const SignIn = () => {
   }
    const fetchLogin = (event:any) => {
     event.preventDefault();
-    Axios.post('http://localhost:5000/login',{
+    /*Axios.post('http://localhost:5000/login',{
       email: email,
       password: password,
     }).then((responce:any) => {
@@ -66,7 +66,7 @@ const SignIn = () => {
       }else {
         setLoginError(responce.data.message);
       }
-    });
+    });*/
   };
 
   return (
