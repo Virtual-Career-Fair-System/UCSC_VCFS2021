@@ -1,13 +1,12 @@
-import {UserType} from "../typeDef/user";
-import {GraphQLID, GraphQLString} from "graphql";
+import {GraphQLString} from "graphql";
 import {student} from '../../entities/student';
 import {user} from "../../entities/user";
-import {MessageType} from "../typeDef/messages";
+import {RegisterResponseMessageType} from "../typeDef/messages";
 import {isExistEmail, isExistRegNo} from "../validations/userValidations";
 import crypto from "crypto";
 
 export const CREATE_STUDENT = {
-  type: MessageType,
+  type: RegisterResponseMessageType,
   args: {
     fname: {type: GraphQLString},
     lname: {type: GraphQLString},
@@ -27,7 +26,8 @@ export const CREATE_STUDENT = {
     }
 
     const PasswordSh1 = crypto.createHash('md5').update(password).digest('hex');
-    await student.insert({f_name:fname, l_name:lname, password:PasswordSh1,reg_no:regNo,email:email});
+    const x:any=await user.insert({type:'student',email:email});
+    await student.insert({id:x.raw.insertId,f_name:fname, l_name:lname, password:PasswordSh1,reg_no:regNo,email:email});
     return{successful:true,message:'Registered successfully!'}
   }
 }

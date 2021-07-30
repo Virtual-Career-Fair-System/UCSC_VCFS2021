@@ -16,6 +16,12 @@ import Container from '@material-ui/core/Container';
 import Axios from 'axios';
 import {Redirect} from "react-router-dom";
 import {Row} from 'react-bootstrap';
+import {useMutation} from "@apollo/client";
+import Swal from "sweetalert2";
+import {CREATE_STUDENT} from "../../grapgQl/student/studentMutation";
+import {LOGIN} from "../../grapgQl/user/loginMutation";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../state/actions/loginActions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,27 +58,52 @@ const SignIn = () => {
   const [isRedirectRegister, setIsRedirectRegister] = useState(false);
   const [loginError, setLoginError] = useState<null|string>(null);
 
+  const [loginFetch] = useMutation(LOGIN);
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
 
   const routeToRegister = () => {
     setIsRedirectRegister(true);
   }
    const fetchLogin = (event:any) => {
-    event.preventDefault();
-    /*Axios.post('http://localhost:5000/login',{
-      email: email,
-      password: password,
-    }).then((responce:any) => {
-      if(responce.data.login){
-        setLoginStatus(true);
-      }else {
-        setLoginError(responce.data.message);
-      }
-    });*/
-  };
+     event.preventDefault();
+     loginFetch({
+       variables: { email: email, password: password}
+     }).then((data)=>{
+
+       if(data.data.login.successful){
+         dispatch(login({id:data.data.login.id,type:data.data.login.type}));
+         localStorage.setItem("loginID",data.data.login.id);
+         localStorage.setItem("loginType",data.data.login.type);
+         Toast.fire({
+           icon: 'success',
+           title: data.data.login.message
+         });
+         setLoginStatus(data.data.login.successful);
+       }else{
+         Toast.fire({
+           icon: 'warning',
+           title: data.data.login.message
+         });
+       }
+     })
+     ;
+  }
 
   return (
       <div className='login'>
-        {loginStatus && <Redirect to='/students'/>}
+        {loginStatus && <Redirect to='/'/>}
       <Header title="Career Fair UCSC"/>
       <Container component="main" maxWidth="xs">
         <CssBaseline/>
@@ -144,7 +176,7 @@ const SignIn = () => {
             </Grid>
           </form>
         </div>
-        <h1>{loginStatus}</h1>
+        <h1>{loginError}</h1>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </div>

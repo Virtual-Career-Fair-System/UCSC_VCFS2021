@@ -13,6 +13,9 @@ import Axios from 'axios';
 import {Redirect} from "react-router-dom";
 import {Alert, AlertTitle} from '@material-ui/lab';
 import {Row} from 'react-bootstrap';
+import {useMutation} from "@apollo/client";
+import {CREATE_COMPANY} from "../../grapgQl/company/companyMutation";
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,35 +40,36 @@ const useStyles = makeStyles((theme) => ({
 const inputStyle = {fontSize: 1, backgroundColor: 'unset', paddingBottom: 0};
 
 export default function SignUpStudent() {
+  const [createCompany] = useMutation(CREATE_COMPANY);
   const classes = useStyles();
   const [registered, setRegistered] = useState<true | false>(false);
 
-  const [fname, setFname] = useState<null | string>(null);
-  const [lname, setLname] = useState<null | string>(null);
+  const [name, setName] = useState<null | string>(null);
   const [email, setEmail] = useState<null | string>(null);
   const [password, setPassword] = useState<null | string>(null);
   const [confirmPassword, setConfirmPassword] = useState<null | string>(null);
-  const [regNo, setRegNo] = useState<null | string>(null);
   const [registerError, setRegisterError] = useState<null | string>(null);
 
-  const [errorFName, setErrorFName] = useState<null | string>(null);
-  const [errorLName, setErrorLName] = useState<null | string>(null);
+  const [errorName, setErrorName] = useState<null | string>(null);
   const [errorEmail, setErrorEmail] = useState<null | string>(null);
   const [errorPassword, setErrorPassword] = useState<null | string>(null);
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<null | string>(null);
-  const [errorRegNo, setErrorRegNo] = useState<null | string>(null);
 
   const [isRedirectLogin, setIsRedirectLogin] = useState(false);
   const redirectToLogin = () => {
     setIsRedirectLogin(true);
   }
-
-  const isOnlyLetters = (text: string) => {
-    if (!text) {
-      return;
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-    return text.match(/^[a-zA-Z]+$/);
-  }
+  })
 
   const isValidEmail = (text: string) => {
     if (!text) {
@@ -85,88 +89,65 @@ export default function SignUpStudent() {
     return password === confirmPassword;
   }
 
-  const isValidRegNo = () => {
-    if (!regNo) {
-      return;
-    }
-    const re = new RegExp("^[0-9]{4}[c|i][s][0-1][0-9]{2}$");
-    return re.test(regNo);
-  }
-
-  const validation = async() => {
-    setErrorFName(null);
-    setErrorLName(null);
-    setErrorEmail(null);
-    setErrorRegNo(null);
-    setErrorPassword(null);
-    setErrorConfirmPassword(null);
-
-    if (fname === '' || !fname) {
-      setErrorFName("Required");
-    } else if (!isOnlyLetters(fname)) {
-      setErrorFName("Enter valid first name");
+  const validation = () => {
+    let errorNameTemp: string = '';
+    let errorEmailTemp: string = '';
+    let errorPasswordTemp: string = '';
+    let errorConfirmPasswordTemp: string = '';
+    if (name === '' || !name) {
+      errorNameTemp = "Required";
     }
 
-    if (lname === '' || !lname) {
-      setErrorLName("Required");
-    } else if (!isOnlyLetters(lname)) {
-      setErrorLName("Enter valid last name");
-    }
-
-    if (email === '' || !email) {
-      setErrorEmail("Required");
+    if (!email || email === '') {
+      errorEmailTemp = "Required";
     } else if (!isValidEmail(email)) {
-      setErrorEmail("Enter valid email");
+      errorEmailTemp = "Enter valid email";
     }
 
     if (password === '' || !password) {
-      setErrorPassword("Required");
+      errorPasswordTemp = "Required";
     } else if (!isValidPassword(password)) {
-      console.log(isValidPassword(password));
-      console.log(password);
-      setErrorPassword("Minimum length of this field must be equal or greater than 8");
+      errorPasswordTemp = "Minimum length of this field must be equal or greater than 8";
     }
-    if (confirmPassword === ''||!confirmPassword) {
-      setErrorConfirmPassword("Required");
+    if (confirmPassword === '' || !confirmPassword) {
+      errorConfirmPasswordTemp = "Required";
     } else if (!isPasswordConfirmed()) {
-      setErrorConfirmPassword("Password not matched");
+      errorConfirmPasswordTemp = "Password not matched";
     }
 
-    if (regNo === '' || !regNo) {
-      setErrorRegNo("Required");
-    } else if (!isValidRegNo()) {
-      setErrorRegNo('Registration number is not valid')
-    }
+    setErrorName(errorNameTemp);
+    setErrorEmail(errorEmailTemp);
+    setErrorPassword(errorPasswordTemp);
+    setErrorConfirmPassword(errorConfirmPasswordTemp);
+
+    return !(errorNameTemp !== '' || errorEmailTemp !== '' || errorPasswordTemp !== '' || errorConfirmPasswordTemp !== '');
+
   }
 
-  const fetchAddStudent = async (event: any) => {
+  const fetchAddCompany = async (event: any) => {
     event.preventDefault();
-    await validation();
-    if(errorFName||errorLName||errorEmail||errorPassword||errorConfirmPassword||errorRegNo||errorFName){
+    if (!validation()) {
       return;
-    }else{
-      Axios.post('http://localhost:5000/createStudent', {
-        fname: fname,
-        lname: lname,
-        email: email,
-        password: password,
-        regNo:regNo,
-      }).then((responce) => {
-        if(responce.data.registered){
-          setRegistered(true);
-        }else {
-          setRegistered(false);
-          setRegisterError(responce.data.message);
+    } else {
+      createCompany({
+        variables: {name: name, email: email, password: password}
+      }).then((data) => {
+         setRegistered(data.data.createStudent.successful);
+        if (data.data.createCompany.successful) {
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed up successfully'
+          });
+        } else {
+          Toast.fire({
+            icon: 'warning',
+            title: data.data.createStudent.message
+          });
         }
-        setErrorFName(null);
-        setErrorLName(null);
-        setErrorEmail(null);
-        setErrorRegNo(null);
-        setErrorPassword(null);
-        setErrorConfirmPassword(null);
-      });
+      })
+      ;
     }
-  };
+  }
 
   return (
     <div className='register'>
@@ -182,45 +163,24 @@ export default function SignUpStudent() {
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                {errorFName &&
+                {errorName &&
                 <Alert severity="error" style={inputStyle}>
-                  {errorFName}
+                  {errorName}
                 </Alert>
                 }
                 <TextField
-                  autoComplete="fname"
-                  name="firstName"
+                  autoComplete="name"
+                  name="name"
                   variant="outlined"
-                  value={fname}
+                  value={name}
                   required
                   size='small'
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="Company Name"
                   autoFocus
                   onChange={(event) => {
-                    setFname(event.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                {errorLName &&
-                <Alert severity="error" style={inputStyle}>
-                  {errorLName}
-                </Alert>
-                }
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  value={lname}
-                  size='small'
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  onChange={(event) => {
-                    setLname(event.target.value);
+                    setName(event.target.value);
                   }}
                 />
               </Grid>
@@ -242,27 +202,6 @@ export default function SignUpStudent() {
                   autoComplete="email"
                   onChange={(event) => {
                     setEmail(event.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                {errorRegNo &&
-                <Alert severity="error" style={inputStyle}>
-                  {errorRegNo}
-                </Alert>
-                }
-                <TextField
-                  variant="outlined"
-                  required
-                  size='small'
-                  fullWidth
-                  value={regNo}
-                  id="regNo"
-                  label="Registration Number"
-                  name="regNo"
-                  autoComplete="regNo"
-                  onChange={(event) => {
-                    setRegNo(event.target.value);
                   }}
                 />
               </Grid>
@@ -320,7 +259,7 @@ export default function SignUpStudent() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={fetchAddStudent}
+              onClick={fetchAddCompany}
             >
               Sign Up
             </Button>

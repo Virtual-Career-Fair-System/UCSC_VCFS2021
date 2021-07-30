@@ -5,6 +5,7 @@ import {createConnection} from "typeorm";
 import {student} from "./entities/student";
 import {user} from './entities/user';
 import {schema} from './schema';
+import {company} from "./entities/company";
 
 const main = async () => {
 
@@ -15,7 +16,7 @@ const main = async () => {
     password: '',
     logging: true,
     synchronize: false,
-    entities:[student,user]
+    entities:[student,user,company]
   });
 
   const app = express();

@@ -12,12 +12,17 @@ import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
 import {FaUserGraduate} from "react-icons/all";
 import NotificationPanel from "./notification/NotificationPanel";
-
+import {ILoginData} from "../../types/login";
+import {AppState} from "../../state/reducers";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../state/actions/loginActions";
 type HeaderProps = {
   title: string
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+  const dispatch = useDispatch();
 
   const classes = useStyles();
   const {title} = props;
@@ -33,6 +38,11 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteLogin = () => {
     setIsRedirectLogin(true);
   }
+  const onclickLogOut=()=>{
+    dispatch(logout());
+    localStorage.setItem("loginID",'');
+    localStorage.setItem("loginType",'');
+  }
   const onclickRouteStudents = () => {
     setIsRedirectStudents(true);
   }
@@ -45,6 +55,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteCurrentEvents = () => {
     setIsRedirectCurrentEvents(true);
   }
+  // @ts-ignore
   return (
     <Container fluid={true} className='header sticky-top'>
       <Toolbar className={classes.toolbar}>
@@ -60,9 +71,16 @@ const Header: React.FC<HeaderProps> = (props) => {
         </Typography>
         <NotificationPanel/>
         {isRedirectLogin && <Redirect to='/login'/>}
-        <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
-            Sign IN
-        </Button>
+
+        {login.id ?
+          <Button variant="outlined" size="small" onClick={onclickLogOut}>
+          LOGOUT
+          </Button>:
+          <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
+          Sign IN
+          </Button>
+        }
+
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {isHomeRedirect && <Redirect to='/'/>}

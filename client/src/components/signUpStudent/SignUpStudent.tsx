@@ -9,12 +9,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {inputStyle, useStyles} from "../../Pages/registerStudent/RegisterStudentsConstants";
 import Container from '@material-ui/core/Container';
-import Axios from 'axios';
 import {Redirect} from "react-router-dom";
 import {Alert} from '@material-ui/lab';
 import {Row} from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import {CREATE_STUDENT} from "../../grapgQl/student/mutation";
+import {CREATE_STUDENT} from "../../grapgQl/student/studentMutation";
 import {useMutation} from "@apollo/client";
 
 const SignUpStudent: React.FC = () => {
@@ -48,7 +47,7 @@ const SignUpStudent: React.FC = () => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+  });
 
   const [isRedirectLogin, setIsRedirectLogin] = useState(false);
   const redirectToLogin = () => {
@@ -150,7 +149,7 @@ const SignUpStudent: React.FC = () => {
       createStudent({
         variables: { fname: fname, lname: lname, email: email, password: password, regNo: regNo,}
       }).then((data)=>{
-        /*setRegistered(data.data.createStudent.successful);*/
+        setRegistered(data.data.createStudent.successful);
        if(data.data.createStudent.successful){
          Toast.fire({
            icon: 'success',
@@ -165,7 +164,7 @@ const SignUpStudent: React.FC = () => {
       })
       ;
     }
-  };
+  }
 
   return (
     <div className='register'>

@@ -1,9 +1,19 @@
 import {GraphQLObjectType, GraphQLID, GraphQLString,GraphQLBoolean} from "graphql";
 
-export const MessageType = new GraphQLObjectType({
-  name: "message",
+export const RegisterResponseMessageType = new GraphQLObjectType({
+  name: "registerMessage",
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},
+  })
+})
+
+export const LoginResponseMessageType = new GraphQLObjectType({
+  name: "loginMessage",
+  fields: () => ({
+    successful: {type: GraphQLBoolean},
+    message: {type: GraphQLString},
+    type:{type:GraphQLString},
+    id:{type:GraphQLID}
   })
 })

@@ -7,4 +7,7 @@ export class user extends  BaseEntity{
 
   @Column()
   type!:string;
+
+  @Column()
+  email!:string;
 }

@@ -1,7 +1,9 @@
 import {student} from '../../entities/student';
+import {user} from "../../entities/user";
 
 export const isExistEmail = (email:string)=>{
-  return student.findOne({email: email});
+  return user.findOne({email: email});
+
 }
 
 export const isExistRegNo = (regNo:string)=>{
