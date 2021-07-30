@@ -23,7 +23,7 @@ import Cv from "../Pages/company/Cv";
 import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
-import DashBoard from "../Pages/admin/DashBoard";
+import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
