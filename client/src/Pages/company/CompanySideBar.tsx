@@ -90,28 +90,10 @@ const CompanySideBar: React.FC<SideBarProps> = (props) => {
                         
                     </MenuItem>
                 </Menu>
-
-                <Calendar />
+<div className='px-2'>
+    <Calendar />
+</div>
             </SidebarContent>
-
-            <SidebarFooter style={{ textAlign: 'center' }}>
-                <div
-                    className="sidebar-btn-wrapper"
-                    style={{
-                        padding: '20px 24px',
-                    }}
-                >
-                    <a
-                        href="#"
-                        target="_blank"
-                        className="sidebar-btn"
-                        rel="noopener noreferrer"
-                    >
-                        <FaGithub />
-                        <span> sudesh</span>
-                    </a>
-                </div>
-            </SidebarFooter>
         </ProSidebar>
     );
 };

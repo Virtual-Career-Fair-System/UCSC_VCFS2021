@@ -80,7 +80,7 @@ export default function Rightbar({ profile }) {
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
-              src="assets/person/3.PNG"
+              src="../../assets/person/2.jpeg"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -88,7 +88,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/9.PNG"
+              src="../../assets/person/9.png"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -96,7 +96,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/8.PNG"
+              src="../../assets/person/8.png"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -104,7 +104,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/6.PNG"
+              src="../../assets/person/6.png"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -112,7 +112,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/7.PNG"
+              src="../../assets/person/7.png"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -120,7 +120,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/4.PNG"
+              src="../../assets/person/4.png"
               alt=""
               className="rightbarFollowingImg"
             />
@@ -128,7 +128,7 @@ export default function Rightbar({ profile }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/5.PNG"
+              src="../../assets/person/5.png"
               alt=""
               className="rightbarFollowingImg"
             />
