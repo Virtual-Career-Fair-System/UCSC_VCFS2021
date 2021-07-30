@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import {useStyles,useStyles2} from "./headerConstants";
+import {useStyles, useStyles2} from "./headerConstants";
 import {Container} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
@@ -11,16 +11,19 @@ import {RiCalendarEventLine} from "react-icons/all";
 import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
 import {FaUserGraduate} from "react-icons/all";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationPanel from "./notification/NotificationPanel";
-
+import {ILoginData} from "../../types/login";
+import {AppState} from "../../state/reducers";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../state/actions/loginActions";
 type HeaderProps = {
   title: string
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+  const dispatch = useDispatch();
+
   const classes = useStyles();
   const {title} = props;
   const [isRedirectCurrentEvents, setIsRedirectCurrentEvents] = useState(false);
@@ -35,6 +38,11 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteLogin = () => {
     setIsRedirectLogin(true);
   }
+  const onclickLogOut=()=>{
+    dispatch(logout());
+    localStorage.setItem("loginID",'');
+    localStorage.setItem("loginType",'');
+  }
   const onclickRouteStudents = () => {
     setIsRedirectStudents(true);
   }
@@ -47,6 +55,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteCurrentEvents = () => {
     setIsRedirectCurrentEvents(true);
   }
+  // @ts-ignore
   return (
     <Container fluid={true} className='header sticky-top'>
       <Toolbar className={classes.toolbar}>
@@ -62,9 +71,16 @@ const Header: React.FC<HeaderProps> = (props) => {
         </Typography>
         <NotificationPanel/>
         {isRedirectLogin && <Redirect to='/login'/>}
-        <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
+
+        {login.id ?
+          <Button variant="outlined" size="small" onClick={onclickLogOut}>
+          LOGOUT
+          </Button>:
+          <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
           Sign IN
-        </Button>
+          </Button>
+        }
+
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {isHomeRedirect && <Redirect to='/'/>}
@@ -87,7 +103,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteCurrentEvents}
           className={classes.toolbarLink}
         >
-          <i className='head-label'>Current Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
+          <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
         <Link
