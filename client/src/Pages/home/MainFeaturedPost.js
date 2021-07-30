@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
-import {Image} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {

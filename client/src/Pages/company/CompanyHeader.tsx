@@ -10,10 +10,6 @@ import {AiFillHome} from "react-icons/all";
 import {RiCalendarEventLine} from "react-icons/all";
 import {HiUserGroup} from "react-icons/all";
 import {FaRegBuilding} from "react-icons/all";
-import {FaUserGraduate} from "react-icons/all";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationPanel from '../../components/header/notification/NotificationPanel';
 // import NotificationPanel from "./notification/NotificationPanel";
 
@@ -61,8 +57,16 @@ const CompanyHeader: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
+
         {/* <NotificationPanel/> */}
         
+
+        <NotificationPanel/>
+        {isRedirectLogin && <Redirect to='/login'/>}
+        <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
+          Log Out
+        </Button>
+
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {isHomeRedirect && <Redirect to='/'/>}
@@ -85,7 +89,7 @@ const CompanyHeader: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteCurrentEvents}
           className={classes.toolbarLink}
         >
-          <i className='head-label'>Current Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
+          <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
         <Link

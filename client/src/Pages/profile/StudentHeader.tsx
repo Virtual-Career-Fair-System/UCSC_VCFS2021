@@ -61,9 +61,16 @@ const StudentHeader: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
+
         {/* <NotificationPanel/> */}
         {isRedirectLogin && <Redirect to='/login'/>}
-        
+
+        <NotificationPanel/>
+        {isRedirectLogin && <Redirect to='/companyLogin'/>}
+        <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
+          Log Out
+        </Button>
+
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         {isHomeRedirect && <Redirect to='/'/>}
@@ -86,7 +93,7 @@ const StudentHeader: React.FC<HeaderProps> = (props) => {
           onClick={onclickRouteCurrentEvents}
           className={classes.toolbarLink}
         >
-          <i className='head-label'>Current Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
+          <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
         <Link
