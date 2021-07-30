@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Redirect } from "react-router-dom";
 import {Button} from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import {
   ProSidebar,
   Menu,
@@ -84,7 +86,7 @@ const SideBar: React.FC<SideBarProps> = (props) => {
             Edit Profile
           </MenuItem>
 
-          <MenuItem icon={<FaGem />}
+          <MenuItem icon={<NotificationsActiveIcon />}
             onClick={onclickStudentNotificationRoute}
           >
             {isStudentNotificationRedirect && <Redirect to='/notification' />}
@@ -106,6 +108,12 @@ const SideBar: React.FC<SideBarProps> = (props) => {
           >
             
           </SubMenu>
+          <MenuItem icon={<ExitToAppIcon />}
+           
+          >
+           
+            LogOut
+          </MenuItem>
         </Menu>
         <div className='px-2'>
           <Calendar />

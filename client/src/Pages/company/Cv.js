@@ -40,9 +40,15 @@ const useStyles = makeStyles(() => ({
 
 export const Cv = React.memo(function NewsCard2() {
   const [isScheduleRedirect, setIsScheduleRedirect] = useState(false);
+  const [isProfileViewRedirect, setIsProfileViewRedirect] = useState(false);
   const onclickScheduleRoute = () => {
     // console.log('Nim');
     setIsScheduleRedirect(true);
+    
+  }
+  const onclickProfileViewRoute = () => {
+    // console.log('Nim');
+    setIsProfileViewRedirect(true);
     
   }
   const styles = useStyles();
@@ -81,6 +87,45 @@ export const Cv = React.memo(function NewsCard2() {
       
     </Card>
     <Row p={2} gap={2} position={'bottom'}>
+    <Item position={'middle-right'}>
+            <Button
+            
+              variant={'contained'}
+              color={'primary'}
+              disableRipple
+              onClick={onclickProfileViewRoute}
+            >
+                    View Profile
+            </Button>
+            {isProfileViewRedirect && <Redirect to='/profileview'/>}
+          </Item>
+          
+          {/* <Item position={'middle-right'}>
+            <Button
+            
+              variant={'contained'}
+              color={'primary'}
+              disableRipple
+              onClick={onclickScheduleRoute}
+            >
+                    Schedule Interview
+            </Button>
+            {isScheduleRedirect && <Redirect to='/schedule'/>}
+          </Item> */}
+        </Row>
+    <Row p={2} gap={2} position={'bottom'}>
+    {/* <Item position={'middle-right'}>
+            <Button
+            
+              variant={'contained'}
+              color={'primary'}
+              disableRipple
+              onClick={onclickProfileViewRoute}
+            >
+                    View Profile
+            </Button>
+            {isProfileViewRedirect && <Redirect to='/profileview'/>}
+          </Item> */}
           
           <Item position={'middle-right'}>
             <Button

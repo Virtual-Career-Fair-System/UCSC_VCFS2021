@@ -61,7 +61,7 @@ const StudentHeader: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
-        <NotificationPanel/>
+        {/* <NotificationPanel/> */}
         {isRedirectLogin && <Redirect to='/login'/>}
         
       </Toolbar>

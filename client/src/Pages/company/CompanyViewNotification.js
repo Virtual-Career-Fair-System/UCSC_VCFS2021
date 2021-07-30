@@ -48,7 +48,7 @@ const PersonItem = ({ src, name, friendCount }) => {
         <Item grow minWidth={0}>
           <div className={cx(styles.name, styles.text)}>{name}</div>
           <div className={cx(styles.caption, styles.text)}>
-            {friendCount} Send CV
+            {friendCount} Send Message
           </div>
         </Item>
         <Item position={'middle'}>

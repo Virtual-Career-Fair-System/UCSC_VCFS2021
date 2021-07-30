@@ -61,7 +61,7 @@ const CompanyHeader: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
-        <NotificationPanel/>
+        {/* <NotificationPanel/> */}
         
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>

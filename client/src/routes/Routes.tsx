@@ -20,6 +20,7 @@ import { CompanyViewNotification } from "../Pages/company/CompanyViewNotificatio
 import Applicants from "../Pages/company/Applicants";
 import Cv from "../Pages/company/Cv";
 import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
+import Profile1 from "../Pages/profile/profile1";
 
 
 
@@ -47,6 +48,7 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants} />
         <Route exact path="/cvview" component={Cv} />
         <Route exact path="/schedule" component={ScheduleMeeting} />
+        <Route exact path="/profileview" component={Profile1} />
 
       </Switch>
     </BrowserRouter>
