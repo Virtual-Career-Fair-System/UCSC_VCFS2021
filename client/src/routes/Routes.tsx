@@ -36,6 +36,7 @@ const Routes = () => {
       const id: number = Number(localStorage.getItem('loginID'));
       const type: string = String(localStorage.getItem('loginType'));
       dispatch(login({id: id, type: type}));
+
     }
   }, [])
   return (

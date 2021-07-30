@@ -22,6 +22,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
+  console.log(login);
   const dispatch = useDispatch();
 
   const classes = useStyles();
