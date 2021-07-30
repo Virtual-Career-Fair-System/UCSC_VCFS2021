@@ -28,6 +28,7 @@ import Home from "../Pages/home/Home";
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
 import {useDispatch} from "react-redux";
+import Profile1 from "../Pages/profile/profile1";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants}/>
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
+        <Route exact path="/profileview" component={Profile1}/>
       </Switch>
     </BrowserRouter>
   );
