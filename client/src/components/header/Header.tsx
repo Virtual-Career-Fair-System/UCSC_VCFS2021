@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {useStyles, useStyles2} from "./headerConstants";
-import {Container} from "react-bootstrap";
+import {Container,Col,Row} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
 import {RiCalendarEventLine} from "react-icons/all";
@@ -140,6 +140,11 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Students</i><i className='head-icon'><FaUserGraduate size='1.6em'/></i>
         </Link>
       </Toolbar>
+      <Row>
+        <Col className='py-2'>
+          <Button variant="outlined">Organize New Carrier fair</Button>
+        </Col>
+      </Row>
     </Container>
   );
 }
