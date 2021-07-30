@@ -9,6 +9,15 @@ function createData(time, amount) {
 }
 
 const data = [
+  createData('7/01', 12),
+  createData('7/04', 33),
+  createData('7/07', 26),
+  createData('7/10', 18),
+  createData('7/13', 15),
+  createData('7/17', 20),
+  createData('7/19', 24),
+  createData('7/21', 34),
+  createData('7/23', undefined),
   createData('00:00', 0),
   createData('03:00', 300),
   createData('06:00', 600),
@@ -25,6 +34,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
+      <Title>Site Viewers</Title>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
@@ -43,12 +53,17 @@ export default function Chart() {
               position="left"
               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
             >
+              Site Viewers
               Sales ($)
             </Label>
           </YAxis>
           <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
         </LineChart>
       </ResponsiveContainer>
+
+      
     </React.Fragment>
+    
+    
   );
 }

@@ -3,19 +3,20 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../../components/header/Header";
 import {Container} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
-import SignUp from "../../components/signup/SignUp";
+import SignUpStudent from "../../components/signUpStudent/SignUpStudent";
+import SignUpCompany from "../../components/signUpCompany/SignUpCompany";
 
-const Register = () => {
+const RegisterCompany = () => {
   return(
     <React.Fragment>
       <CssBaseline/>
       <Header title="Career Fair UCSC"/>
       <Container fluid={true}>
-        <SignUp/>
+        <SignUpCompany/>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </React.Fragment>
   );
 }
 
-export default Register;
+export default RegisterCompany;
