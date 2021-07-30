@@ -6,10 +6,12 @@ import configureStore from "../state/store";
 import {Provider} from 'react-redux';
 
 const App: React.FC = () => {
+
   const client = new ApolloClient({
     uri: 'http://localhost:3001/graphql',
     cache: new InMemoryCache()
   });
+
   const store = configureStore();
   return (
     <ApolloProvider client={client}>

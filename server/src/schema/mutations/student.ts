@@ -17,6 +17,7 @@ export const CREATE_STUDENT = {
 
   async resolve(parent: any, args: any) {
     const {fname, lname, email, regNo, password} = args;
+
     if(await isExistEmail(email)){
       return{successful:false,message:'Email already taken'}
     }
