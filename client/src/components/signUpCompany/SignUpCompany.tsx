@@ -132,7 +132,7 @@ export default function SignUpStudent() {
       createCompany({
         variables: {name: name, email: email, password: password}
       }).then((data) => {
-         setRegistered(data.data.createStudent.successful);
+         setRegistered(data.data.createCompany.successful);
         if (data.data.createCompany.successful) {
           Toast.fire({
             icon: 'success',
@@ -141,7 +141,7 @@ export default function SignUpStudent() {
         } else {
           Toast.fire({
             icon: 'warning',
-            title: data.data.createStudent.message
+            title: data.data.createCompany.message
           });
         }
       })
