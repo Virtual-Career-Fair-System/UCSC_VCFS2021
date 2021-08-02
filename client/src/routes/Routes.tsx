@@ -22,6 +22,7 @@ import Applicants from "../Pages/company/Applicants";
 import Cv from "../Pages/company/Cv";
 import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
+import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
 import DashBoard from "../Pages/admin/DashBoard";
 import Home from "../Pages/home/Home";
@@ -66,6 +67,7 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants}/>
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
+        <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
       </Switch>
     </BrowserRouter>
   );
