@@ -1,28 +1,37 @@
-import {GraphQLString} from "graphql";
-import {student} from '../../entities/student';
-import {user} from "../../entities/user";
-import {RegisterResponseMessageType} from "../typeDef/messages";
-import {isExistEmail, isExistRegNo} from "../validations/userValidations";
-import crypto from "crypto";
-import {company} from "../../entities/company";
+import {GraphQLID, GraphQLObjectType, GraphQLString} from "graphql";
+import {CreateEventResponseMessage, RegisterResponseMessageType} from "../typeDef/messages";
+import path from "path";
+import fs  from 'fs';
+import {isExistEmail,isExistEventName} from "../validations/userValidations";
+import {event} from "../../entities/event";
 
-export const CREATE_COMPANY = {
-  type: RegisterResponseMessageType,
+const {
+  GraphQLUpload,
+  graphqlUploadExpress, // A Koa implementation is also exported.
+} = require('graphql-upload');
+export const CREATE_EVENT = {
+  type:CreateEventResponseMessage,
   args: {
     name: {type: GraphQLString},
-    email: {type: GraphQLString},
-    password: {type: GraphQLString}
+    startDate: {type: GraphQLString},
+    endDate: {type: GraphQLString},
+    description:{type:GraphQLString},
+    rules:{type:GraphQLString},
+    organizer:{type:GraphQLID},
+    file:{type:GraphQLUpload},
   },
-
   async resolve(parent: any, args: any) {
-    const {name, email, password} = args;
-    if (await isExistEmail(email)) {
-      return {successful: false, message: 'Email already taken'}
+    const {name, startDate,endDate,description,rules,organizer,file} = args;
+    const { createReadStream, filename, mimetype, encoding } = await file;
+    if(await isExistEventName(name)){
+      return{successful:false,message:'Event name already exists'}
     }
-
-    const PasswordSh1 = crypto.createHash('md5').update(password).digest('hex');
-    const x: any = await user.insert({type: 'company', email: email});
-    await company.insert({com_id: x.raw.insertId, name: name, password: PasswordSh1, email: email});
-    return {successful: true, message: 'Registered successfully!'}
+    const eventCode:string=name+organizer;
+   /* console.log(filename);*/
+    const stream =createReadStream();
+    const pathName:any=path.join(__dirname,`../../../../client/src/assets/image/eventCoverPhotos/${filename}`)
+    await stream.pipe(fs.createWriteStream(pathName));
+    await event.insert({name: name,cover_image:filename,event_code:eventCode,start_date: startDate, end_date: endDate, description: description, rules: rules, organizer: organizer,status:'requested'});
+    return {successful: true, message: 'Event Created successfully!'}
   }
 }

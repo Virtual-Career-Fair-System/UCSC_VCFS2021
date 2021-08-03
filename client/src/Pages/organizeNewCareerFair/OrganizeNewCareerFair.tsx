@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, FormEventHandler, useState} from 'react';
+import React, {ChangeEvent, FormEvent, FormEventHandler, useCallback, useState} from 'react';
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
 import Header from '../../components/header/Header';
 import {Editor} from "react-draft-wysiwyg";
@@ -7,8 +7,23 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from 'draftjs-to-html';
 import {convertToHTML} from 'draft-convert';
 import DOMPurify from 'dompurify';
+import {useMutation} from "@apollo/client";
+import {UPLOAD_FILE} from "../../grapgQl/organizer/organizerMutation";
+import Dropzone from "react-dropzone";
 
 const OrganizeNewCareerFair: React.FC = () => {
+
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+
+  const fileChange = ({
+                        target: {
+                          validity,
+                          files: [file]
+                        }
+                      }: any) => {
+    console.log(file);
+    setFile(file);
+  }
   const [editorDescriptionState, setEditorDescriptionState] = useState(() => EditorState.createEmpty(),);
   const [editorRulesState, setEditorRulesState] = useState(() => EditorState.createEmpty(),);
   const [convertedDescriptionContent, setConvertedDescriptionContent] = useState<string>('');
@@ -17,8 +32,10 @@ const OrganizeNewCareerFair: React.FC = () => {
   const [name, setName] = useState<null | string>(null);
   const [startDate, setStartDate] = useState<null | string>(null);
   const [endDate, setEndDate] = useState<null | string>(null);
+  const [file,setFile]=useState<any>(null);
 
   const [errorName, setErrorName] = useState<null | string>(null);
+  const [errorCoverImage, setErrorCoverImage] = useState<null | string>(null);
   const [errorStartDate, setErrorStartDate] = useState<null | string>(null);
   const [errorEndDate, setErrorEndDate] = useState<null | string>(null);
   const [errorDescription, setErrorDescription] = useState<null | string>(null);
@@ -48,9 +65,14 @@ const OrganizeNewCareerFair: React.FC = () => {
     let errorEndDateTemp: string = '';
     let errorDescriptionTemp: string = '';
     let errorRulesTemp: string = '';
+    let errorCoverImageTemp: string = '';
 
     if (name === '' || !name) {
       errorNameTemp = "Required";
+    }
+
+    if (file === '' || !file) {
+      errorCoverImageTemp = "Required";
     }
 
     if (!startDate || startDate === '') {
@@ -74,18 +96,20 @@ const OrganizeNewCareerFair: React.FC = () => {
     setErrorEndDate(errorEndDateTemp);
     setErrorDescription(errorDescriptionTemp);
     setErrorRules(errorRulesTemp);
+    setErrorCoverImage(errorCoverImageTemp);
 
 
-    return !(errorNameTemp !== '' || errorStartDateTemp !== '' || errorEndDateTemp !== '' || errorDescriptionTemp !== '' || errorRulesTemp !== '');
-
+    return !(errorNameTemp !== '' || errorStartDateTemp !== '' || errorEndDateTemp !== '' || errorDescriptionTemp !== '' || errorRulesTemp !== ''||errorCoverImageTemp!=='');
   }
 
   const HandleOnSubmit = (event: FormEvent) => {
     event.preventDefault();
+    console.log(typeof (startDate));
     console.log(event);
     if (!validation()) {
       return;
     } else {
+      uploadFile({variables:{file:file,name:'ddd',startDate:startDate,endDate:endDate,description:'ss',rules:'rs',organizer:'1'}})
     }
   }
   return (
@@ -109,19 +133,24 @@ const OrganizeNewCareerFair: React.FC = () => {
             <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
               <Form.Label>Starting Date</Form.Label>
               <span className='text-danger'> {errorStartDate && errorStartDate}</span>
-              <Form.Control type="date" value={startDate ? startDate : ''} placeholder="Password"/>
+              <Form.Control type="date" value={startDate ? startDate : ''} placeholder="Password" onChange={(event => setStartDate(event.target.value))}/>
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
               <Form.Label>End Date</Form.Label>
               <span className='text-danger'> {errorEndDate && errorEndDate}</span>
-              <Form.Control type="date" value={endDate ? endDate : ''} placeholder="Password"/>
+              <Form.Control type="date" value={endDate ? endDate : ''} placeholder="Password" onChange={(event => setEndDate(event.target.value))}/>
             </Form.Group>
           </Row>
           <Row>
-            <Form.Group as={Col} controlId="formFile" className="mb-3">
+           {/* <Dropzone
+              accept="image/jpeg, image/png"
+              onDrop={}>
+              Upload Cover Image
+            </Dropzone>*/}
+             <Form.Group as={Col} controlId="formFile" className="mb-3">
               <Form.Label>Select Image for Cover</Form.Label>
-              <Row><Col><span className='text-danger'> {errorEndDate && errorEndDate}</span></Col></Row>
-              <Form.Control type="file"/>
+              <Row><Col><span className='text-danger'> {errorCoverImage && errorCoverImage}</span></Col></Row>
+              <Form.Control type="file" onChange={fileChange}/>
             </Form.Group>
           </Row>
 
@@ -162,8 +191,7 @@ const OrganizeNewCareerFair: React.FC = () => {
         </Form>
       </Container>
     </React.Fragment>
-  )
-    ;
+  );
 }
 
 
