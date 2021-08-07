@@ -140,11 +140,11 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Students</i><i className='head-icon'><FaUserGraduate size='1.6em'/></i>
         </Link>
       </Toolbar>
-      <Row>
+      {/* <Row>
         <Col className='py-2'>
           <Button variant="outlined">Organize New Carrier fair</Button>
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 }

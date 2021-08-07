@@ -15,15 +15,28 @@ import CompanyHeader from './CompanyHeader';
 export default function ScheduleMeeting() {
     return (
         <div>
-            <CompanyHeader/>
+            <CompanyHeader />
             <Card.Body>
 
                 <h1>Schedule Meeting</h1>
                 <Form>
-                
-                    
-                  
-                   
+
+
+                    <Row>
+                        <Col className="pr-1" md="12">
+                            <Form.Group>
+                                <label htmlFor="exampleInputEmail1">
+                                    Time
+                                </label>
+                                <Form.Control
+                                    placeholder="Sheduled Time"
+                                    type="text"
+                                ></Form.Control>
+                            </Form.Group>
+                        </Col>
+
+                    </Row>
+
                     <Row>
                         <Col className="pr-1" md="12">
                             <Form.Group>
@@ -38,7 +51,7 @@ export default function ScheduleMeeting() {
                         </Col>
 
                     </Row>
-                   
+
 
                     <Button
                         className="btn-fill pull-right"
