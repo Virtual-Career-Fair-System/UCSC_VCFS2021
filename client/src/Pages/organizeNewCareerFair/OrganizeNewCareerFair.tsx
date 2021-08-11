@@ -10,11 +10,14 @@ import DOMPurify from 'dompurify';
 import {useMutation} from "@apollo/client";
 import {UPLOAD_FILE} from "../../grapgQl/organizer/organizerMutation";
 import Dropzone from "react-dropzone";
+import {ILoginData} from "../../types/login";
+import {useSelector} from "react-redux";
+import {AppState} from "../../state/reducers";
+import Footer from "../../components/footer/Footer";
 
 const OrganizeNewCareerFair: React.FC = () => {
 
   const [uploadFile] = useMutation(UPLOAD_FILE);
-
   const fileChange = ({
                         target: {
                           validity,
@@ -24,6 +27,8 @@ const OrganizeNewCareerFair: React.FC = () => {
     console.log(file);
     setFile(file);
   }
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+
   const [editorDescriptionState, setEditorDescriptionState] = useState(() => EditorState.createEmpty(),);
   const [editorRulesState, setEditorRulesState] = useState(() => EditorState.createEmpty(),);
   const [convertedDescriptionContent, setConvertedDescriptionContent] = useState<string>('');
@@ -109,7 +114,7 @@ const OrganizeNewCareerFair: React.FC = () => {
     if (!validation()) {
       return;
     } else {
-      uploadFile({variables:{file:file,name:'ddd',startDate:startDate,endDate:endDate,description:'ss',rules:'rs',organizer:'1'}})
+      uploadFile({variables:{file:file,name:name,startDate:startDate,endDate:endDate,description:convertedDescriptionContent,rules:convertedRulesContent,organizer:login.id}})
     }
   }
   return (
@@ -126,7 +131,7 @@ const OrganizeNewCareerFair: React.FC = () => {
             <Form.Group as={Col} className="mb-3" controlId="formEventName">
               <Form.Label>Name Of Career Fair</Form.Label>
               <Row><Col><span className='text-danger'> {errorName && errorName}</span></Col></Row>
-              <Form.Control type="text" value={name ? name : ''} placeholder="Enter email"/>
+              <Form.Control type="text" value={name ? name : ''} placeholder="Name Of Career Fair" onChange={(event => setName(event.target.value))}/>
             </Form.Group>
           </Row>
           <Row className="mb-3">
@@ -189,6 +194,9 @@ const OrganizeNewCareerFair: React.FC = () => {
             </Col>
           </Row>
         </Form>
+        <Footer title="Footer"
+                description="Something here to give the footer a purpose!"
+        />
       </Container>
     </React.Fragment>
   );

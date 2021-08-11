@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
   const store = configureStore();
   return (
-    <ApolloProvider client={client}>    z
+    <ApolloProvider client={client}>
       <Provider store={store}>
         <Routes/>
       </Provider>

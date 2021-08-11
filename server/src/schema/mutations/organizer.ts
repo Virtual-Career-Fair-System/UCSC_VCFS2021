@@ -2,13 +2,14 @@ import {GraphQLID, GraphQLObjectType, GraphQLString} from "graphql";
 import {CreateEventResponseMessage, RegisterResponseMessageType} from "../typeDef/messages";
 import path from "path";
 import fs  from 'fs';
-import {isExistEmail,isExistEventName} from "../validations/userValidations";
+import {isExistEventName} from "../validations/userValidations";
 import {event} from "../../entities/event";
 
 const {
   GraphQLUpload,
   graphqlUploadExpress, // A Koa implementation is also exported.
 } = require('graphql-upload');
+
 export const CREATE_EVENT = {
   type:CreateEventResponseMessage,
   args: {

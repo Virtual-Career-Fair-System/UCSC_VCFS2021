@@ -112,7 +112,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
-        <Link
+      {/*  <Link
           color="inherit"
           noWrap
           key={'aboutUs'}
@@ -121,7 +121,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           className={classes.toolbarLink}
         >
           <i className='head-label'>About Us</i><i className='head-icon'><HiUserGroup size='1.6em'/></i>
-        </Link>
+        </Link>*/}
         {isRedirectCompanies && <Redirect to='/companies'/>}
         <Link
           color="inherit"

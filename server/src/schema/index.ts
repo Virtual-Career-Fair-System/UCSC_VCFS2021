@@ -4,11 +4,12 @@ import {GET_ALL_Students} from "./queries/company";
 import {CREATE_COMPANY} from "./mutations/company";
 import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
+import {GET_ALL_EVENTS} from "./queries/events";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
-    GET_ALL_Students: GET_ALL_Students
+    getAllEvents: GET_ALL_EVENTS
   }
 });
 
