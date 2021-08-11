@@ -8,10 +8,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import {Button} from "react-bootstrap";
 
 const useStyles = makeStyles({
   card: {
     display: 'flex',
+    minHeight:'25em',
   },
   cardDetails: {
     flex: 1,
@@ -27,7 +29,7 @@ export default function FeaturedPost(props) {
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -41,7 +43,8 @@ export default function FeaturedPost(props) {
                 {post.description}
               </Typography>
               <Typography variant="subtitle1" color="primary">
-                Continue reading...
+
+               <Button >Continue reading..</Button>
               </Typography>
             </CardContent>
           </div>

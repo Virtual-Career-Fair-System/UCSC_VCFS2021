@@ -6,6 +6,8 @@ import {student} from "./entities/student";
 import {user} from './entities/user';
 import {schema} from './schema';
 import {company} from "./entities/company";
+const { graphqlUploadExpress } = require("graphql-upload");
+import {event} from "./entities/event";
 
 const main = async () => {
 
@@ -16,13 +18,13 @@ const main = async () => {
     password: '',
     logging: true,
     synchronize: false,
-    entities:[student,user,company]
+    entities:[student,user,company,event]
   });
 
   const app = express();
   app.use(cors());
   app.use(express.json());
-  app.use("/graphql",graphqlHTTP({
+  app.use("/graphql",  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),graphqlHTTP({
     schema,
     graphiql:true
   }))
@@ -34,3 +36,4 @@ const main = async () => {
 main().catch((err) => {
   console.log(err);
 });
+;

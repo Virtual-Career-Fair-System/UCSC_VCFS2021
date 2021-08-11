@@ -6,8 +6,30 @@ export class event extends  BaseEntity{
   id!:number;
 
   @Column()
-  type!:string;
+  event_code!:string;
 
   @Column()
-  email!:string;
+  name!:string;
+
+  @Column()
+  cover_image!:string;
+
+
+  @Column('text')
+  description!:string;
+
+  @Column('text')
+  rules!:string;
+
+  @Column()
+  organizer!:number;
+
+  @Column('date')
+  start_date!:string;
+
+  @Column('date')
+  end_date!:string;
+
+  @Column()
+  status!:string;
 }
