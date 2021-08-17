@@ -27,7 +27,7 @@ const main = async () => {
   app.use("/graphql",  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),graphqlHTTP({
     schema,
     graphiql:true
-  }))
+  }));
   app.listen(3001, () => {
     console.log("server running in port 3001");
   });

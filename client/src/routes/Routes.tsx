@@ -32,15 +32,22 @@ import {useDispatch} from "react-redux";
 import EventAdmin from "../Pages/eventAdmin/EventAdmin";
 import EventCompany from "../Pages/eventCompany/EventCompany";
 import EventStudent from "../Pages/eventStudent/EventStudent";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
+import {setInitEvents} from "../state/actions/eventsActions";
 
 const Routes = () => {
   const dispatch = useDispatch();
+  const {data} = useQuery(GET_ALL_EVENTS);
 
   useEffect(() => {
     if (localStorage.getItem('loginID') && localStorage.getItem('loginType')) {
       const id: number = Number(localStorage.getItem('loginID'));
       const type: string = String(localStorage.getItem('loginType'));
       dispatch(login({id: id, type: type}));
+    }
+    if (data) {
+      dispatch(setInitEvents(data.getAllEvents));
     }
   }, [])
 

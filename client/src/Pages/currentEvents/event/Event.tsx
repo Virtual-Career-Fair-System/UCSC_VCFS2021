@@ -5,7 +5,7 @@ import {ILoginData} from "../../../types/login";
 import {useSelector} from "react-redux";
 import {AppState} from "../../../state/reducers";
 import DOMPurify from "dompurify";
-import {FaRegHandPaper} from "react-icons/all";
+import {BsBoxArrowInUp} from "react-icons/all";
 
 type EventProps = {
   event: any
@@ -58,8 +58,12 @@ const Event: React.FC<EventProps> = (props) => {
               isRedirectToEvent && (login.type === 'admin') ?
                 <Redirect to={`/currentEvents/admin/${event.event_code}`}/> : ''
         }
-        <Row><Button className='go-event-button' onClick={handleOnRedirectToEvent}>{event.name}
-          <FaRegHandPaper/></Button></Row></Col>
+        <Row>
+          <Button className='go-event-button'size='sm' onClick={handleOnRedirectToEvent}>
+            {event.name}<i className='px-1'><BsBoxArrowInUp/></i>
+          </Button>
+        </Row>
+      </Col>
       <Col xs={{span: 12, order: 1}} md={3} className='event-image-col'><Image src={image.default} alt="image not found"
                                                                                className='event-cover-image'/>
       </Col>

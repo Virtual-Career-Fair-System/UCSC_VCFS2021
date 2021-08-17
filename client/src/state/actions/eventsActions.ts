@@ -1,4 +1,4 @@
-import * as ACTIONS from '../constants/actions/EventActionTypes';
+import * as ACTIONS from '../constants/actions/EventsActionTypes';
 import {IEvent} from "../../types/login";
 
 export function createEvent(data: IEvent): any {

@@ -1,19 +1,41 @@
-import React, {useState} from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import React, {useEffect, useState} from "react";
 import Header from "../../components/header/Header";
-import {Container, Col, Row, Button} from "react-bootstrap";
+import {Container, Col, Row, Button, Image} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 import SideBarStudent from "./SideBarStudent";
 import {FaBars} from "react-icons/all";
-import {IoNotificationsCircle} from "react-icons/all";
 import Ads from './Ads'
+import {IEvent} from "../../types/login";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../state/reducers";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
+import {setInitEvents} from "../../state/actions/eventsActions";
 
-const EventStudent = () => {
+const EventStudent = (props: any) => {
+  const {data} = useQuery(GET_ALL_EVENTS);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data) {
+      console.log(data.getAllEvents);
+      dispatch(setInitEvents(data.getAllEvents));
+    }
+  },)
   const [toggled, setToggled] = useState(false);
+  const events: IEvent[] = useSelector((state: AppState) => state.events.events);
+  const thisEvent: any = events.find((event: IEvent) => (event.event_code === props.match.params.event_code));
 
   const handleToggleSidebar = (value: boolean) => {
     setToggled(value);
   };
+
+  console.log('event :' + props.match.params.event_code);
+  const image = () => {
+    if (thisEvent) {
+      return require(`../../assets/image/eventCoverPhotos/${thisEvent.cover_image}`).default;
+    }
+    return require(`../../assets/image/eventCoverPhotos/coverImage.png`).default;
+  }
 
   return (
     <React.Fragment>
@@ -23,8 +45,8 @@ const EventStudent = () => {
                         handleToggleSidebar={handleToggleSidebar}/>
         <main>
           <Row>
-            <Col className='event-title text-center py-1 mb-4'>
-              UCSC Virual Career Fair 2021
+            <Col className='event-title text-center py-1 mb-2'>
+              {thisEvent && thisEvent.name}
             </Col>
           </Row>
           <Row>
@@ -32,6 +54,11 @@ const EventStudent = () => {
               <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
                 <FaBars/>
               </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className='text-center py-2 event-cover-image-col mb-2'>
+              <Image className='cover-image rounded' src={image()}/>
             </Col>
           </Row>
           <Row>

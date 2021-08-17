@@ -1,4 +1,4 @@
-import * as ACTIONS from '../constants/actions/EventActionTypes';
+import * as ACTIONS from '../constants/actions/EventsActionTypes';
 import {EventTypes} from "../actionTypes/eventsCtionTypes";
 import {IEventState} from "../../types/login";
 
@@ -6,7 +6,7 @@ const EventInitialState: any = {
   events: [],
 };
 
-export function EventReducer(state = EventInitialState, action:EventTypes ): IEventState {
+export function EventsReducer(state = EventInitialState, action:EventTypes ): IEventState {
   switch (action.type) {
     case ACTIONS.CREATE_EVENT:
       return {
