@@ -41,7 +41,7 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/74316894_2396838977197234_5358648227828596736_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=cdbe9c&_nc_ohc=om5XpqoPh80AX8TMh-c&_nc_ht=scontent.fcmb1-2.fna&oh=729588eb386781beff63d8fa6bcf7468&oe=60FDC916)` }}>
+    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${careerFareCover})` }}>
       {/* {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />} */}
       <div className={classes.overlay} />
       <Grid container>

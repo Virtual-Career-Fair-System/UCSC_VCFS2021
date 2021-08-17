@@ -1,21 +1,28 @@
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     toolbar: {
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid #cecece`,
+        fontFamily: 'Raleway, sans-serif',
     },
     toolbarTitle: {
         flex: 1,
+        fontFamily: 'Raleway, sans-serif',
+        fontWeight:'600',
+        fontSize:'2.5em',
+        paddingLeft:'5em'
     },
     toolbarSecondary: {
         justifyContent: 'space-between',
         overflowX: 'auto',
+        fontFamily: 'Raleway, sans-serif',
     },
     toolbarLink: {
-        padding: theme.spacing(1),
+
         flexShrink: 0,
         cursor: "pointer",
+        fontFamily: 'Raleway, sans-serif',
     },
 }));
 

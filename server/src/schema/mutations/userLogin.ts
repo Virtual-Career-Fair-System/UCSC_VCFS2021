@@ -25,7 +25,7 @@ export const LOGIN = {
     if(tempUser?.type=='student'){
       const tempStudent:any= await student.findOne({email: email});
       if(tempStudent?.password==PasswordSh1){
-        return{successful:true,message:"lodged in successfully",type:'student',id:tempStudent?.id}
+        return{successful:true,message:"logged in successfully",type:'student',id:tempStudent?.id}
       }else {
         return{successful:false,message:"Wrong password. Try again or click ‘Forgot password’ to reset it. ",type:'',id:null}
       }

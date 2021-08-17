@@ -1,96 +1,66 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@mixin event($borderColor,$focusColor) {
+  &:hover{
+    background-color: $focusColor;
+  }
+  border: solid $borderColor 1px;
+  border-radius: 10px;
+  padding:10px 10px;
+  margin: 1em 1em;
+  .event-detail{
+    .status {
+      .approved {
+        background-color: #027707;
+        padding: 5px 10px;
+        color: white;
+        font-weight: 600;
+        border-radius: 10px;
 
-$sidebar-bg-color: #e0e0e0;
-$submenu-bg-color: rgba(255, 255, 255, 0.05);
-$submenu-bg-color-collapsed: rgba(29, 29, 29, 0.95);
-$sidebar-color: #000000;
-$highlight-color: #747474;
-$icon-bg-color: rgba(255, 255, 255, 0.05);
-$icon-size: 35px;
+      }
 
-@import '~react-pro-sidebar/dist/scss/styles.scss';
-
+      .requested {
+        background-color: #e50000;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+    }
+    .event-name{
+      text-transform: capitalize;
+      font-size: 1.5em;
+    }
+    .event-date{
+      opacity: 0.5;
+    }
+    .event-content{
+      color: #363636;
+    }
+    .go-event-button{
+      background-color: #0019c6;
+      margin: 0;
+      text-transform: capitalize;
+    }
+  }
+  .event-image-col{
+    .event-cover-image{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
 .current-events {
   min-height: 100vh;
   height: 100%;
   display: flex;
   position: relative;
-
-  .pro-sidebar {
-    margin-right: 0;
-    height: auto;
-    .pro-sidebar-inner {
-      min-height: 100vh;
-    }
+  .event-closed{
+    @include event(#565656, #c4c4c4)
   }
-  main {
-
-    padding: 24px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-
-    header {
-      margin-bottom: 40px;
-      border-bottom: 1px solid #efefef;
-
-      h1 {
-        display: flex;
-        align-items: center;
-        transform: translateX(-20px);
-      }
-    }
+  .event-upcoming{
+    @include event(blue, #d0d0ff)
   }
-
-  .sidebar-toggle-btn-col {
-    padding-top: 2px;
-    .btn-toggle {
-      vertical-align: center;
-      cursor: pointer;
-      width: 35px;
-      height: 35px;
-      background: #353535;
-      color: #fff;
-      text-align: center;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      display: none;
-    }
-  }
-  .event{
-    &:hover{
-      background-color: #eeeeee;
-    }
-    border: solid #00ff38 1px;
-    border-radius: 10px;
-    padding:10px 10px;
-    margin: 1em 1em;
-    .event-detail{
-      .event-name{
-        text-transform: capitalize;
-        font-size: 1.5em;
-      }
-      .event-date{
-        opacity: 0.5;
-      }
-      .event-content{
-        color: #363636;
-      }
-      .go-event-button{
-        background-color: #0019c6;
-        margin: 0;
-        text-transform: capitalize;
-      }
-    }
-    .event-image-col{
-      .event-cover-image{
-        width: 100%;
-        height: auto;
-      }
-    }
+  .event-requested{
+    @include event(red, #ffd8d8)
   }
 }
 
@@ -105,7 +75,6 @@ $icon-size: 35px;
       .event-image-col{
         .event-cover-image{
           height: 100%;
-
         }
       }
     }

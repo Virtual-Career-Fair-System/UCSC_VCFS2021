@@ -22,6 +22,7 @@ import Applicants from "../Pages/company/Applicants";
 import Cv from "../Pages/company/Cv";
 import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
+import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
 import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
@@ -29,17 +30,22 @@ import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
 import {useDispatch} from "react-redux";
 import Profile1 from "../Pages/profile/profile1";
+import EventAdmin from "../Pages/eventAdmin/EventAdmin";
+import EventCompany from "../Pages/eventCompany/EventCompany";
+import EventStudent from "../Pages/eventStudent/EventStudent";
 
 const Routes = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (localStorage.getItem('loginID') && localStorage.getItem('loginType')) {
       const id: number = Number(localStorage.getItem('loginID'));
       const type: string = String(localStorage.getItem('loginType'));
       dispatch(login({id: id, type: type}));
-
     }
   }, [])
+
+
   return (
     <BrowserRouter>
       <Switch>
@@ -48,7 +54,10 @@ const Routes = () => {
         <Route exact path="/companies" component={Companies}/>
         <Route exact path="/companyLogin" component={CompanyLogin}/>
         <Route exact path="/currentEvents" component={CurrentEvents}/>
-        <Route exact path="/currentEvents/:eventId" component={Event}/>
+        <Route exact path="/currentEvents/:event_code" component={Event}/>
+        <Route exact path="/currentEvents/company/:event_code" component={EventCompany}/>
+        <Route exact path="/currentEvents/admin/:event_code" component={EventAdmin}/>
+        <Route exact path="/currentEvents/student/:event_code" component={EventStudent}/>
         <Route exact path="/students" component={Students}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/news" component={News}/>
@@ -68,6 +77,7 @@ const Routes = () => {
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
         <Route exact path="/profileview" component={Profile1}/>
+        <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
       </Switch>
     </BrowserRouter>
   );

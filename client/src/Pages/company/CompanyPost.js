@@ -11,7 +11,6 @@ export default function CompanyPost({ CompanyPost }) {
   return (
     <div className="CompanyPost">
       <CompanySideBar/>
-
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {useStyles, useStyles2} from "./headerConstants";
-import {Container,Col,Row} from "react-bootstrap";
+import {Container, Col, Row} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
 import {RiCalendarEventLine} from "react-icons/all";
@@ -16,6 +16,7 @@ import {ILoginData} from "../../types/login";
 import {AppState} from "../../state/reducers";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../state/actions/loginActions";
+
 type HeaderProps = {
   title: string
 }
@@ -33,16 +34,17 @@ const Header: React.FC<HeaderProps> = (props) => {
   const [isRedirectStudents, setIsRedirectStudents] = useState(false);
   const [isRedirectCompanies, setIsRedirectCompanies] = useState(false);
   const [isRedirectAboutUs, setIsRedirectAboutUs] = useState(false);
+  const [isRedirectNewCareerFair, setIsRedirectNewCareerFair] = useState(false);
   const onclickHomeRoute = () => {
     setIsHomeRedirect(true);
   }
   const onclickRouteLogin = () => {
     setIsRedirectLogin(true);
   }
-  const onclickLogOut=()=>{
+  const onclickLogOut = () => {
     dispatch(logout());
-    localStorage.setItem("loginID",'');
-    localStorage.setItem("loginType",'');
+    localStorage.setItem("loginID", '');
+    localStorage.setItem("loginType", '');
   }
   const onclickRouteStudents = () => {
     setIsRedirectStudents(true);
@@ -55,6 +57,9 @@ const Header: React.FC<HeaderProps> = (props) => {
   }
   const onclickRouteCurrentEvents = () => {
     setIsRedirectCurrentEvents(true);
+  }
+  const handleOnclickOrganizeNewCareerFair = () => {
+    setIsRedirectNewCareerFair(true);
   }
   // @ts-ignore
   return (
@@ -75,10 +80,10 @@ const Header: React.FC<HeaderProps> = (props) => {
 
         {login.id ?
           <Button variant="outlined" size="small" onClick={onclickLogOut}>
-          LOGOUT
-          </Button>:
+            LOGOUT
+          </Button> :
           <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
-          Sign IN
+            Sign IN
           </Button>
         }
 
@@ -107,7 +112,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
-        <Link
+      {/*  <Link
           color="inherit"
           noWrap
           key={'aboutUs'}
@@ -116,7 +121,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           className={classes.toolbarLink}
         >
           <i className='head-label'>About Us</i><i className='head-icon'><HiUserGroup size='1.6em'/></i>
-        </Link>
+        </Link>*/}
         {isRedirectCompanies && <Redirect to='/companies'/>}
         <Link
           color="inherit"
@@ -140,11 +145,14 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Students</i><i className='head-icon'><FaUserGraduate size='1.6em'/></i>
         </Link>
       </Toolbar>
-      {/* <Row>
-        <Col className='py-2'>
-          <Button variant="outlined">Organize New Carrier fair</Button>
+      <Row>
+        <Col className='py-2 text-right'>
+          {isRedirectNewCareerFair && <Redirect to='/organizeNewCareerFair'/>}
+          {login.id && login.type == 'student' ?
+            <Button variant="outlined" onClick={handleOnclickOrganizeNewCareerFair}>Organize New Carrier fair</Button>
+            : ''}
         </Col>
-      </Row> */}
+      </Row> 
     </Container>
   );
 }

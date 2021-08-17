@@ -4,16 +4,12 @@ import Header from "../../components/header/Header";
 import {Container} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 import Profile from "../profile/Profile";
-import StudentHeader from "../profile/StudentHeader";
-import Dashboard from "../admin/Dashboard";
-
 
 const Students = () => {
   return(
     <React.Fragment>
       <CssBaseline/>
-      {/* <Dashboard/> */}
-      <StudentHeader title="Career Fair UCSC"/>
+      <Header title="Career Fair UCSC"/>
       <Container fluid={true}>
         <Profile/>
       </Container>
