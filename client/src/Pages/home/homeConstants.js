@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
     mainGrid: {
         marginTop: theme.spacing(3),
     },
+    card:{
+        marginTop: theme.spacing(3),
+        maxHeight:2
+    }
 }));
 
 const mainFeaturedPost = {
@@ -28,7 +32,11 @@ const featuredPosts = [
         title: 'Students',
         date: 'Nov 12',
         description:
-            'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, you should highlight your academic successes at the beginning of your resume, before the “Experience” description. If you have completed any projects or taken courses related to the job you are applying for, you can include these as well. Invitation to all UCSC undergraduates and graduates!, Invitation to all UCSC undergraduates and graduates!.',
+            'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, ' +
+            'you should highlight your academic successes at the beginning of your resume, before the “Experience” ' +
+            'description. If you have completed any projects or taken courses related to the job you are applying for,' +
+            ' you can include these as well. Invitation to all UCSC undergraduates and graduates!, Invitation to all ' +
+            'UCSC undergraduates and graduates!.',
         image: studentPhoto,
         imageText: 'Image Text',
     },
@@ -36,7 +44,10 @@ const featuredPosts = [
         title: 'Companies',
         date: 'Nov 11',
         description:
-            'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and conduct interviews, recruitment, and company presentations to showcase their organization and to inform of every available career opportunity.\nIf you are looking for skilled, talented, and innovative fresh graduates to make a difference in your company, Join Now.!\nSkilled and talented graduates await your call!!',
+            'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and ' +
+            'conduct interviews, recruitment, and company presentations to showcase their organization and to inform' +
+            ' of every available career opportunity.If you are looking for skilled, talented, and innovative fresh ' +
+            'graduates to make a difference in your company, Join Now.!Skilled and talented graduates await your call!!',
         image: companyPhoto,
         imageText: 'Image Text',
     },

@@ -153,9 +153,9 @@ const SignIn = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 {errorEmail &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorEmail}
-                </Alert>}
+                </span>}
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -173,9 +173,9 @@ const SignIn = () => {
               </Grid>
               <Grid item xs={12}>
                 {errorPassword &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorPassword}
-                </Alert>
+                </span>
                 }
               <TextField
                 variant="outlined"

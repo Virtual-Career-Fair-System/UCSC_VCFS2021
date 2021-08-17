@@ -81,7 +81,7 @@ export default function SignUpStudent() {
   }
 
   const isValidPassword = (password: string) => {
-    const re = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$");
+    const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{8,})");
     return re.test(password);
   }
 
@@ -107,7 +107,7 @@ export default function SignUpStudent() {
     if (password === '' || !password) {
       errorPasswordTemp = "Required";
     } else if (!isValidPassword(password)) {
-      errorPasswordTemp = "Minimum length of this field must be equal or greater than 8";
+      errorPasswordTemp = "Length of password must be greater than 7  and must contain at least one lowercase, uppercase, numeric, special character";
     }
     if (confirmPassword === '' || !confirmPassword) {
       errorConfirmPasswordTemp = "Required";
@@ -148,7 +148,6 @@ export default function SignUpStudent() {
       ;
     }
   }
-
   return (
     <div className='register'>
       <Container component="main" maxWidth="xs">
@@ -164,9 +163,9 @@ export default function SignUpStudent() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 {errorName &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorName}
-                </Alert>
+                </span>
                 }
                 <TextField
                   autoComplete="name"
@@ -186,9 +185,9 @@ export default function SignUpStudent() {
               </Grid>
               <Grid item xs={12}>
                 {errorEmail &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorEmail}
-                </Alert>
+                </span>
                 }
                 <TextField
                   variant="outlined"
@@ -207,9 +206,9 @@ export default function SignUpStudent() {
               </Grid>
               <Grid item xs={12}>
                 {errorPassword &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorPassword}
-                </Alert>
+                </span>
                 }
                 <TextField
                   variant="outlined"
@@ -229,9 +228,9 @@ export default function SignUpStudent() {
               </Grid>
               <Grid item xs={12}>
                 {errorConfirmPassword &&
-                <Alert severity="error" style={inputStyle}>
+                <span className='register-error'>
                   {errorConfirmPassword}
-                </Alert>
+                </span>
                 }
                 <TextField
                   variant="outlined"

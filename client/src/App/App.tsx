@@ -4,11 +4,14 @@ import Routes from "../routes/Routes";
 import {ApolloClient, InMemoryCache,ApolloProvider} from "@apollo/client";
 import configureStore from "../state/store";
 import {Provider} from 'react-redux';
+import { createUploadLink } from 'apollo-upload-client'
 
 const App: React.FC = () => {
 
   const client = new ApolloClient({
-    uri: 'http://localhost:3001/graphql',
+    link: createUploadLink({
+      uri:  'http://localhost:3001/graphql',
+    }),
     cache: new InMemoryCache()
   });
 

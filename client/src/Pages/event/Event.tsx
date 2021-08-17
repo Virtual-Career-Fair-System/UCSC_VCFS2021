@@ -38,6 +38,7 @@ const Events = () => {
         <SideBar toggled={toggled}
                  handleToggleSidebar={handleToggleSidebar}/>
         <main>
+          unkown
           <Row>
             <Col xs={6} className='sidebar-toggle-btn-col'>
               <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>

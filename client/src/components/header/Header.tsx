@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import {useStyles, useStyles2} from "./headerConstants";
-import {Container} from "react-bootstrap";
+import {Container, Col, Row} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {AiFillHome} from "react-icons/all";
 import {RiCalendarEventLine} from "react-icons/all";
@@ -16,15 +16,14 @@ import {ILoginData} from "../../types/login";
 import {AppState} from "../../state/reducers";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../state/actions/loginActions";
+
 type HeaderProps = {
   title: string
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
-  console.log(login);
   const dispatch = useDispatch();
-
   const classes = useStyles();
   const {title} = props;
   const [isRedirectCurrentEvents, setIsRedirectCurrentEvents] = useState(false);
@@ -39,10 +38,10 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteLogin = () => {
     setIsRedirectLogin(true);
   }
-  const onclickLogOut=()=>{
+  const onclickLogOut = () => {
     dispatch(logout());
-    localStorage.setItem("loginID",'');
-    localStorage.setItem("loginType",'');
+    localStorage.setItem("loginID", '');
+    localStorage.setItem("loginType", '');
   }
   const onclickRouteStudents = () => {
     setIsRedirectStudents(true);
@@ -75,10 +74,10 @@ const Header: React.FC<HeaderProps> = (props) => {
 
         {login.id ?
           <Button variant="outlined" size="small" onClick={onclickLogOut}>
-          LOGOUT
-          </Button>:
+            LOGOUT
+          </Button> :
           <Button variant="outlined" size="small" onClick={onclickRouteLogin}>
-          Sign IN
+            Sign IN
           </Button>
         }
 
@@ -107,7 +106,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Events</i><i className='head-icon'><RiCalendarEventLine size='1.6em'/></i>
         </Link>
         {isRedirectAboutUs && <Redirect to='/aboutUs'/>}
-        <Link
+      {/*  <Link
           color="inherit"
           noWrap
           key={'aboutUs'}
@@ -116,7 +115,7 @@ const Header: React.FC<HeaderProps> = (props) => {
           className={classes.toolbarLink}
         >
           <i className='head-label'>About Us</i><i className='head-icon'><HiUserGroup size='1.6em'/></i>
-        </Link>
+        </Link>*/}
         {isRedirectCompanies && <Redirect to='/companies'/>}
         <Link
           color="inherit"
@@ -140,6 +139,8 @@ const Header: React.FC<HeaderProps> = (props) => {
           <i className='head-label'>Students</i><i className='head-icon'><FaUserGraduate size='1.6em'/></i>
         </Link>
       </Toolbar>
+      <Row>
+      </Row>
     </Container>
   );
 }
