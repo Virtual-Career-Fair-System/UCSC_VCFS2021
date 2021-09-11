@@ -22,7 +22,7 @@ export const CREATE_COMPANY = {
 
     const PasswordSh1 = crypto.createHash('md5').update(password).digest('hex');
     const x: any = await user.insert({type: 'company', email: email});
-    await company.insert({com_id: x.raw.insertId, name: name, password: PasswordSh1, email: email});
+    await company.insert({com_id: x.raw.insertId, com_name: name, password: PasswordSh1, email: email});
     return {successful: true, message: 'Registered successfully!'}
   }
 }
