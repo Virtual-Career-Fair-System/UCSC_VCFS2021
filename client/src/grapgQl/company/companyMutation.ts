@@ -10,8 +10,8 @@ export const CREATE_COMPANY = gql`
 `
 
 export const CREATE_EMAIL = gql`
- mutation createEmail( $com_id:Number!, $company_name:String!,$stu_email: String!, $stu_id: String!, $ad_id: String!, $subject: String!, $meeting: String! ){
-   createEmail( com_id: $com_id, company_name:$company_name, stu_email:$stu_email , stu_id: $stu_id , ad_id: $ad_id , subject: $subject, meeting: $meeting){
+ mutation createEmail( $c_name:String!,$s_email: String!,$subject:String!,$timea:String!,$linka:String!){
+   createEmail(c_name:$c_name, s_email:$s_email, subject:$subject,timea:$timea, linka:$linka){
    successful
    message
    }

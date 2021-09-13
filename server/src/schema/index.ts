@@ -22,7 +22,7 @@ const Mutation = new GraphQLObjectType({
     createCompany: CREATE_COMPANY,
     login: LOGIN,
     uploadFile: CREATE_EVENT,
-    sendemail: CREATE_EMAIL
+    createEmail: CREATE_EMAIL
   }
 });
 

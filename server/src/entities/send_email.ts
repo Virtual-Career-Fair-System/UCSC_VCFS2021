@@ -5,8 +5,8 @@ export class send_email extends  BaseEntity{
   @PrimaryGeneratedColumn()
   email_id!:number;
 
-  @Column()
-  com_id!:number;
+  // @Column()
+  // com_id!:number;
 
   @Column()
   company_name!:string;
@@ -14,17 +14,19 @@ export class send_email extends  BaseEntity{
   @Column()
   stu_email!:string;
 
-  @Column()
-  stu_id!: number;
+  // @Column()
+  // stu_id!: number;
 
-  @Column()
-  ad_id!: number;
+  // @Column()
+  // ad_id!: number;
 
   @Column()
   subject!:string;
 
   @Column()
-  meeting!:string;
+  timea!:string;
 
+  @Column()
+  linka!:string;
   
 }
