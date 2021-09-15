@@ -5,6 +5,7 @@ import {CREATE_COMPANY} from "./mutations/company";
 import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
+import { UPDATE_STUDENT } from "./mutations/editstudent";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -19,7 +20,8 @@ const Mutation = new GraphQLObjectType({
     createStudent: CREATE_STUDENT,
     createCompany: CREATE_COMPANY,
     login: LOGIN,
-    uploadFile: CREATE_EVENT
+    uploadFile: CREATE_EVENT,
+    updateStudent: UPDATE_STUDENT
   }
 });
 

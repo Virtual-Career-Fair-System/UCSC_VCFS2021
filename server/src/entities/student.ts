@@ -28,4 +28,19 @@ export class student extends  BaseEntity{
 
   @Column()
   about!:string;
+
+  @Column()
+  profile_pic!:string;
+
+  @Column()
+  cover_pic!:string;
+
+  @Column()
+  address!:string;
+
+  @Column()
+  contact_num!:string;
+
+  @Column()
+  state!:string;
 }
