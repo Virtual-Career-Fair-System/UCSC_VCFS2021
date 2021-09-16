@@ -1,4 +1,5 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany} from "typeorm";
+import {advertisement} from "./advertisement";
 @Entity()
 export class event extends  BaseEntity{
 
@@ -32,4 +33,7 @@ export class event extends  BaseEntity{
 
   @Column()
   status!:string;
+
+  @OneToMany(type => advertisement, advertisement => advertisement.event)
+  advertisements: advertisement[] | undefined;
 }

@@ -4,23 +4,36 @@ import {Container, Col, Row, Button, Image} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 import SideBarStudent from "./SideBarStudent";
 import {FaBars} from "react-icons/all";
-import Ads from './Ads'
 import {IEvent} from "../../types/login";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../state/reducers";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../../state/actions/eventsActions";
+import {GET_ALL_ADVERTISEMENTS} from "../../grapgQl/advertisement/advertisementQuary";
+import Ads from "./Ads";
 
 const EventStudent = (props: any) => {
+
   const {data} = useQuery(GET_ALL_EVENTS);
+  const allAds = useQuery(GET_ALL_ADVERTISEMENTS);
   const dispatch = useDispatch();
+
+  const ads = () => {
+    if (!allAds.data) {
+      return;
+    }
+    return allAds.data.getAllAdvertisements.filter((ad: any) => {
+      return ad.event_code === props.match.params.event_code
+    })
+  }
+  console.log(ads())
   useEffect(() => {
     if (data) {
-      console.log(data.getAllEvents);
       dispatch(setInitEvents(data.getAllEvents));
     }
   },)
+
   const [toggled, setToggled] = useState(false);
   const events: IEvent[] = useSelector((state: AppState) => state.events.events);
   const thisEvent: any = events.find((event: IEvent) => (event.event_code === props.match.params.event_code));
@@ -29,7 +42,6 @@ const EventStudent = (props: any) => {
     setToggled(value);
   };
 
-  console.log('event :' + props.match.params.event_code);
   const image = () => {
     if (thisEvent) {
       return require(`../../assets/image/eventCoverPhotos/${thisEvent.cover_image}`).default;
@@ -63,7 +75,7 @@ const EventStudent = (props: any) => {
           </Row>
           <Row>
             <Col>
-              <Ads/>
+              <Ads advertisements={ads()}/>
             </Col>
           </Row>
         </main>
