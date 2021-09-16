@@ -8,11 +8,7 @@ import {schema} from './schema';
 import {company} from "./entities/company";
 const { graphqlUploadExpress } = require("graphql-upload");
 import {event} from "./entities/event";
-<<<<<<< HEAD
 import {advertisement} from "./entities/advertisement";
-=======
-import { editstudent } from './entities/editstudent';
->>>>>>> e8bbe3a3f1f860cb4ed0c2dbf370107c5926e60f
 
 const main = async () => {
 
@@ -23,11 +19,7 @@ const main = async () => {
     password: '',
     logging: true,
     synchronize: false,
-<<<<<<< HEAD
     entities:[student,user,company,event,advertisement]
-=======
-    entities:[student,user,company,event,editstudent]
->>>>>>> e8bbe3a3f1f860cb4ed0c2dbf370107c5926e60f
   });
 
   const app = express();
@@ -45,4 +37,3 @@ const main = async () => {
 main().catch((err) => {
   console.log(err);
 });
-;

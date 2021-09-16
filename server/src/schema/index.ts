@@ -5,11 +5,8 @@ import {CREATE_COMPANY} from "./mutations/company";
 import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
-<<<<<<< HEAD
 import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
-=======
 import { UPDATE_STUDENT } from "./mutations/editstudent";
->>>>>>> e8bbe3a3f1f860cb4ed0c2dbf370107c5926e60f
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",

@@ -34,8 +34,6 @@ export const LoginResponseMessageType = new GraphQLObjectType({
     id:{type:GraphQLID}
   })
 })
-<<<<<<< HEAD
-=======
 
 export const CreateEventResponseEditProfileMessage = new GraphQLObjectType({
   name: "EditProfileMessage",
@@ -44,4 +42,3 @@ export const CreateEventResponseEditProfileMessage = new GraphQLObjectType({
     message: {type: GraphQLString},
   })
 })
->>>>>>> e8bbe3a3f1f860cb4ed0c2dbf370107c5926e60f
