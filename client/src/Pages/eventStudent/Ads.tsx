@@ -54,7 +54,9 @@ const Ads: React.FC<AdsProps> = (props) => {
     );
   };
   const renderAds = () => {
-    console.log(props.advertisements[0])
+    if(!props.advertisements){
+      return;
+    }
     return props.advertisements.map((advertisement: any) => {
       return (
         <Grid item xs={12} md={6} lg={4}>
