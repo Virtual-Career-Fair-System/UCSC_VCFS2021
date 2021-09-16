@@ -33,3 +33,11 @@ export const CreateEmailResponseMessage = new GraphQLObjectType({
     message: {type: GraphQLString},
   })
 })
+
+export const CreateAdResponseMessage = new GraphQLObjectType({
+  name: "publishadMessage",
+  fields: () => ({
+    successful: {type: GraphQLBoolean},
+    message: {type: GraphQLString},
+  })
+})

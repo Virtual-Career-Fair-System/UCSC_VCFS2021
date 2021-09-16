@@ -6,6 +6,7 @@ import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
 import {CREATE_EMAIL} from "./mutations/emailj";
+import { CREATE_AD } from "./mutations/compublishad";
 
 
 const RootQuery = new GraphQLObjectType({
@@ -22,7 +23,9 @@ const Mutation = new GraphQLObjectType({
     createCompany: CREATE_COMPANY,
     login: LOGIN,
     uploadFile: CREATE_EVENT,
-    createEmail: CREATE_EMAIL
+    createEmail: CREATE_EMAIL,
+    createAd: CREATE_AD
+
   }
 });
 
