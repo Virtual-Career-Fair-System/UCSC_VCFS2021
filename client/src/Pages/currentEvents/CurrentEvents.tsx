@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../state/reducers";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
-import {setInitEvents} from "../../state/actions/eventActions";
+import {setInitEvents} from "../../state/actions/eventsActions";
 
 const CurrentEvents = () => {
 
@@ -28,7 +28,6 @@ const CurrentEvents = () => {
   },)
 
   const renderEvents = () => {
-
     if (!events) {
       return;
     }
@@ -44,6 +43,7 @@ const CurrentEvents = () => {
       })
     }
   }
+
   return (
     <React.Fragment>
       <CssBaseline/>

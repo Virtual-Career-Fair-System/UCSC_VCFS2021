@@ -11,7 +11,10 @@ import {
 import {FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart} from 'react-icons/fa';
 import {Button, Col, Image, Row} from "react-bootstrap";
 import Calendar from "react-calendar";
-import profileImage from '../../assets/image/profileImages/1.jpg'
+import profileImage from '../../assets/image/profileImages/15.jpg'
+import {ILoginData} from "../../types/login";
+import {useSelector} from "react-redux";
+import {AppState} from "../../state/reducers";
 
 type SideBarProps = {
   toggled: boolean
@@ -27,14 +30,20 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
   }
 
   const {toggled, handleToggleSidebar} = props;
-  console.log(toggled);
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+  const image =()=>{
+    if(login.id){
+      return  require(`../../assets/image/profileImages/${login.id}.jpg`).default;
+    }
+    return require(`../../assets/image/profileImages/user.jpg`).default;
+  }
 
   return (
     <ProSidebar image={undefined} rtl={false} collapsed={false} toggled={toggled} breakPoint="md" onToggle={handleToggleSidebar}>
       <SidebarHeader>
         <Row >
           <Col className='text-center py-2'>
-            <Image className='profile-image' src={profileImage} roundedCircle />
+            <Image className='profile-image' src={image()} roundedCircle />
           </Col>
         </Row>
         <Row>
@@ -43,7 +52,7 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col className='text-center py-2'><Button  variant='info' size={'sm'}>profile</Button></Col>
+          <Col className='text-center py-2'><Button  variant='info' size={'sm'}>Profile</Button></Col>
         </Row>
       </SidebarHeader>
       <SidebarContent  style={styles}>

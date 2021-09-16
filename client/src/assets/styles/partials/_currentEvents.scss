@@ -1,12 +1,16 @@
 @mixin event($borderColor,$focusColor) {
   &:hover{
     background-color: $focusColor;
+    cursor: pointer;
   }
-  border: solid $borderColor 1px;
+  border: solid $borderColor 4px;
   border-radius: 10px;
   padding:10px 10px;
   margin: 1em 1em;
   .event-detail{
+    .event-content{
+
+    }
     .status {
       .approved {
         background-color: #027707;
@@ -16,7 +20,6 @@
         border-radius: 10px;
 
       }
-
       .requested {
         background-color: #e50000;
         padding: 5px 10px;
@@ -36,7 +39,8 @@
       color: #363636;
     }
     .go-event-button{
-      background-color: #0019c6;
+      background-color: $borderColor;
+      border-color:$borderColor ;
       margin: 0;
       text-transform: capitalize;
     }
@@ -60,7 +64,7 @@
     @include event(blue, #d0d0ff)
   }
   .event-requested{
-    @include event(red, #ffd8d8)
+    @include event(#fa7924, #ffd8d8)
   }
 }
 

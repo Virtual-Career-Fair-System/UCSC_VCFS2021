@@ -8,7 +8,7 @@ import {schema} from './schema';
 import {company} from "./entities/company";
 const { graphqlUploadExpress } = require("graphql-upload");
 import {event} from "./entities/event";
-import { editstudent } from './entities/editstudent';
+import {advertisement} from "./entities/advertisement";
 
 const main = async () => {
 
@@ -19,7 +19,7 @@ const main = async () => {
     password: '',
     logging: true,
     synchronize: false,
-    entities:[student,user,company,event,editstudent]
+    entities:[student,user,company,event,advertisement]
   });
 
   const app = express();
@@ -28,7 +28,7 @@ const main = async () => {
   app.use("/graphql",  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),graphqlHTTP({
     schema,
     graphiql:true
-  }))
+  }));
   app.listen(3001, () => {
     console.log("server running in port 3001");
   });
@@ -37,4 +37,3 @@ const main = async () => {
 main().catch((err) => {
   console.log(err);
 });
-;

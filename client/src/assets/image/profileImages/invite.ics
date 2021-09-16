@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20210804T100000Z
+DTEND:20210804T110000Z
+DTSTAMP:20210803T050410Z
+ORGANIZER;CN=sezentatechnologies@gmail.com:mailto:sezentatechnologies@gmail
+ .com
+UID:1lscufnsbkr81ke7mpc6n1a48c@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=induwarabas@gmail.com;X-NUM-GUESTS=0:mailto:induwarabas@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=kavindratk@gmail.com;X-NUM-GUESTS=0:mailto:kavindratk@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=sezentatechnologies@gmail.com;X-NUM-GUESTS=0:mailto:sezentatechnologies
+ @gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=swelikotuwa@gmail.com;X-NUM-GUESTS=0:mailto:swelikotuwa@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=
+ TRUE;CN=tharinduvindula@gmail.com;X-NUM-GUESTS=0:mailto:tharinduvindula@gma
+ il.com
+X-MICROSOFT-CDO-OWNERAPPTID:-1285216790
+CREATED:20210803T050408Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nDo not edit this section of the description.\n\nT
+ his event has a video call.\nJoin: https://meet.google.com/tez-tpmu-buk\n\n
+ View your event at https://calendar.google.com/calendar/event?action=VIEW&e
+ id=MWxzY3VmbnNia3I4MWtlN21wYzZuMWE0OGMgc3dlbGlrb3R1d2FAbQ&tok=Mjkjc2V6ZW50Y
+ XRlY2hub2xvZ2llc0BnbWFpbC5jb21hN2M3YmUxMDI2ZTVlMjU2MDU1MTVmNmJhNmRhNDg2OWFk
+ M2Y3MWJl&ctz=Asia%2FColombo&hl=en_GB&es=1.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20210803T050409Z
+LOCATION:
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Interview - Sudesh
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

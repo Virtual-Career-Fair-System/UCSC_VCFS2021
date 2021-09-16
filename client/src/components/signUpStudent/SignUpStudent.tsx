@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import {inputStyle, useStyles} from "../../Pages/registerStudent/RegisterStudentsConstants";
 import Container from '@material-ui/core/Container';
 import {Redirect} from "react-router-dom";
-import {Alert} from '@material-ui/lab';
 import {Row} from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import {CREATE_STUDENT} from "../../grapgQl/student/studentMutation";

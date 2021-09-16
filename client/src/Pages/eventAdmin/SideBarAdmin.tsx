@@ -8,108 +8,72 @@ import {
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import {FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart} from 'react-icons/fa';
+import {Button, Col, Image, Row} from "react-bootstrap";
+import Calendar from "react-calendar";
+import {ILoginData} from "../../types/login";
+import {useSelector} from "react-redux";
+import {AppState} from "../../state/reducers";
 
 type SideBarProps = {
   toggled: boolean
   handleToggleSidebar: any
 }
 
-const SideBarAdmin: React.FC<SideBarProps> = (props) => {
+const SideBarStudent: React.FC<SideBarProps> = (props) => {
+
+  const styles:any={
+    fontFamily: 'Raleway, sans-serif',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  }
+
   const {toggled, handleToggleSidebar} = props;
-  console.log(toggled);
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+
+  const image =()=>{
+    if(login.id){
+      return  require(`../../assets/image/profileImages/${login.id}.jpg`).default;
+    }
+    return require(`../../assets/image/profileImages/user.jpg`).default;
+  }
 
   return (
-    <ProSidebar
-      image={undefined}
-      rtl={false}
-      collapsed={false}
-      toggled={toggled}
-      breakPoint="md"
-      onToggle={handleToggleSidebar}
-    >
+    <ProSidebar image={undefined} rtl={false} collapsed={false} toggled={toggled} breakPoint="md" onToggle={handleToggleSidebar}>
       <SidebarHeader>
-        <div
-          style={{
-            padding: '24px',
-            textTransform: 'uppercase',
-            fontWeight: 'bold',
-            fontSize: 14,
-
-            letterSpacing: '1px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          sudesh
-        </div>
+        <Row >
+          <Col className='text-center py-2'>
+            <Image className='profile-image' src={image()} roundedCircle />
+          </Col>
+        </Row>
+        <Row>
+          <Col className='text-center py-2' style={styles}>
+            W.G.S.L.Bandara
+          </Col>
+        </Row>
+        <Row>
+          <Col className='text-center py-2'><Button  variant='info' size={'sm'}>Profile</Button></Col>
+        </Row>
       </SidebarHeader>
-
-      <SidebarContent>
+      <SidebarContent  style={styles}>
         <Menu iconShape="circle">
-          <MenuItem
-            icon={<FaTachometerAlt/>}
-            suffix={<span className="badge red">sudesh</span>}
-          >
-            sudesh
+          <MenuItem /* icon={<FaTachometerAlt/>} suffix={<span className="badge red">sudesh</span>}*/ >
+            Rules and Regulations
           </MenuItem>
-          <MenuItem icon={<FaGem/>}> sudesh</MenuItem>
+          <MenuItem /* icon={<FaTachometerAlt/>} suffix={<span className="badge red">sudesh</span>}*/>
+            Info
+          </MenuItem>
+          <MenuItem /* icon={<FaTachometerAlt/>} suffix={<span className="badge red">sudesh</span>}*/>
+            Notifications
+          </MenuItem>
         </Menu>
-        <Menu iconShape="circle">
-          <SubMenu
-            suffix={<span className="badge yellow">3</span>}
-            title='sudesh'
-            icon={<FaRegLaughWink/>}
-          >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
-          </SubMenu>
-          <SubMenu
-            title='sudesh'
-            icon={<FaHeart/>}
-          >
-            <MenuItem>sudesh 1</MenuItem>
-            <MenuItem>sudesh 2</MenuItem>
-            <MenuItem>sudesh 3</MenuItem>
-          </SubMenu>
-          <SubMenu title='sudesh' icon={<FaList/>}>
-            <MenuItem>sudesh 1 </MenuItem>
-            <MenuItem>sudesh 2 </MenuItem>
-            <SubMenu title='sudesh 3'>
-              <MenuItem>sudesh 3.1 </MenuItem>
-              <MenuItem>sudesh 3.2 </MenuItem>
-              <SubMenu title={`sudesh 3.3`}>
-                <MenuItem>sudesh 3.3.1 </MenuItem>
-                <MenuItem>sudesh 3.3.2 </MenuItem>
-                <MenuItem>sudesh 3.3.3 </MenuItem>
-              </SubMenu>
-            </SubMenu>
-          </SubMenu>
-        </Menu>
+        <Col>
+          <Calendar />
+        </Col>
       </SidebarContent>
-
-      <SidebarFooter style={{textAlign: 'center'}}>
-        <div
-          className="sidebar-btn-wrapper"
-          style={{
-            padding: '20px 24px',
-          }}
-        >
-          <a
-            href="https://github.com/azouaoui-med/react-pro-sidebar"
-            target="_blank"
-            className="sidebar-btn"
-            rel="noopener noreferrer"
-          >
-            <FaGithub/>
-            <span> sudesh</span>
-          </a>
-        </div>
+      <SidebarFooter  style={styles}>
       </SidebarFooter>
     </ProSidebar>
   );
 };
 
-export default SideBarAdmin;
+export default SideBarStudent;
