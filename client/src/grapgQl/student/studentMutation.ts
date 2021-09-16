@@ -8,30 +8,3 @@ export const CREATE_STUDENT = gql`
    }
  }
 `
-
-export const GET_STUDENT = gql`       
- mutation getStudent( $id:Int! ){
-   getStudent(id:$id){
-    id
-    image
-    reg_no
-    f_name
-    l_name
-    email
-    batch_no
-    about
-    cover_pic
-    ContactNumber
-    linkedin
-    address
-    state
-    projectDis1
-    project1
-    projectDis2
-    project2
-    projectDis3
-    project3
-    skills
-   }
- }
-`

@@ -3,18 +3,19 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import Post from "../../components/post/Post";
 import {ILoginData} from "../../types/login";
 import {AppState} from "../../state/reducers";
-import {useMutation, useQuery} from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
-import {GET_STUDENT} from "../../grapgQl/student/studentMutation";
+import { GET_STUDENT } from "../../grapgQl/student/studentQuary";
 import { useState,useEffect } from "react";
 export default function Profile() {
     const login: ILoginData = useSelector((state: AppState) => state.login.login);
-    const [getStudent] = useMutation(GET_STUDENT);
+    const [getStudent] = useQuery(GET_STUDENT);
     const [student,setStudent] = useState<any>(null);
     useEffect(() => {
         getStudent({variables:{id:15}}).then((result)=>{setStudent(result.data.getStudent)})
+
     console.log(student);
-    },[]);
+    },);
     return (
         <>
             <div className="profile">
@@ -40,7 +41,7 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className="profileRightBottom">
-                        {/*<Post/>*/}
+                        <Post/>
                         <Rightbar profile/>
                     </div>
                 </div>
