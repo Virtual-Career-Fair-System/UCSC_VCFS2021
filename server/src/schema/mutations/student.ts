@@ -1,9 +1,10 @@
-import {GraphQLString} from "graphql";
+import {GraphQLInt, GraphQLString} from "graphql";
 import {student} from '../../entities/student';
 import {user} from "../../entities/user";
 import {RegisterResponseMessageType} from "../typeDef/messages";
 import {isExistEmail, isExistRegNo} from "../validations/userValidations";
 import crypto from "crypto";
+import {StudentType} from "../typeDef/student";
 
 export const CREATE_STUDENT = {
   type: RegisterResponseMessageType,
@@ -30,5 +31,18 @@ export const CREATE_STUDENT = {
     const x:any=await user.insert({type:'student',email:email});
     await student.insert({id:x.raw.insertId,f_name:fname, l_name:lname, password:PasswordSh1,reg_no:regNo,email:email});
     return{successful:true,message:'Registered successfully!'}
+  }
+}
+
+export const GET_STUDENT = {
+  type:StudentType,
+  args: {
+    id: {type: GraphQLInt}
+
+  },
+
+  async resolve(parent: any, args: any) {
+    const {id} = args;
+    return student.findOne({id:id});
   }
 }
