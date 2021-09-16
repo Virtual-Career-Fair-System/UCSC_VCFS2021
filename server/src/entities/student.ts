@@ -1,46 +1,68 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+
 @Entity()
-export class student extends  BaseEntity{
+export class student extends BaseEntity {
 
   @PrimaryGeneratedColumn()
-  id!:number;
+  id!: number;
 
   @Column()
-  image!:string;
+  image!: string;
 
   @Column()
-  password!:string;
+  password!: string;
 
   @Column()
-  reg_no!:string;
+  reg_no!: string;
 
   @Column()
-  f_name!:string;
+  f_name!: string;
 
   @Column()
-  l_name!:string;
+  l_name!: string;
 
   @Column()
-  email!:string;
+  email!: string;
 
   @Column()
-  batch_no!:string;
+  batch_no!: string;
 
   @Column()
-  about!:string;
+  about!: string;
 
   @Column()
-  profile_pic!:string;
+  cover_pic!: string;
 
   @Column()
-  cover_pic!:string;
+  ContactNumber!: string;
 
   @Column()
-  address!:string;
+  linkedin!: string;
 
   @Column()
-  contact_num!:string;
+  address!: string;
 
   @Column()
-  state!:string;
+  state!: string;
+
+  @Column()
+  projectDis1!:string;
+
+  @Column()
+  project1!:string;
+
+  @Column()
+  projectDis2!:string;
+
+  @Column()
+  project2!:string;
+
+  @Column()
+  projectDis3!:string;
+
+  @Column()
+  project3!:string;
+
+  @Column()
+  skills!:string;
 }

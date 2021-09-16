@@ -3,7 +3,7 @@ import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 export class editstudent extends  BaseEntity{
 
 
-    @Column()
+  @Column()
   image!:string;
 
   @PrimaryGeneratedColumn()
@@ -44,8 +44,6 @@ export class editstudent extends  BaseEntity{
 
   @Column()
   address!:string;
-
-  
 
   @Column()
   state!:string;
