@@ -1,4 +1,5 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {advertisement} from "./advertisement";
 @Entity()
 export class company extends  BaseEntity{
 
@@ -6,7 +7,7 @@ export class company extends  BaseEntity{
   com_id!:number;
 
   @Column()
-  name!:string;
+  com_name!:string;
 
   @Column()
   email!:string;
@@ -22,4 +23,7 @@ export class company extends  BaseEntity{
 
   @Column()
   image!:string;
+
+  @OneToMany(type => advertisement, advertisement => advertisement.company)
+  advertisements: advertisement[] | undefined;
 }

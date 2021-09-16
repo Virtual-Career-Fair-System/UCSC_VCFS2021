@@ -1,4 +1,4 @@
-import * as ACTIONS from '../constants/actions/EventActionTypes';
+import * as ACTIONS from '../constants/actions/EventsActionTypes';
 import {IEvent, ILoginData} from "../../types/login";
 
 export interface createEvent {

@@ -8,4 +8,12 @@
     font-weight: 600;
     border-radius: 20px;
   }
+  .event-cover-image-col{
+    height: 20em;
+    overflow: hidden;
+    .cover-image{
+      transform: translateY(-25%);
+      width: 100%;
+    }
+  }
 }

@@ -10,6 +10,7 @@ const { graphqlUploadExpress } = require("graphql-upload");
 import {event} from "./entities/event";
 import { send_email } from './entities/send_email';
 import { adpublish } from './entities/adpublish';
+import {advertisement} from "./entities/advertisement";
 
 const main = async () => {
 
@@ -20,7 +21,7 @@ const main = async () => {
     password: '',
     logging: true,
     synchronize: false,
-    entities:[student,user,company,event,send_email,adpublish]
+    entities:[student,user,company,event,send_email,adpublish,advertisement]
   });
 
   const app = express();
@@ -29,7 +30,7 @@ const main = async () => {
   app.use("/graphql",  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),graphqlHTTP({
     schema,
     graphiql:true
-  }))
+  }));
   app.listen(3001, () => {
     console.log("server running in port 3001");
   });
@@ -38,4 +39,3 @@ const main = async () => {
 main().catch((err) => {
   console.log(err);
 });
-;

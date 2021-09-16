@@ -14,6 +14,7 @@ import {ILoginData} from "../../types/login";
 import {useSelector} from "react-redux";
 import {AppState} from "../../state/reducers";
 import Footer from "../../components/footer/Footer";
+import Swal from "sweetalert2";
 
 const OrganizeNewCareerFair: React.FC = () => {
 
@@ -27,6 +28,17 @@ const OrganizeNewCareerFair: React.FC = () => {
     console.log(file);
     setFile(file);
   }
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
 
   const [editorDescriptionState, setEditorDescriptionState] = useState(() => EditorState.createEmpty(),);
@@ -37,7 +49,7 @@ const OrganizeNewCareerFair: React.FC = () => {
   const [name, setName] = useState<null | string>(null);
   const [startDate, setStartDate] = useState<null | string>(null);
   const [endDate, setEndDate] = useState<null | string>(null);
-  const [file,setFile]=useState<any>(null);
+  const [file, setFile] = useState<any>(null);
 
   const [errorName, setErrorName] = useState<null | string>(null);
   const [errorCoverImage, setErrorCoverImage] = useState<null | string>(null);
@@ -104,7 +116,7 @@ const OrganizeNewCareerFair: React.FC = () => {
     setErrorCoverImage(errorCoverImageTemp);
 
 
-    return !(errorNameTemp !== '' || errorStartDateTemp !== '' || errorEndDateTemp !== '' || errorDescriptionTemp !== '' || errorRulesTemp !== ''||errorCoverImageTemp!=='');
+    return !(errorNameTemp !== '' || errorStartDateTemp !== '' || errorEndDateTemp !== '' || errorDescriptionTemp !== '' || errorRulesTemp !== '' || errorCoverImageTemp !== '');
   }
 
   const HandleOnSubmit = (event: FormEvent) => {
@@ -114,7 +126,22 @@ const OrganizeNewCareerFair: React.FC = () => {
     if (!validation()) {
       return;
     } else {
-      uploadFile({variables:{file:file,name:name,startDate:startDate,endDate:endDate,description:convertedDescriptionContent,rules:convertedRulesContent,organizer:login.id}})
+      uploadFile({
+        variables: {
+          file: file,
+          name: name,
+          startDate: startDate,
+          endDate: endDate,
+          description: convertedDescriptionContent,
+          rules: convertedRulesContent,
+          organizer: login.id
+        }
+      }).then((data)=>{
+        Toast.fire({
+          icon: 'success',
+          title: data.data.login.message
+        });
+      })
     }
   }
   return (
@@ -131,28 +158,31 @@ const OrganizeNewCareerFair: React.FC = () => {
             <Form.Group as={Col} className="mb-3" controlId="formEventName">
               <Form.Label>Name Of Career Fair</Form.Label>
               <Row><Col><span className='text-danger'> {errorName && errorName}</span></Col></Row>
-              <Form.Control type="text" value={name ? name : ''} placeholder="Name Of Career Fair" onChange={(event => setName(event.target.value))}/>
+              <Form.Control type="text" value={name ? name : ''} placeholder="Name Of Career Fair"
+                            onChange={(event => setName(event.target.value))}/>
             </Form.Group>
           </Row>
           <Row className="mb-3">
             <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
               <Form.Label>Starting Date</Form.Label>
               <span className='text-danger'> {errorStartDate && errorStartDate}</span>
-              <Form.Control type="date" value={startDate ? startDate : ''} placeholder="Password" onChange={(event => setStartDate(event.target.value))}/>
+              <Form.Control type="date" value={startDate ? startDate : ''} placeholder="Password"
+                            onChange={(event => setStartDate(event.target.value))}/>
             </Form.Group>
             <Form.Group as={Col} className="mb-3" controlId="formBasicPassword">
               <Form.Label>End Date</Form.Label>
               <span className='text-danger'> {errorEndDate && errorEndDate}</span>
-              <Form.Control type="date" value={endDate ? endDate : ''} placeholder="Password" onChange={(event => setEndDate(event.target.value))}/>
+              <Form.Control type="date" value={endDate ? endDate : ''} placeholder="Password"
+                            onChange={(event => setEndDate(event.target.value))}/>
             </Form.Group>
           </Row>
           <Row>
-           {/* <Dropzone
+            {/* <Dropzone
               accept="image/jpeg, image/png"
               onDrop={}>
               Upload Cover Image
             </Dropzone>*/}
-             <Form.Group as={Col} controlId="formFile" className="mb-3">
+            <Form.Group as={Col} controlId="formFile" className="mb-3">
               <Form.Label>Select Image for Cover</Form.Label>
               <Row><Col><span className='text-danger'> {errorCoverImage && errorCoverImage}</span></Col></Row>
               <Form.Control type="file" onChange={fileChange}/>

@@ -24,7 +24,7 @@ import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
-import DashBoard from "../Pages/admin/Dashboard";
+// import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
@@ -33,9 +33,13 @@ import Profile1 from "../Pages/profile/profile1";
 import EventAdmin from "../Pages/eventAdmin/EventAdmin";
 import EventCompany from "../Pages/eventCompany/EventCompany";
 import EventStudent from "../Pages/eventStudent/EventStudent";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
+import {setInitEvents} from "../state/actions/eventsActions";
 
 const Routes = () => {
   const dispatch = useDispatch();
+  const {data} = useQuery(GET_ALL_EVENTS);
 
   useEffect(() => {
     if (localStorage.getItem('loginID') && localStorage.getItem('loginType')) {
@@ -43,7 +47,11 @@ const Routes = () => {
       const type: string = String(localStorage.getItem('loginType'));
       dispatch(login({id: id, type: type}));
     }
+    if (data) {
+      dispatch(setInitEvents(data.getAllEvents));
+    }
   }, [])
+//        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
 
 
   return (
@@ -64,7 +72,6 @@ const Routes = () => {
         <Route exact path="/chooseRegisterForm" component={ChooseRegisterForm}/>
         <Route exact path="/studentRegister" component={RegisterStudent}/>
         <Route exact path="/companyRegister" component={RegisterCompany}/>
-        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
         <Route exact path="/editprofile" component={EditProfile}/>
         <Route exact path="/notification" component={StudentViewNotification}/>
         <Route exact path="/vacancy" component={Album}/>

@@ -8,6 +8,15 @@ export const RegisterResponseMessageType = new GraphQLObjectType({
   })
 })
 
+export const ChangeResponseMessageType = new GraphQLObjectType({
+  name: "registerMessage",
+  fields: () => ({
+    successful: {type: GraphQLBoolean},
+    message: {type: GraphQLString},
+  })
+})
+
+
 export const CreateEventResponseMessage = new GraphQLObjectType({
   name: "eventMessage",
   fields: () => ({
@@ -36,6 +45,13 @@ export const CreateEmailResponseMessage = new GraphQLObjectType({
 
 export const CreateAdResponseMessage = new GraphQLObjectType({
   name: "publishadMessage",
+  fields: () => ({
+    successful: {type: GraphQLBoolean},
+    message: {type: GraphQLString},
+  })
+})
+export const CreateEventResponseEditProfileMessage = new GraphQLObjectType({
+  name: "EditProfileMessage",
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},

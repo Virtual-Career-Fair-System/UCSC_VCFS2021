@@ -19,7 +19,7 @@ export const CREATE_EMAIL = gql`
 `
 
 export const CREATE_AD = gql`
- mutation createAd( $ad_description:String!,$ad_path1: String!){
+ mutation createAd( $ad_description:String!,$ad_path1: Upload!){
    createAd(ad_description:$ad_description, ad_path1:$ad_path1){
    successful
    message

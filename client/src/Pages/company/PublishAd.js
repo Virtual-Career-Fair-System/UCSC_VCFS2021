@@ -24,6 +24,16 @@ export default function PublishAd() {
     const [ad_path1, setPath] = useState(null);
     const [added, setAdded] = useState(false);
     
+    const PathChange = ({
+        target: {
+            validity,
+            files: [file]
+        }
+    }) => {
+        setPath(file);
+    }
+    
+
 
     const [isRedirectAd, setIsRedirectAd] = useState(false);
     const redirectToAd = () => {
@@ -41,25 +51,32 @@ export default function PublishAd() {
         }
     })
 
-    
-    
+
+
     function createAd1(e) {
         e.preventDefault();
-        
-
+if(!ad_path1){
+    Toast.fire({
+        icon: 'warning',
+        title: 'invalid..'
+    });
+    return;
+}
+// console.log(ad_path1)
         createAd({
-            variables: { ad_description: ad_description, ad_path1: ad_path1}
+            variables: { ad_description: ad_description, ad_path1: ad_path1 }
+            
         }).then((data) => {
             setAdded(data.data.createAd.successful);
             if (data.data.createAd.successful) {
-                
+
                 Toast.fire({
                     icon: 'success',
                     title: 'Adverticement Upload successfully'
                 });
                 setDescrption('');
-                setPath('');
-                
+                setPath(null);
+
 
 
             } else {
@@ -75,14 +92,14 @@ export default function PublishAd() {
     }
     return (
         <div>
-            <CompanyHeader/>
+            <CompanyHeader />
             <Card.Body>
                 <h1>Publish Ad</h1>
                 <Form onSubmit={createAd1}>
-                
-                    
-                  
-                <Row>
+
+
+
+                    <Row>
                         <Col className="pr-1" md="12">
                             <Form.Group>
                                 <label htmlFor="exampleInputEmail1">
@@ -109,16 +126,14 @@ export default function PublishAd() {
                                 <Form.Control
                                     placeholder="Adverticement"
                                     type="file"
-                                    value={ad_path1}
-                                    onChange={(e) => {
-                                        setPath(e.target.value);
-                                    }}
+                                    
+                                    onChange={PathChange}
                                 ></Form.Control>
                             </Form.Group>
                         </Col>
 
                     </Row>
-                   
+
 
                     <Button
                         className="btn-fill pull-right"

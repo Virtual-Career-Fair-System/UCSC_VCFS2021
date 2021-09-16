@@ -23,9 +23,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
-  console.log(login);
   const dispatch = useDispatch();
-
   const classes = useStyles();
   const {title} = props;
   const [isRedirectCurrentEvents, setIsRedirectCurrentEvents] = useState(false);
@@ -34,7 +32,6 @@ const Header: React.FC<HeaderProps> = (props) => {
   const [isRedirectStudents, setIsRedirectStudents] = useState(false);
   const [isRedirectCompanies, setIsRedirectCompanies] = useState(false);
   const [isRedirectAboutUs, setIsRedirectAboutUs] = useState(false);
-  const [isRedirectNewCareerFair, setIsRedirectNewCareerFair] = useState(false);
   const onclickHomeRoute = () => {
     setIsHomeRedirect(true);
   }
@@ -57,9 +54,6 @@ const Header: React.FC<HeaderProps> = (props) => {
   }
   const onclickRouteCurrentEvents = () => {
     setIsRedirectCurrentEvents(true);
-  }
-  const handleOnclickOrganizeNewCareerFair = () => {
-    setIsRedirectNewCareerFair(true);
   }
   // @ts-ignore
   return (
@@ -146,13 +140,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         </Link>
       </Toolbar>
       <Row>
-        <Col className='py-2 text-right'>
-          {isRedirectNewCareerFair && <Redirect to='/organizeNewCareerFair'/>}
-          {login.id && login.type == 'student' ?
-            <Button variant="outlined" onClick={handleOnclickOrganizeNewCareerFair}>Organize New Carrier fair</Button>
-            : ''}
-        </Col>
-      </Row> 
+      </Row>
     </Container>
   );
 }

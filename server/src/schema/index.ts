@@ -7,12 +7,15 @@ import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
 import {CREATE_EMAIL} from "./mutations/emailj";
 import { CREATE_AD } from "./mutations/compublishad";
+import { GET_ALL_ADVERTISEMENTS } from "./queries/advertisement";
+import { UPDATE_STUDENT } from "./mutations/editstudent";
 
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
-    getAllEvents: GET_ALL_EVENTS
+    getAllEvents: GET_ALL_EVENTS,
+    getAllAdvertisements: GET_ALL_ADVERTISEMENTS
   }
 });
 
@@ -24,8 +27,9 @@ const Mutation = new GraphQLObjectType({
     login: LOGIN,
     uploadFile: CREATE_EVENT,
     createEmail: CREATE_EMAIL,
-    createAd: CREATE_AD
+    createAd: CREATE_AD,
 
+    updateStudent: UPDATE_STUDENT
   }
 });
 
