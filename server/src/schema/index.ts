@@ -7,12 +7,14 @@ import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
 import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
 import { UPDATE_STUDENT } from "./mutations/editstudent";
+import { GET_STUDENT } from "./queries/student";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     getAllEvents: GET_ALL_EVENTS,
-    getAllAdvertisements: GET_ALL_ADVERTISEMENTS
+    getAllAdvertisements: GET_ALL_ADVERTISEMENTS,
+    getStudent:GET_STUDENT
   }
 });
 
