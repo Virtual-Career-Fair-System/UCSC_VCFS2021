@@ -24,7 +24,7 @@ import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
-import DashBoard from "../Pages/admin/DashBoard";
+// import DashBoard from "../Pages/admin/DashBoard";
 import Home from "../Pages/home/Home";
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
@@ -63,7 +63,7 @@ const Routes = () => {
         <Route exact path="/chooseRegisterForm" component={ChooseRegisterForm}/>
         <Route exact path="/studentRegister" component={RegisterStudent}/>
         <Route exact path="/companyRegister" component={RegisterCompany}/>
-        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
+        {/* <Route exact path="/Admin/DashBoard" component={DashBoard}/> */}
         <Route exact path="/editprofile" component={EditProfile}/>
         <Route exact path="/notification" component={StudentViewNotification}/>
         <Route exact path="/vacancy" component={Album}/>
