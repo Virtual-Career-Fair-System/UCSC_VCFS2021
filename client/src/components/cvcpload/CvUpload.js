@@ -1,98 +1,174 @@
-import React,{useState} from 'react'
-import './cvupload.css'
-// Import the main component
-import { Viewer } from '@react-pdf-viewer/core'; // install this library
-// Plugins
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; // install this library
-// Import the styles
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-// Worker
-import { Worker } from '@react-pdf-viewer/core'; // install this library
+import React, { useState } from 'react';
+import { useMutation } from "@apollo/client";
+import Swal from 'sweetalert2';
+import {
+    Badge,
+    Button,
+    Card,
+    Form,
+    Navbar,
+    Nav,
+    Container,
+    Row,
+    Col,
+} from "react-bootstrap";
+
+import { Redirect } from 'react-router-dom';
 import StudentHeader from '../../Pages/profile/StudentHeader';
+import { CREATE_CV } from '../../grapgQl/student/studentMutation';
 
-export const CvUpload = () => {
+export default function CvUpload() {
+    const [createCv] = useMutation(CREATE_CV);
 
-  // Create new plugin instance
-  const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  
-  // for onchange event
-  const [pdfFile, setPdfFile]=useState(null);
-  const [pdfFileError, setPdfFileError]=useState('');
-
-  // for submit event
-  const [viewPdf, setViewPdf]=useState(null);
-
-  // onchange event
-  const fileType=['application/pdf'];
-  const handlePdfFileChange=(e)=>{
-    let selectedFile=e.target.files[0];
-    if(selectedFile){
-      if(selectedFile&&fileType.includes(selectedFile.type)){
-        let reader = new FileReader();
-            reader.readAsDataURL(selectedFile);
-            reader.onloadend = (e) =>{
-              setPdfFile(e.target.result);
-              setPdfFileError('');
-            }
-      }
-      else{
-        setPdfFile(null);
-        setPdfFileError('Please select valid pdf file');
-      }
-    }
-    else{
-      console.log('select your file');
-    }
-  }
-
-  // form submit
-  const handlePdfFileSubmit=(e)=>{
-    e.preventDefault();
-    if(pdfFile!==null){
-      setViewPdf(pdfFile);
-    }
-    else{
-      setViewPdf(null);
-    }
-  }
-
-  return (
-    <div >
-      <StudentHeader/>
-
-    <br></br>
+    // const [com_id, setCompanyId] = useState(null);
+    const [s_name, setName] = useState(null);
+    const [s_email, setEmail] = useState(null);
+    const [cv_path1, setPath] = useState(null);
+    const [cved, setCved] = useState(false);
     
-      <form className='form-group' onSubmit={handlePdfFileSubmit}>
-      <h1>Cv Submission</h1>
-      <input type="text" class="form-control" name="username" placeholder="Name" required="" autofocus="" />
-      <br></br>
-      <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
-        <br></br>
-        <input type="file" className='form-control'
-          required onChange={handlePdfFileChange}
-        />
-        {pdfFileError&&<div className='error-msg'>{pdfFileError}</div>}
-        <br></br>
-        <button type="submit" className='btn btn-success btn-lg'>
-          Submit Cv
-        </button>
-      </form>
-      <br></br>
-      <h4>View PDF</h4>
-      <div className='pdf-container'>
-        {/* show pdf conditionally (if we have one)  */}
-        {viewPdf&&<><Worker workerUrl="https://unpkg.com/pdfjs-dist@2.6.347/build/pdf.worker.min.js">
-          <Viewer fileUrl={viewPdf}
-            plugins={[defaultLayoutPluginInstance]} />
-      </Worker></>}
+    const PathChange = ({
+        target: {
+            validity,
+            files: [file]
+        }
+    }) => {
+        setPath(file);
+    }
+    
 
-      {/* if we dont have pdf or viewPdf state is null */}
-      {!viewPdf&&<>No pdf file selected</>}
-      </div>
 
-    </div>
-  )
+    const [isRedirectCv, setIsRedirectCv] = useState(false);
+    const redirectToCv = () => {
+        setIsRedirectCv(true);
+    }
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+
+
+    function createCv1(e) {
+        e.preventDefault();
+if(!cv_path1){
+    Toast.fire({
+        icon: 'warning',
+        title: 'invalid..'
+    });
+    return;
+}
+// console.log(ad_path1)
+        createCv({
+            variables: { s_name: s_name, s_email:s_email, cv_path1: cv_path1 }
+            
+        }).then((data) => {
+            setCved(data.data.createCv.successful);
+            if (data.data.createCv.successful) {
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Adverticement Upload successfully'
+                });
+                setName('');
+                setEmail('');
+                setPath(null);
+
+
+
+            } else {
+                Toast.fire({
+                    icon: 'warning',
+                    title: data.data.createCv.message
+                });
+            }
+        })
+            ;
+
+
+    }
+    return (
+        <div>
+            <StudentHeader />
+            <Card.Body>
+                <h1>Cv Submission</h1>
+                <Form onSubmit={createCv1}>
+
+
+
+                    <Row>
+                        <Col className="pr-1" md="12">
+                            <Form.Group>
+                                <label htmlFor="exampleInputEmail1">
+                                    Name
+                                </label>
+                                <Form.Control
+                                    placeholder="Name"
+                                    type="text"
+                                    value={s_name}
+                                    onChange={(e) => {
+                                        setName(e.target.value);
+                                    }}
+                                ></Form.Control>
+                            </Form.Group>
+                        </Col>
+
+                    </Row>
+                    <Row>
+                        <Col className="pr-1" md="12">
+                            <Form.Group>
+                                <label htmlFor="exampleInputEmail1">
+                                    Email
+                                </label>
+                                <Form.Control
+                                    placeholder="Email"
+                                    type="email"
+                                    value={s_email}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                    }}
+                                ></Form.Control>
+                            </Form.Group>
+                        </Col>
+
+                    </Row>
+                    <Row>
+                        <Col className="pr-1" md="12">
+                            <Form.Group>
+                                <label htmlFor="exampleInputEmail1">
+                                    CV
+                                </label>
+                                <Form.Control
+                                    placeholder="Cv"
+                                    type="file"
+                                    
+                                    onChange={PathChange}
+                                ></Form.Control>
+                            </Form.Group>
+                        </Col>
+
+                    </Row>
+
+
+                    <Button
+                        className="btn-fill pull-right"
+                        type="submit"
+                        variant="info"
+                    >
+                        Submit
+                    </Button>
+                    {(isRedirectCv || cved) && <Redirect to='/cvupload' />}
+                    <div className="clearfix"></div>
+                </Form>
+            </Card.Body>
+
+        </div>
+    )
 }
 
-export default CvUpload

@@ -57,3 +57,11 @@ export const CreateEventResponseEditProfileMessage = new GraphQLObjectType({
     message: {type: GraphQLString},
   })
 })
+
+export const CreateCvResponseMessage = new GraphQLObjectType({
+  name: "publishcvMessage",
+  fields: () => ({
+    successful: {type: GraphQLBoolean},
+    message: {type: GraphQLString},
+  })
+})

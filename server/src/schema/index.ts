@@ -9,6 +9,7 @@ import {CREATE_EMAIL} from "./mutations/emailj";
 import { CREATE_AD } from "./mutations/compublishad";
 import { GET_ALL_ADVERTISEMENTS } from "./queries/advertisement";
 import { UPDATE_STUDENT } from "./mutations/editstudent";
+import { CREATE_CV } from "./mutations/studentcvu";
 
 
 const RootQuery = new GraphQLObjectType({
@@ -28,6 +29,7 @@ const Mutation = new GraphQLObjectType({
     uploadFile: CREATE_EVENT,
     createEmail: CREATE_EMAIL,
     createAd: CREATE_AD,
+    createCv: CREATE_CV,
 
     updateStudent: UPDATE_STUDENT
   }
