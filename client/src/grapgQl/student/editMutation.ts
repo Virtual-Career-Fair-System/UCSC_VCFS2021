@@ -31,7 +31,7 @@ export const UPDATE_STUDENT = gql`
         skills: $skills,
         contactNumber:$contactNumber,
         linkedIn:$linkedIn,
-        address:$address,
+        address:$adress,
         profilePicture:$profilePicture,
         coverPhoto:$coverPhoto
         ){

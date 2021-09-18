@@ -12,13 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CREATE_STUDENT = void 0;
+exports.GET_STUDENT = exports.CREATE_STUDENT = void 0;
 const graphql_1 = require("graphql");
 const student_1 = require("../../entities/student");
 const user_1 = require("../../entities/user");
 const messages_1 = require("../typeDef/messages");
 const userValidations_1 = require("../validations/userValidations");
 const crypto_1 = __importDefault(require("crypto"));
+const student_2 = require("../typeDef/student");
 exports.CREATE_STUDENT = {
     type: messages_1.RegisterResponseMessageType,
     args: {
@@ -41,6 +42,18 @@ exports.CREATE_STUDENT = {
             const x = yield user_1.user.insert({ type: 'student', email: email });
             yield student_1.student.insert({ id: x.raw.insertId, f_name: fname, l_name: lname, password: PasswordSh1, reg_no: regNo, email: email });
             return { successful: true, message: 'Registered successfully!' };
+        });
+    }
+};
+exports.GET_STUDENT = {
+    type: student_2.StudentType,
+    args: {
+        id: { type: graphql_1.GraphQLInt }
+    },
+    resolve(parent, args) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = args;
+            return student_1.student.findOne({ id: id });
         });
     }
 };
