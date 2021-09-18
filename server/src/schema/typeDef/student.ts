@@ -1,4 +1,4 @@
-import {GraphQLObjectType, GraphQLID, GraphQLString} from "graphql";
+import {GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt} from "graphql";
 
 export const StudentType = new GraphQLObjectType({
   name: "student",
@@ -22,6 +22,7 @@ export const StudentType = new GraphQLObjectType({
     project2: {type: GraphQLString},
     projectDis3: {type: GraphQLString},
     project3: {type: GraphQLString},
-    skills: {type: GraphQLString}
+    skills: {type: GraphQLString},
+    available:{type: GraphQLInt}
   })
 });

@@ -8,6 +8,7 @@ import {GET_ALL_EVENTS} from "./queries/events";
 import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
 import { UPDATE_STUDENT } from "./mutations/editstudent";
 import {GET_STUDENT} from "./mutations/student";
+import {GET_AVAILABLE} from "./mutations/student";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -25,7 +26,8 @@ const Mutation = new GraphQLObjectType({
     login: LOGIN,
     uploadFile: CREATE_EVENT,
     updateStudent: UPDATE_STUDENT,
-    getStudent:GET_STUDENT
+    getStudent:GET_STUDENT,
+    changeAvailable:GET_AVAILABLE
   }
 });
 

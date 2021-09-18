@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Calendar from 'react-calendar';
 import { Redirect } from "react-router-dom";
-import {Button} from '@material-ui/core';
+import {Button} from 'react-bootstrap';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import {useMutation, useQuery} from "@apollo/client";
+import {CHANGE_AVAILABLE} from "../../grapgQl/student/studentMutation";
+
 import {
   ProSidebar,
   Menu,
@@ -15,19 +18,33 @@ import {
 } from 'react-pro-sidebar';
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 
-type SideBarProps = {
-  toggled: boolean
-  handleToggleSidebar: any
-  title: any
-}
 
 
-const SideBar: React.FC<SideBarProps> = (props) => {
+const SideBar: React.FC<any> = (props) => {
+  const [changeAvailable] = useMutation(CHANGE_AVAILABLE);
+  const handleOnChangeAvailable = () =>{
+    if(!props.student){
+      return;
+    }
+    if(props.student.available=='0'){
+      changeAvailable({variables:{id:Number(props.student.id),available:'1'}}).then(result=>setAvailable('1'))  
+        }else{
+          changeAvailable({variables:{id:Number(props.student.id),available:'0'}}).then(result=>setAvailable('0'))  
+    }
+  }
+  useEffect(() => {
+  if(!props.student){
+    return;
+  }
+  setAvailable(props.student.available);
+
+}, [props.student]);
+  const [available,setAvailable] = useState<string>('0');
   const { toggled, handleToggleSidebar, title } = props;
   const [isEditProfileRedirect, setIsEditProfileRedirect] = useState(false);
   const [isStudentNotificationRedirect, setIsStudentNotificationRedirect] = useState(false);
   const [isVacancyRedirect, setIsVacancyRedirect] = useState(false);
-  console.log(toggled);
+
   const onclickEditProfileRoute = () => {
     setIsEditProfileRedirect(true);
   }
@@ -67,12 +84,9 @@ const SideBar: React.FC<SideBarProps> = (props) => {
 
       <SidebarContent>
         <Menu iconShape="circle">
-          <MenuItem
-            suffix={<span className="badge red"></span>}
-            align="center"
-          >
-            <Button variant="contained" color="secondary">
-            unavailable
+          <MenuItem suffix={<span className="badge red"></span>}>
+            <Button variant={available==='0'?"success":"danger"} onClick={handleOnChangeAvailable}>
+            {available==='0'?'Available':'Unavailable'}
             </Button>
           </MenuItem>
           {/* {isEditProfileRedirect && <Redirect to='/editprofile'/>} */}

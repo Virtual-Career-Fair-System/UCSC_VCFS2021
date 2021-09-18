@@ -5,6 +5,8 @@ import {RegisterResponseMessageType} from "../typeDef/messages";
 import {isExistEmail, isExistRegNo} from "../validations/userValidations";
 import crypto from "crypto";
 import {StudentType} from "../typeDef/student";
+import {CreateEventResponseEditProfileMessage
+} from "../typeDef/messages";
 
 export const CREATE_STUDENT = {
   type: RegisterResponseMessageType,
@@ -34,6 +36,7 @@ export const CREATE_STUDENT = {
   }
 }
 
+
 export const GET_STUDENT = {
   type:StudentType,
   args: {
@@ -46,3 +49,24 @@ export const GET_STUDENT = {
     return student.findOne({id:id});
   }
 }
+
+
+
+export const GET_AVAILABLE = {
+   type: CreateEventResponseEditProfileMessage,
+
+  args: {
+    id: {type: GraphQLInt},
+    available: {type: GraphQLString}
+  },
+
+  async resolve(parent: any, args: any) {
+    const {id,available} = args;
+    await student.update({id: id}, {
+      available: available
+     
+    });
+    return {successful: true, message: 'Profile updated successfully!'}
+  }
+}
+
