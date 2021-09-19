@@ -7,12 +7,6 @@ export class cvupload extends  BaseEntity{
 
 
   @Column()
-  s_name!:string;
-
-  @Column()
-  s_email!:string;
-
-  @Column()
   cv_path1!:string;
 
   

@@ -16,14 +16,15 @@ import { CREATE_AD } from '../../grapgQl/company/companyMutation';
 import { Redirect } from 'react-router-dom';
 import CompanyHeader from './CompanyHeader';
 
-export default function PublishAd() {
+const PublishAd = (props) => {
+    const { loginId, eventId } = props;
     const [createAd] = useMutation(CREATE_AD);
 
     // const [com_id, setCompanyId] = useState(null);
     const [ad_description, setDescrption] = useState(null);
-    const [ad_path1, setPath] = useState(null);
+    const [image, setPath] = useState(null);
     const [added, setAdded] = useState(false);
-    
+
     const PathChange = ({
         target: {
             validity,
@@ -32,7 +33,7 @@ export default function PublishAd() {
     }) => {
         setPath(file);
     }
-    
+
 
 
     const [isRedirectAd, setIsRedirectAd] = useState(false);
@@ -55,17 +56,17 @@ export default function PublishAd() {
 
     function createAd1(e) {
         e.preventDefault();
-if(!ad_path1){
-    Toast.fire({
-        icon: 'warning',
-        title: 'invalid..'
-    });
-    return;
-}
-// console.log(ad_path1)
+        if (!image || !eventId || !loginId) {
+            Toast.fire({
+                icon: 'warning',
+                title: 'invalid..'
+            });
+            return;
+        }
+        // console.log(ad_path1)
         createAd({
-            variables: { ad_description: ad_description, ad_path1: ad_path1 }
-            
+            variables: {loginId: Number(loginId), eventId: Number(eventId), ad_description: ad_description, image: image }
+
         }).then((data) => {
             setAdded(data.data.createAd.successful);
             if (data.data.createAd.successful) {
@@ -92,9 +93,11 @@ if(!ad_path1){
     }
     return (
         <div>
-            <CompanyHeader />
+            {/* <CompanyHeader /> */}
             <Card.Body>
-                <h1>Publish Ad</h1>
+                <h3>Publish Ad</h3>
+                {/* <h3>{loginId}</h3>
+                <h3>{eventId}</h3> */}
                 <Form onSubmit={createAd1}>
 
 
@@ -105,6 +108,7 @@ if(!ad_path1){
                                 <label htmlFor="exampleInputEmail1">
                                     Job Category
                                 </label>
+                                
                                 <Form.Control
                                     placeholder="Category"
                                     type="text"
@@ -126,7 +130,7 @@ if(!ad_path1){
                                 <Form.Control
                                     placeholder="Adverticement"
                                     type="file"
-                                    
+
                                     onChange={PathChange}
                                 ></Form.Control>
                             </Form.Group>
@@ -142,7 +146,7 @@ if(!ad_path1){
                     >
                         Publish
                     </Button>
-                    {(isRedirectAd || added) && <Redirect to='/publishad' />}
+                    {(isRedirectAd || added) && <Redirect to='/currentEvents/company/1CareerFair2021' />}
                     <div className="clearfix"></div>
                 </Form>
             </Card.Body>
@@ -151,3 +155,4 @@ if(!ad_path1){
     )
 }
 
+export default PublishAd;

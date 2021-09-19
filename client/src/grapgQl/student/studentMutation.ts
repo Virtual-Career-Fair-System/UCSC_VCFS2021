@@ -10,8 +10,8 @@ export const CREATE_STUDENT = gql`
 `
 
 export const CREATE_CV = gql`
- mutation createCv( $s_name:String!,$s_email:String!, $cv_path1: Upload!){
-   createCv(s_name:$s_name,s_email:$s_email, cv_path1:$cv_path1){
+ mutation createCv(  $cv_path1: Upload!){
+   createCv( cv_path1:$cv_path1){
    successful
    message
    }

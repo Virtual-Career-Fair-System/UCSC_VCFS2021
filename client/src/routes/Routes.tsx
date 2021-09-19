@@ -36,6 +36,11 @@ import EventStudent from "../Pages/eventStudent/EventStudent";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
+import AdminProfile from "../Pages/admin/AdminProfile";
+import AdminPost from "../Pages/admin/AdminPost";
+import DashBoard from "../Pages/admin/DashBoard";
+import Orders1 from "../Pages/admin/Orders1";
+import Orders from "../Pages/admin/Orders";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -85,6 +90,7 @@ const Routes = () => {
         <Route exact path="/schedule" component={ScheduleMeeting}/>
         <Route exact path="/profileview" component={Profile1}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        <Route exact path="/admin" component={Orders}/>
       </Switch>
     </BrowserRouter>
   );

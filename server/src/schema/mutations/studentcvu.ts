@@ -12,8 +12,7 @@ import { GraphQLUpload } from "graphql-upload";
 export const CREATE_CV = {
   type: CreateCvResponseMessage,
   args: {
-    s_name: {type: GraphQLString},
-    s_email: {type: GraphQLString},
+    
     cv_path1: {type: GraphQLUpload}
     
 
@@ -26,7 +25,7 @@ export const CREATE_CV = {
     const streamCv:any = tempCvPath1.createReadStream();
     const cvPathName = path.join(__dirname, `../../../../client/src/assets/cv/${tempCvPath1.filename}`)
     await streamCv.pipe(fs.createWriteStream(cvPathName));
-    await cvupload.insert({s_name: s_name ,s_email: s_email, cv_path1: tempCvPath1.filename});
+    await cvupload.insert({ cv_path1: tempCvPath1.filename});
     return {successful: true, message: 'successfully Inserted!'}
   }
 }

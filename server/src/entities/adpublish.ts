@@ -5,6 +5,12 @@ export class adpublish extends  BaseEntity{
   @PrimaryGeneratedColumn()
   ad_id!:number;
 
+  @Column()
+  eventId!: number;
+
+  @Column()
+  loginId!: number;
+
 
   @Column()
   ad_description!:string;

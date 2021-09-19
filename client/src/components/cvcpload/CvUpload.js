@@ -16,13 +16,18 @@ import {
 import { Redirect } from 'react-router-dom';
 import StudentHeader from '../../Pages/profile/StudentHeader';
 import { CREATE_CV } from '../../grapgQl/student/studentMutation';
+import {AppState} from "../../state/reducers";
+import {IEvent, ILoginData} from "../../types/login";
+import {useDispatch, useSelector} from "react-redux";
 
-export default function CvUpload() {
+ const CvUpload= (props) => {
+    // const login: ILoginData = useSelector((state: AppState) => state.login.login);
+    const { loginId } = props;
+
     const [createCv] = useMutation(CREATE_CV);
 
     // const [com_id, setCompanyId] = useState(null);
-    const [s_name, setName] = useState(null);
-    const [s_email, setEmail] = useState(null);
+ 
     const [cv_path1, setPath] = useState(null);
     const [cved, setCved] = useState(false);
     
@@ -66,7 +71,7 @@ if(!cv_path1){
 }
 // console.log(ad_path1)
         createCv({
-            variables: { s_name: s_name, s_email:s_email, cv_path1: cv_path1 }
+            variables: { cv_path1: cv_path1 }
             
         }).then((data) => {
             setCved(data.data.createCv.successful);
@@ -76,8 +81,7 @@ if(!cv_path1){
                     icon: 'success',
                     title: 'Adverticement Upload successfully'
                 });
-                setName('');
-                setEmail('');
+                
                 setPath(null);
 
 
@@ -97,12 +101,13 @@ if(!cv_path1){
         <div>
             <StudentHeader />
             <Card.Body>
+                <h3>{loginId}</h3>
                 <h1>Cv Submission</h1>
                 <Form onSubmit={createCv1}>
 
 
 
-                    <Row>
+                    {/* <Row>
                         <Col className="pr-1" md="12">
                             <Form.Group>
                                 <label htmlFor="exampleInputEmail1">
@@ -137,7 +142,7 @@ if(!cv_path1){
                             </Form.Group>
                         </Col>
 
-                    </Row>
+                    </Row> */}
                     <Row>
                         <Col className="pr-1" md="12">
                             <Form.Group>
@@ -171,4 +176,6 @@ if(!cv_path1){
         </div>
     )
 }
+
+export default CvUpload;
 
