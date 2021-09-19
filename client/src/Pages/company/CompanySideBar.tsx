@@ -64,14 +64,14 @@ const CompanySideBar: React.FC<SideBarProps> = (props) => {
 
             <SidebarContent>
                 <Menu iconShape="circle">
-                    <MenuItem
+                    {/* <MenuItem
                         icon={<FaTachometerAlt />}
                         suffix={<span className="badge red"></span>}
                         onClick={onclickPublishAdRoute}
                     >
                         Publish New Ad
                         {isPublishAdRedirect && <Redirect to='/publishad' />}
-                    </MenuItem>
+                    </MenuItem> */}
                     <MenuItem
                         icon={<NotificationsActiveIcon />}
                         suffix={<span className="badge red"></span>}
