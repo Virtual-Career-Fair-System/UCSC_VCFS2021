@@ -90,7 +90,7 @@ const Routes = () => {
         <Route exact path="/schedule" component={ScheduleMeeting}/>
         <Route exact path="/profileview" component={Profile1}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
-        <Route exact path="/admin" component={Orders}/>
+        {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>
   );
