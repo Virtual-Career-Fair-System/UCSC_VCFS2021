@@ -10,11 +10,8 @@ import {Info, InfoSubtitle, InfoTitle} from '@mui-treasury/components/info';
 import {useApexInfoStyles} from '@mui-treasury/styles/info/apex';
 import {useStyles} from "./AdsConstants";
 
-type AdsProps = {
-  advertisements: any
-}
 
-const Ads: React.FC<AdsProps> = (props) => {
+const Ads: React.FC<any> = (props) => {
   const styles = useStyles();
 
   const CustomCard = ({thumbnail, title, subtitle, description, joined = false}: any) => {

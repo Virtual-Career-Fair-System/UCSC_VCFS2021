@@ -12,6 +12,8 @@ import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../../state/actions/eventsActions";
 import {GET_ALL_ADVERTISEMENTS} from "../../grapgQl/advertisement/advertisementQuary";
 import Ads from "./Ads";
+import Album from "../../components/editprofile/Album";
+import StudentEventRoutes from "../../routes/StudentEventRoutes";
 
 const EventStudent = (props: any) => {
 
@@ -27,7 +29,7 @@ const EventStudent = (props: any) => {
       return ad.event_code === props.match.params.event_code
     })
   }
-  console.log(ads())
+
   useEffect(() => {
     if (data) {
       dispatch(setInitEvents(data.getAllEvents));
@@ -54,7 +56,9 @@ const EventStudent = (props: any) => {
       <Header title="Career Fair UCSC"/>
       <Container fluid={true} className='event-page'>
         <SideBarStudent toggled={toggled}
-                        handleToggleSidebar={handleToggleSidebar}/>
+                        handleToggleSidebar={handleToggleSidebar}
+                        thisEvent={thisEvent}
+        />
         <main>
           <Row>
             <Col className='event-title text-center py-1 mb-2'>
@@ -74,8 +78,10 @@ const EventStudent = (props: any) => {
             </Col>
           </Row>
           <Row>
-            <Col>
-              <Ads advertisements={ads()}/>
+            <Col className='px-5 py-5'>
+              <StudentEventRoutes thisEvent={thisEvent}/>
+              {/*<Album/>*/}
+              {/*<Ads advertisements={ads()}/>*/}
             </Col>
           </Row>
         </main>
