@@ -103,7 +103,7 @@ export const Applicants = React.memo(function KanbanCard() {
             </Button>
           </Item>
         </Row>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} width={200}>
 
           <Item position={'middle-right'}>
             <Button
@@ -138,7 +138,7 @@ export const Applicants = React.memo(function KanbanCard() {
             </Button>
           </Item>
         </Row>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} width={200}>
 
           <Item position={'middle-right'}>
             <Button
@@ -173,7 +173,7 @@ export const Applicants = React.memo(function KanbanCard() {
             </Button>
           </Item>
         </Row>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} width={200}>
 
           <Item position={'middle-right'}>
             <Button
@@ -195,7 +195,7 @@ export const Applicants = React.memo(function KanbanCard() {
           {/* <p className={styles.subheader}>23 y.o • Sri Lanka</p> */}
 
         </Box>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} >
 
           <Item position={'middle-right'}>
             <Button
@@ -208,7 +208,7 @@ export const Applicants = React.memo(function KanbanCard() {
             </Button>
           </Item>
         </Row>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} width={200}>
 
           <Item position={'middle-right'}>
             <Button
@@ -243,7 +243,7 @@ export const Applicants = React.memo(function KanbanCard() {
             </Button>
           </Item>
         </Row>
-        <Row p={2} gap={2} position={'bottom'}>
+        <Row p={2} gap={2} position={'bottom'} width={200}>
 
           <Item position={'middle-right'}>
             <Button

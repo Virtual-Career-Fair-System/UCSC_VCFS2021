@@ -21,7 +21,7 @@ type SideBarProps = {
   handleToggleSidebar: any
 }
 
-const SideBarStudent: React.FC<SideBarProps> = (props) => {
+const SideBarCompany: React.FC<SideBarProps> = (props) => {
 
   const styles:any={
     fontFamily: 'Raleway, sans-serif',
@@ -31,14 +31,19 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
 
   const {toggled, handleToggleSidebar} = props;
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
-  const image: any = require(`../../assets/image/profileImages/${login.id}.jpg`);
+  const image =()=>{
+    if(login.id){
+      return  require(`../../assets/image/profileImages/${login.id}.jpg`).default;
+    }
+    return require(`../../assets/image/profileImages/user.jpg`).default;
+  }
 
   return (
     <ProSidebar image={undefined} rtl={false} collapsed={false} toggled={toggled} breakPoint="md" onToggle={handleToggleSidebar}>
       <SidebarHeader>
         <Row >
           <Col className='text-center py-2'>
-            <Image className='profile-image' src={image.default} roundedCircle />
+            <Image className='profile-image' src={image()} roundedCircle />
           </Col>
         </Row>
         <Row>
@@ -72,4 +77,4 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
   );
 };
 
-export default SideBarStudent;
+export default SideBarCompany;

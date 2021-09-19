@@ -24,17 +24,23 @@ import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
-import DashBoard from "../Pages/admin/DashBoard";
+// import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
 import {useDispatch} from "react-redux";
+import Profile1 from "../Pages/profile/profile1";
 import EventAdmin from "../Pages/eventAdmin/EventAdmin";
 import EventCompany from "../Pages/eventCompany/EventCompany";
 import EventStudent from "../Pages/eventStudent/EventStudent";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
+import AdminProfile from "../Pages/admin/AdminProfile";
+import AdminPost from "../Pages/admin/AdminPost";
+import DashBoard from "../Pages/admin/DashBoard";
+import Orders1 from "../Pages/admin/Orders1";
+import Orders from "../Pages/admin/Orders";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -82,7 +88,9 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants}/>
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
+        <Route exact path="/profileview" component={Profile1}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>
   );

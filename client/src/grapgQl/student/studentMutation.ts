@@ -8,3 +8,12 @@ export const CREATE_STUDENT = gql`
    }
  }
 `
+
+export const CREATE_CV = gql`
+ mutation createCv(  $cv_path1: Upload!){
+   createCv( cv_path1:$cv_path1){
+   successful
+   message
+   }
+ }
+`
