@@ -65,4 +65,8 @@ export class student extends BaseEntity {
 
   @Column()
   skills!:string;
+
+  @Column()
+  available!:string;
+  
 }

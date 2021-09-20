@@ -1,6 +1,12 @@
 import "./rightbar.css";
+import {ILoginData} from "../../types/login";
+import {AppState} from "../../state/reducers";
+import {useMutation, useQuery} from "@apollo/client";
+const  Rightbar: React.FC<any> = (props) =>{
 
-export default function Rightbar({ profile }) {
+console.log("student:");
+console.log(props.student);
+
   const HomeRightbar = () => {
     return (
       <>
@@ -20,53 +26,47 @@ export default function Rightbar({ profile }) {
   const ProfileRightbar = () => {
     return (
       <>
-        <h2 className="rightbarTitle">
-          Projects
+        <h1 className="rightbarTitle">
+          PROJECTS </h1>
+          <h2 className="rightbarTitle">
           
-          <br></br>
-          A Terminal Chat application, Terminal Chat Network
-          It is prototype of console chat apps like the one we saw in Die Hard 4.
-          It has in-app capabilities to transfer file of any type between users.
-          It also has a user login and registration feature.
-          It is written in python.
+          <h1 className="rightbarTitle">
+           {props.student &&props.student.project1}</h1>
+           {props.student &&props.student.projectDis1}
+           
           <br></br>
           <br></br>
-          MySQL is used to manage the database of login data and user.
-          FTP Servers are used to mange the file transfer between the users.
-          Link to GitHub Repository: https://github.com/ayanbag/Terminal_Chat_Network
+          <h1 className="rightbarTitle">
+           {props.student &&props.student.project2}</h1>
+           {props.student &&props.student.projectDis2}
           <br></br>
           <br></br>
-          A terminal console Dictionary cum Translator app, COMLID
-          It is a command line dictionary application.
-          This project uses the API Services of OXFORD DICTIONARY.
-          It also features a translator.
-          The backend part code of COMLID is written in Python.
+          <h1 className="rightbarTitle">
+           {props.student &&props.student.project3}</h1>
+           {props.student &&props.student.projectDis3}
           <br></br>
           <br></br>
-          My Personal Website, kickresume.ml
-          It is designed with basic HTML and CSS skills</h2>
+         </h2>
         <h4 className="rightbarTitle">Contact me</h4>
 
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">No: 13/6,
-              Baron waidya rathna mw,
-              Matara.
+            <span className="rightbarInfoValue"> {props.student &&props.student.address}
             </span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Tel:</span>
-            <span className="rightbarInfoValue">+94770062833</span>
+            <span className="rightbarInfoValue">{props.student &&props.student.ContactNumber}</span>
           </div>
 
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Email:</span>
-            <span className="rightbarInfoValue">tharindu.infor@gmail.com</span>
+            <span className="rightbarInfoValue">{props.student &&props.student.email}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Linkedin:</span>
-            <span className="rightbarInfoValue">https://github.com/tharindu-31
+            <span className="rightbarInfoValue">{props.student &&props.student.linkedin}
             </span>
           </div>
         </div>
@@ -141,8 +141,10 @@ export default function Rightbar({ profile }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {props.student ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
 }
+
+export default Rightbar;
