@@ -6,18 +6,41 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {Column, Row, Item} from '@mui-treasury/components/flex';
+import {Col} from 'react-bootstrap';
 import {Info, InfoSubtitle, InfoTitle} from '@mui-treasury/components/info';
 import {useApexInfoStyles} from '@mui-treasury/styles/info/apex';
 import {useStyles} from "./AdsConstants";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_ADVERTISEMENTS} from "../../grapgQl/advertisement/advertisementQuary";
+import CvUpload from "./cvcpload/CvUpload";
+import {AiOutlineCloseCircle} from "react-icons/all";
 
-type AdsProps = {
-  advertisements: any
-}
 
-const Ads: React.FC<AdsProps> = (props) => {
+const Ads: React.FC<any> = (props) => {
+
+  const allAds = useQuery(GET_ALL_ADVERTISEMENTS);
+  const [addCvAdvertisement, setAddCvAdvertisement] = useState<any>(null);
+
+  const handleOnClickAddCv = (advertisement:any) => {
+    setAddCvAdvertisement(advertisement);
+  }
+
+  const handleOnCloseForm = () => {
+    setAddCvAdvertisement(null);
+  }
+
+  const ads = () => {
+    if (!allAds.data) {
+      return;
+    }
+    return allAds.data.getAllAdvertisements.filter((ad: any) => {
+      return ad.event_code === props.match.params.event_code && ad.category === props.match.params.category
+    })
+  }
+
   const styles = useStyles();
 
-  const CustomCard = ({thumbnail, title, subtitle, description, joined = false}: any) => {
+  const CustomCard = ({thumbnail, title, subtitle, description, joined = false, advertisement}: any) => {
     return (
       <div className={styles.root}>
         <Column className={styles.card}>
@@ -44,6 +67,7 @@ const Ads: React.FC<AdsProps> = (props) => {
                 variant={'contained'}
                 color={'secondary'}
                 disableRipple
+                onClick={() => handleOnClickAddCv(advertisement)}
               >
                 Apply
               </Button>
@@ -54,29 +78,42 @@ const Ads: React.FC<AdsProps> = (props) => {
     );
   };
   const renderAds = () => {
-    if(!props.advertisements){
+    if (!allAds.data) {
       return;
     }
-    return props.advertisements.map((advertisement: any) => {
+    return ads().map((advertisement: any) => {
       return (
-        <Grid item xs={12} md={6} lg={4}>
-        <CustomCard
-          thumbnail={
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
-          }
-          title={advertisement.com_name}
-          subtitle={''}
-          description={<b>{advertisement.description}</b>}
-        />
-      </Grid>)
+        <Grid item xs={12} md={6} lg={4} key={advertisement.ad_id}>
+          <CustomCard
+            advertisement={advertisement}
+            thumbnail={
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
+            }
+            title={advertisement.com_name}
+            subtitle={''}
+            description={<b>{advertisement.description}</b>}
+          />
+        </Grid>)
     })
   }
 
   return (
     <React.Fragment>
-      <NoSsr>
-        <GoogleFontLoader fonts={[{font: 'Ubuntu', weights: [400, 700]}]}/>
-      </NoSsr>
+      {addCvAdvertisement &&
+      <Row>
+          <Col xs={{span: 6, offset: 3}}
+               className='text-center'
+               style={{border: '3px solid blue', borderRadius: '5px', marginBottom: 3}}>
+              <div className='text-right'>
+                  <AiOutlineCloseCircle color='red' onClick={handleOnCloseForm}/>
+              </div>
+              <CvUpload event_code={props.match.params.event_code}
+                        advertisement={addCvAdvertisement}
+                        setAddCvAdvertisement={setAddCvAdvertisement}
+              />
+          </Col>
+      </Row>
+      }
       <Grid container spacing={4}>
         {renderAds()}
       </Grid>

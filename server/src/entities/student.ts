@@ -1,4 +1,5 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import { cvupload } from "./cvupload";
 
 @Entity()
 export class student extends BaseEntity {
@@ -66,7 +67,12 @@ export class student extends BaseEntity {
   @Column()
   skills!:string;
 
+
   @Column()
   available!:string;
   
+
+  @OneToMany(type => cvupload, cvupload => cvupload.student)
+  cvupload: cvupload[] | undefined;
+
 }

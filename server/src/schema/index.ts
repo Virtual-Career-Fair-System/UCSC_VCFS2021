@@ -36,9 +36,8 @@ const Mutation = new GraphQLObjectType({
     createAd: CREATE_AD,
     createCv: CREATE_CV,
 
-    updateStudent: UPDATE_STUDENT,
 
-    // updateStudent: UPDATE_STUDENT,
+    updateStudent: UPDATE_STUDENT,
     getStudent:GET_STUDENT,
     changeAvailable:GET_AVAILABLE
 
