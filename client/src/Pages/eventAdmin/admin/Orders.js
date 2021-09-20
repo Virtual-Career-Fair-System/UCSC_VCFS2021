@@ -56,7 +56,7 @@ const Orders = () => {
             return [];
         }
         return companies.map((company) => {
-            return createData(company.com_id, company.date, company.name, "Sri Lanka", "2525 2525",
+            return createData(company.com_id, company.date, company.com_name, "Sri Lanka", "2525 2525",
                 <Button>Accept</Button>, <Button>Reject</Button>)
         })
     }
