@@ -10,5 +10,7 @@ export const CompanyType = new GraphQLObjectType({
     con_no: {type: GraphQLString},
     description: {type: GraphQLString},
     image: {type: GraphQLString},
+    date:{type: GraphQLString},
+    accept:{type: GraphQLString}
   })
 });

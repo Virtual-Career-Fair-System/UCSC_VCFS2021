@@ -6,6 +6,7 @@ import Footer from "../../components/footer/Footer";
 import SideBarAdmin from "./SideBarAdmin";
 import {FaBars} from "react-icons/all";
 import {IoNotificationsCircle} from "react-icons/all";
+import Admin from "./Admin";
 
 const EventAdmin = () => {
   const [toggled, setToggled] = useState(false);
@@ -24,23 +25,7 @@ const EventAdmin = () => {
     <React.Fragment>
       <Header title="Career Fair UCSC"/>
       <Container fluid={true} className='current-events'>
-        <SideBarAdmin toggled={toggled}
-                 handleToggleSidebar={handleToggleSidebar}/>
-        <main>
-          Admin
-          <Row>
-            <Col xs={6} className='sidebar-toggle-btn-col'>
-              <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
-                <FaBars/>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Row>{events[0].eventName}</Row>
-            </Col>
-          </Row>
-        </main>
+        <Admin/>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>
     </React.Fragment>
