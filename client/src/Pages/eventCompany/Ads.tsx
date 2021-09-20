@@ -9,6 +9,7 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {Info, InfoSubtitle, InfoTitle} from '@mui-treasury/components/info';
 import {useApexInfoStyles} from '@mui-treasury/styles/info/apex';
 import {useStyles} from "./AdsConstants";
+import { Redirect } from 'react-router';
 
 type AdsProps = {
   advertisements: any
@@ -16,6 +17,12 @@ type AdsProps = {
 
 const Ads: React.FC<AdsProps> = (props) => {
   const styles = useStyles();
+  const [isCompanyViewNotificationRedirect, setIsCompanyViewNotificationRedirect] = useState(false);
+  const onclickCompanyViewNotificationRoute = () => {
+    // console.log('Nim');
+    setIsCompanyViewNotificationRedirect(true);
+
+}
 
   const CustomCard = ({thumbnail, title, subtitle, description, joined = false}: any) => {
     return (
@@ -44,8 +51,22 @@ const Ads: React.FC<AdsProps> = (props) => {
                 variant={'contained'}
                 color={'secondary'}
                 disableRipple
+                onClick={onclickCompanyViewNotificationRoute}
               >
                 Applicants
+                {isCompanyViewNotificationRedirect && <Redirect to='/companyviewnotification' />}
+              </Button>
+            </Item>
+            <Item position={'middle-left'}>
+              <Button
+                className={styles.join}
+                variant={'contained'}
+                color={'secondary'}
+                disableRipple
+                
+              >
+                View Ad
+                
               </Button>
             </Item>
           </Row>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from "@apollo/client";
 import Swal from 'sweetalert2';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 import {
     Badge,
     Button,
@@ -17,11 +19,16 @@ import { Redirect } from 'react-router-dom';
 import CompanyHeader from './CompanyHeader';
 
 const PublishAd = (props) => {
+    const [ad_description, setValue] = useState('');
+    const handleSelect = (e) => {
+        console.log(e);
+        setValue(e)
+    }
     const { loginId, eventId } = props;
     const [createAd] = useMutation(CREATE_AD);
 
     // const [com_id, setCompanyId] = useState(null);
-    const [ad_description, setDescrption] = useState(null);
+    // const [ad_description, setDescrption] = useState(null);
     const [image, setPath] = useState(null);
     const [added, setAdded] = useState(false);
 
@@ -65,7 +72,7 @@ const PublishAd = (props) => {
         }
         // console.log(ad_path1)
         createAd({
-            variables: {loginId: Number(loginId), eventId: Number(eventId), ad_description: ad_description, image: image }
+            variables: { loginId: Number(loginId), eventId: Number(eventId), ad_description: ad_description, image: image }
 
         }).then((data) => {
             setAdded(data.data.createAd.successful);
@@ -75,7 +82,7 @@ const PublishAd = (props) => {
                     icon: 'success',
                     title: 'Adverticement Upload successfully'
                 });
-                setDescrption('');
+                setValue('');
                 setPath(null);
 
 
@@ -104,29 +111,37 @@ const PublishAd = (props) => {
 
                     <Row>
                         <Col className="pr-1" md="12">
-                            <Form.Group>
-                                <label htmlFor="exampleInputEmail1">
-                                    Job Category
-                                </label>
+                            <DropdownButton
+                                alignRight
+                                title="Select Job"
+                                id="dropdown-menu-align-right"
+                                onSelect={handleSelect}
+                            >
+                                <Dropdown.Item eventKey="SE/Backend">Software Engineer(Backend)</Dropdown.Item>
+                                <Dropdown.Item eventKey="SE/java/.Net">Software Engineer(java / .Net)</Dropdown.Item>
+                                <Dropdown.Item eventKey="SEFS">Software Engineer(Full stack)</Dropdown.Item>
+                                <Dropdown.Item eventKey="QA">Quality Assuarance</Dropdown.Item>
+                                <Dropdown.Item eventKey="BA">Business Analysis</Dropdown.Item>
+                                <Dropdown.Item eventKey="DA">Data Analysis</Dropdown.Item>
+                                <Dropdown.Item eventKey="UI/UX">UI/UX Engineer</Dropdown.Item>
+                                <Dropdown.Item eventKey="DevOps">DevOps Engineer</Dropdown.Item>
+                                <Dropdown.Item eventKey="PM">Project Manager</Dropdown.Item>
+                                <Dropdown.Item eventKey="OTHER">Other Vacancies</Dropdown.Item>
                                 
-                                <Form.Control
-                                    placeholder="Category"
-                                    type="text"
-                                    value={ad_description}
-                                    onChange={(e) => {
-                                        setDescrption(e.target.value);
-                                    }}
-                                ></Form.Control>
-                            </Form.Group>
+                            </DropdownButton>
+                            <Form.Control
+                            placeholder="Category"
+                            value={ad_description}
+                            ></Form.Control>
+
                         </Col>
 
                     </Row>
+                    <br></br>
                     <Row>
                         <Col className="pr-1" md="12">
                             <Form.Group>
-                                <label htmlFor="exampleInputEmail1">
-                                    Adverticement
-                                </label>
+                                
                                 <Form.Control
                                     placeholder="Adverticement"
                                     type="file"
