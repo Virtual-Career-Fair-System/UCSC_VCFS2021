@@ -15,7 +15,7 @@ import {StudentViewNotification} from "../Pages/student/StudentViewNotification"
 import Album from "../components/editprofile/Album";
 import Jobs from "../components/editprofile/Jobs";
 import Add from "../components/editprofile/Add";
-import CvUpload from "../components/cvcpload/CvUpload";
+import CvUpload from "../Pages/eventStudent/cvcpload/CvUpload";
 import PublishAd from "../Pages/company/PublishAd";
 import {CompanyViewNotification} from "../Pages/company/CompanyViewNotification";
 import Applicants from "../Pages/company/Applicants";

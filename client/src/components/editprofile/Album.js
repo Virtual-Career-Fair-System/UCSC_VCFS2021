@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import {useFourThreeCardMediaStyles} from '@mui-treasury/styles/cardMedia/fourThree';
+import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 
 const useGridStyles = makeStyles(({breakpoints}) => ({
@@ -20,7 +21,7 @@ const useGridStyles = makeStyles(({breakpoints}) => ({
 
 const useStyles = makeStyles(() => ({
     actionArea: {
-        borderRadius:20,
+        borderRadius: 20,
         transition: '0.2s',
         '&:hover': {
             transform: 'scale(1.03)',
@@ -89,15 +90,18 @@ const Album = (props) => {
     const styles2 = useStyles({color: '#4d137f'});
     const styles3 = useStyles({color: '#ff9900'});
     const styles4 = useStyles({color: '#34241e'});
-
-    const handleOnClickCategery = (category) =>{
-
+    const history = useHistory();
+    const handleOnClickCategory = (category) => {
+        if (!props.thisEvent) {
+            return;
+        }
+        history.push(`/currentEvents/student/${props.thisEvent.event_code}/${category}`);
     }
 
     return (
         <React.Fragment>
             <Grid classes={gridStyles} container spacing={2} wrap={'nowrap'}>
-                <Grid item onClick={handleOnClickCategery('Software Enginire')}>
+                <Grid item onClick={() => handleOnClickCategory('Software Engineer (Backend)')}>
                     <CustomCard
                         classes={styles}
                         title={'Software Engineer'}
@@ -105,7 +109,7 @@ const Album = (props) => {
                         image={'/assets/se3.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('Software Engineer (Full stack)')}>
                     <CustomCard
                         classes={styles2}
                         title={'Software Engineer'}
@@ -113,7 +117,7 @@ const Album = (props) => {
                         image={'/assets/se2.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('Software Engineer (Java/.Net)')}>
                     <CustomCard
                         classes={styles3}
                         title={'Software Engineer'}
@@ -121,7 +125,7 @@ const Album = (props) => {
                         image={'/assets/se1.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('business analyst')}>
                     <CustomCard
                         classes={styles4}
                         title={'business analyst'}
@@ -129,7 +133,7 @@ const Album = (props) => {
                         image={'/assets/ba.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('data analyst')}>
                     <CustomCard
                         classes={styles2}
                         title={'data analyst'}
@@ -138,16 +142,15 @@ const Album = (props) => {
                 </Grid>
             </Grid>
             <Grid classes={gridStyles} container spacing={2} wrap={'nowrap'}>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('UI/UX Engineer')}>
                     <CustomCard
                         classes={styles4}
                         title={'UI/UX Engineer'}
                         subtitle={'Are you ready?'}
                         image={'/assets/ui.jfif'}
-                        onClick={handleOnClickCategery()}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('project manage')}>
                     <CustomCard
                         classes={styles4}
                         title={'project manager'}
@@ -155,7 +158,7 @@ const Album = (props) => {
                         image={'/assets/pm.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('devops engineer')}>
                     <CustomCard
                         classes={styles4}
                         title={'devops engineer'}
@@ -163,7 +166,7 @@ const Album = (props) => {
                         image={"/assets/dv.jfif"}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('quality assurance')}>
                     <CustomCard
                         classes={styles4}
                         title={'quality assurance'}
@@ -171,7 +174,7 @@ const Album = (props) => {
                         image={'/assets/qa.jfif'}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item onClick={() => handleOnClickCategory('other vacancies')}>
                     <CustomCard
                         classes={styles4}
                         title={'other vacancies'}

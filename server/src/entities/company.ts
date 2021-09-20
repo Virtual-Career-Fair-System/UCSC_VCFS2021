@@ -26,4 +26,5 @@ export class company extends  BaseEntity{
 
   @OneToMany(type => advertisement, advertisement => advertisement.company)
   advertisements: advertisement[] | undefined;
+
 }

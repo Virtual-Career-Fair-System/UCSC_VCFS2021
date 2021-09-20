@@ -30,7 +30,6 @@ const Mutation = new GraphQLObjectType({
     createEmail: CREATE_EMAIL,
     createAd: CREATE_AD,
     createCv: CREATE_CV,
-
     updateStudent: UPDATE_STUDENT
   }
 });

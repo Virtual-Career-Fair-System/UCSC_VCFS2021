@@ -10,25 +10,13 @@ import {AppState} from "../../state/reducers";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../../state/actions/eventsActions";
-import {GET_ALL_ADVERTISEMENTS} from "../../grapgQl/advertisement/advertisementQuary";
-import Ads from "./Ads";
-import Album from "../../components/editprofile/Album";
 import StudentEventRoutes from "../../routes/StudentEventRoutes";
 
 const EventStudent = (props: any) => {
 
   const {data} = useQuery(GET_ALL_EVENTS);
-  const allAds = useQuery(GET_ALL_ADVERTISEMENTS);
   const dispatch = useDispatch();
-
-  const ads = () => {
-    if (!allAds.data) {
-      return;
-    }
-    return allAds.data.getAllAdvertisements.filter((ad: any) => {
-      return ad.event_code === props.match.params.event_code
-    })
-  }
+  console.log(props);
 
   useEffect(() => {
     if (data) {
@@ -80,8 +68,6 @@ const EventStudent = (props: any) => {
           <Row>
             <Col className='px-5 py-5'>
               <StudentEventRoutes thisEvent={thisEvent}/>
-              {/*<Album/>*/}
-              {/*<Ads advertisements={ads()}/>*/}
             </Col>
           </Row>
         </main>

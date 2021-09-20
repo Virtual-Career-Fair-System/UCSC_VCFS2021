@@ -3,7 +3,6 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
-  SubMenu,
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
@@ -60,6 +59,9 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
         <Menu iconShape="circle">
           {props.thisEvent &&
           <React.Fragment>
+              <MenuItem>
+                  <Link className='nav-link' to={`/currentEvents/student/${props.thisEvent.event_code}`}> Apply</Link>
+              </MenuItem>
               <MenuItem /* icon={<FaTachometerAlt/>} suffix={<span className="badge red">sudesh</span>}*/ >
                   <Link className='nav-link' to={`/currentEvents/student/${props.thisEvent.event_code}/rules`}> Rules
                       and Regulations</Link>
@@ -82,8 +84,3 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
 };
 
 export default SideBarStudent;
-
-// <Route exact path="/currentEvents/student/:event_code" render={()=><Album/>}/>
-// <Route path="/currentEvents/student/:event_code/ads/:category" render={()=><Ads thisEvent={thisEvent}/>}/>
-// <Route path="/currentEvents/student/:event_code/rules" render={()=><Rules thisEvent={thisEvent} />}/>
-// <Route path="/currentEvents/student/:event_code/description" render={()=><Description thisEvent={thisEvent} />}/>

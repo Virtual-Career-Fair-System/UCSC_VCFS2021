@@ -7,12 +7,11 @@ import Ads from "../Pages/eventStudent/Ads";
 
 const StudentEventRoutes = ({thisEvent}:any) => {
   return (
-
     <Switch>
-      <Route exact path="/currentEvents/student/:event_code" render={()=><Album/>}/>
-      <Route path="/currentEvents/student/:event_code/ads/:category" render={()=><Ads thisEvent={thisEvent}/>}/>
+      <Route exact path="/currentEvents/student/:event_code" render={()=><Album thisEvent={thisEvent}/>}/>
       <Route path="/currentEvents/student/:event_code/rules" render={()=><Rules thisEvent={thisEvent} />}/>
       <Route path="/currentEvents/student/:event_code/description" render={()=><Description thisEvent={thisEvent} />}/>
+      <Route path="/currentEvents/student/:event_code/:category" component={Ads}/>
     </Switch>
   );
 };

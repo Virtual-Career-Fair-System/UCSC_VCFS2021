@@ -1,20 +1,17 @@
-import StudentHeader from '../../Pages/profile/StudentHeader';
+import Header from "../header/Header";
 import Carde from './Carde';
 
 
 function Jobs() {
     return (
-      <div >
-     <StudentHeader/>
-      <Carde/>
-  
-      <Carde/>
-      <Carde/>
-      <Carde/>
-    
-      </div>
+        <div>
+            <Header/>
+            <Carde/>
+            <Carde/>
+            <Carde/>
+            <Carde/>
+        </div>
     );
-  }
-  
-  export default Jobs;
-  
+}
+
+export default Jobs;
