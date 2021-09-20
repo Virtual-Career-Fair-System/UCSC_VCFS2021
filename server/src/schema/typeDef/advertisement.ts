@@ -11,5 +11,6 @@ export const AdvertisementType = new GraphQLObjectType({
     image: {type: GraphQLString},
     status: {type: GraphQLString},
     event_code: {type: GraphQLString},
+    category: {type: GraphQLString},
   })
 });

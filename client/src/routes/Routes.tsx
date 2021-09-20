@@ -15,7 +15,7 @@ import {StudentViewNotification} from "../Pages/student/StudentViewNotification"
 import Album from "../components/editprofile/Album";
 import Jobs from "../components/editprofile/Jobs";
 import Add from "../components/editprofile/Add";
-import CvUpload from "../components/cvcpload/CvUpload";
+import CvUpload from "../Pages/eventStudent/cvcpload/CvUpload";
 import PublishAd from "../Pages/company/PublishAd";
 import {CompanyViewNotification} from "../Pages/company/CompanyViewNotification";
 import Applicants from "../Pages/company/Applicants";
@@ -70,7 +70,7 @@ const Routes = () => {
         <Route exact path="/currentEvents/:event_code" component={Event}/>
         <Route exact path="/currentEvents/company/:event_code" component={EventCompany}/>
         <Route exact path="/currentEvents/admin/:event_code" component={EventAdmin}/>
-        <Route exact path="/currentEvents/student/:event_code" component={EventStudent}/>
+        <Route  path="/currentEvents/student/:event_code" component={EventStudent}/>
         <Route exact path="/students" component={Students}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/news" component={News}/>

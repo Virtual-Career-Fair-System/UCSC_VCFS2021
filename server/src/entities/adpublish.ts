@@ -17,7 +17,4 @@ export class adpublish extends  BaseEntity{
 
   @Column()
   ad_path1!:string;
-
-  
-  
 }

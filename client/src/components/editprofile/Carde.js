@@ -3,7 +3,6 @@ import GoogleFontLoader from 'react-google-font-loader';
 import NoSsr from '@material-ui/core/NoSsr';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-// import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import {Redirect} from "react-router-dom";
@@ -12,7 +11,7 @@ import { Column, Row, Item } from '@mui-treasury/components/flex';
 import { Info, InfoSubtitle, InfoTitle } from '@mui-treasury/components/info';
 import { useApexInfoStyles } from '@mui-treasury/styles/info/apex';
 import { useGraphicBtnStyles } from '@mui-treasury/styles/button/graphic';
-import StudentHeader from '../../Pages/profile/StudentHeader';
+import Header from "../header/Header";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -119,7 +118,7 @@ export const Carde = React.memo(function TeamCard() {
   const onclickAddRoute = () => {
     console.log('Nim');
     setIsAddRedirect(true);
-    
+
   }
   return (
     <>

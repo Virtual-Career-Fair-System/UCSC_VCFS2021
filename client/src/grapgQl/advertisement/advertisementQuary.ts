@@ -11,6 +11,7 @@ export const GET_ALL_ADVERTISEMENTS = gql`
       image  
       status
       event_code
+      category
     }
   }
 `

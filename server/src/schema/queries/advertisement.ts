@@ -10,6 +10,7 @@ export const GET_ALL_ADVERTISEMENTS = {
     const query = createQueryBuilder('advertisement')
       .select('advertisement.ad_id','ad_id')
       .addSelect('advertisement.description','description')
+      .addSelect('advertisement.category','category')
       .addSelect('advertisement.image','image')
       .addSelect('advertisement.status','status')
       .addSelect('c.com_name','com_name')
