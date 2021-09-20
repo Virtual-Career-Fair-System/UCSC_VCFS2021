@@ -1,22 +1,21 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
-import { GET_ALL_COMPANY } from '../../../grapgQl/company/companyQueries';
-import {useState,useEffect} from 'react';
-import { useQuery } from '@apollo/client';
+import {GET_ALL_COMPANY} from '../../../grapgQl/company/companyQueries';
+import {useState, useEffect} from 'react';
+import {useQuery} from '@apollo/client';
 import Button from '@material-ui/core/Button';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount, Reject) {
-  return { id, date, name, shipTo, paymentMethod, amount, Reject };
+    return {id, date, name, shipTo, paymentMethod, amount, Reject};
 }
-
 
 
 // const rows = [
@@ -28,73 +27,76 @@ function createData(id, date, name, shipTo, paymentMethod, amount, Reject) {
 // ];
 
 
-
 function preventDefault(event) {
-  event.preventDefault();
+    event.preventDefault();
 }
 
 const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
+    seeMore: {
+        marginTop: theme.spacing(3),
+    },
 }));
 
-export default function Orders() {
-  const classes = useStyles();
+const Orders = () => {
 
-  const [companies,setCompanies]=useState(null);
+    const classes = useStyles();
+    const [companies, setCompanies] = useState(null);
+    const {data} = useQuery(GET_ALL_COMPANY);
 
-  useEffect(() => {
-    if (!data) {
-      return;
+    useEffect(() => {
+        if (!data) {
+            return;
+        }
+        console.log(data.getAllCompany);
+        setCompanies(data.getAllCompany);
+    }, [data]);
+
+    const rows = () => {
+        if (!companies) {
+            return [];
+        }
+        return companies.map((company) => {
+            return createData(company.com_id, company.date, company.name, "Sri Lanka", "2525 2525",
+                <Button>Accept</Button>, <Button>Reject</Button>)
+        })
     }
-    setCompanies(data.getAllCompany);
-  },[]);
-  
-  const rows = ()=>{
-    if(!companies){
-      return[]
-    } return companies.map((company)=>{
-      return createData(company.com_id,company.date,company.name,"Sri Lanka","2525 2525",<Button>Accept</Button>,<Button>Reject</Button>)
-    })
-  }
-  
-  const {data} = useQuery(GET_ALL_COMPANY);
 
-  return (
-    <React.Fragment>
-      <Title>Recent Companies</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Company Name</TableCell>
-            <TableCell>Country</TableCell>
-            <TableCell>Business Registration No</TableCell>
-            <TableCell>Accept</TableCell>
-            <TableCell align="right">Reject</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows().map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
+    return (
+        <React.Fragment>
+            <Title>Recent Companies</Title>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Date</TableCell>
+                        <TableCell>Company Name</TableCell>
+                        <TableCell>Country</TableCell>
+                        <TableCell>Business Registration No</TableCell>
+                        <TableCell>Accept</TableCell>
+                        <TableCell align="right">Reject</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows().map((row) => (
+                        <TableRow key={row.id}>
+                            <TableCell>{row.date}</TableCell>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.shipTo}</TableCell>
+                            <TableCell>{row.paymentMethod}</TableCell>
 
-              <TableCell >{row.amount}</TableCell>
-              <TableCell align="right">{row.Reject}</TableCell>
+                            <TableCell>{row.amount}</TableCell>
+                            <TableCell align="right">{row.Reject}</TableCell>
 
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more Companies
-        </Link>
-      </div>
-    </React.Fragment>
-  );
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+            <div className={classes.seeMore}>
+                <Link color="primary" href="#" onClick={preventDefault}>
+                    See more Companies
+                </Link>
+            </div>
+        </React.Fragment>
+    );
 }
+
+export default Orders;
