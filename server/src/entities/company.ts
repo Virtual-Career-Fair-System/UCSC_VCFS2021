@@ -21,9 +21,6 @@ export class company extends  BaseEntity{
   @Column()
   description!:string;
 
-  @Column()
-  image!:string;
-
   @Column('date')
   date!:string;
 
@@ -32,4 +29,5 @@ export class company extends  BaseEntity{
 
   @OneToMany(type => advertisement, advertisement => advertisement.company)
   advertisements: advertisement[] | undefined;
+
 }

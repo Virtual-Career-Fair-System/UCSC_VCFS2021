@@ -4,8 +4,14 @@ import {CREATE_COMPANY} from "./mutations/company";
 import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
-import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
+import {CREATE_EMAIL} from "./mutations/emailj";
+import { CREATE_AD } from "./mutations/compublishad";
+import { GET_ALL_ADVERTISEMENTS } from "./queries/advertisement";
 import { UPDATE_STUDENT } from "./mutations/editstudent";
+
+import { CREATE_CV } from "./mutations/studentcvu";
+
+
 import {GET_STUDENT} from "./mutations/student";
 import {GET_AVAILABLE} from "./mutations/student";
 import { GET_ALL_STUDENT } from "./queries/student";
@@ -28,9 +34,16 @@ const Mutation = new GraphQLObjectType({
     createCompany: CREATE_COMPANY,
     login: LOGIN,
     uploadFile: CREATE_EVENT,
+
+    createEmail: CREATE_EMAIL,
+    createAd: CREATE_AD,
+    createCv: CREATE_CV,
+
+
     updateStudent: UPDATE_STUDENT,
     getStudent:GET_STUDENT,
     changeAvailable:GET_AVAILABLE
+
   }
 });
 

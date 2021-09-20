@@ -1,33 +1,68 @@
-import React, {useState} from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import React, {useEffect, useState} from "react";
 import Header from "../../components/header/Header";
-import {Container, Col, Row, Button} from "react-bootstrap";
+import {Container, Col, Row, Button, Image} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 import SideBarCompany from "./SideBarCompany";
 import {FaBars} from "react-icons/all";
-import {IoNotificationsCircle} from "react-icons/all";
+import {IEvent, ILoginData} from "../../types/login";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../state/reducers";
+import {useQuery} from "@apollo/client";
+import {GET_ALL_EVENTS} from "../../grapgQl/events/eventsQueries";
+import {setInitEvents} from "../../state/actions/eventsActions";
+import {GET_ALL_ADVERTISEMENTS} from "../../grapgQl/advertisement/advertisementQuary";
+import Ads from "./Ads";
+import PublishAd from "../company/PublishAd";
 
-const EventCompany = () => {
+const EventStudent = (props: any) => {
+
+  const {data} = useQuery(GET_ALL_EVENTS);
+  const allAds = useQuery(GET_ALL_ADVERTISEMENTS);
+  const dispatch = useDispatch();
+  const login: ILoginData = useSelector((state: AppState) => state.login.login);
+
+  const ads = () => {
+    if (!allAds.data ||!login||!login.id) {
+      return;
+    }
+    return allAds.data.getAllAdvertisements.filter((ad: any) => {
+      return ad.event_code === props.match.params.event_code && ad.companyComId===login.id
+    })
+  }
+  console.log(ads())
+  useEffect(() => {
+    if (data) {
+      dispatch(setInitEvents(data.getAllEvents));
+    }
+  },)
+
   const [toggled, setToggled] = useState(false);
-  const [events, setEvents] = useState([
-    {id: 1, eventName: 'carier fair 2021'},
-    {id: 2, eventName: 'carier fair 2021'},
-    {id: 3, eventName: 'carier fair 2020'},
-    {id: 4, eventName: 'carier fair 2019'}
-  ]);
+  const events: IEvent[] = useSelector((state: AppState) => state.events.events);
+  const thisEvent: any = events.find((event: IEvent) => (event.event_code === props.match.params.event_code));
 
   const handleToggleSidebar = (value: boolean) => {
     setToggled(value);
   };
 
+  const image = () => {
+    if (thisEvent) {
+      return require(`../../assets/image/eventCoverPhotos/${thisEvent.cover_image}`).default;
+    }
+    return require(`../../assets/image/eventCoverPhotos/coverImage.png`).default;
+  }
+
   return (
     <React.Fragment>
-      <Header title="Career Fair UCSC"/>
-      <Container fluid={true} className='current-events'>
+      <Header title="Career Fair UCSC"/> 
+      <Container fluid={true} className='event-page'>
         <SideBarCompany toggled={toggled}
-                      handleToggleSidebar={handleToggleSidebar}/>
+                        handleToggleSidebar={handleToggleSidebar}/>
         <main>
-         company
+          <Row>
+            <Col className='event-title text-center py-1 mb-2'>
+              {thisEvent && thisEvent.name}
+            </Col>
+          </Row>
           <Row>
             <Col xs={6} className='sidebar-toggle-btn-col'>
               <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
@@ -36,8 +71,21 @@ const EventCompany = () => {
             </Col>
           </Row>
           <Row>
-            <Col xs={12}>
-              <Row>{events[0].eventName}</Row>
+            <Col className='text-center py-2 event-cover-image-col mb-2'>
+              <Image className='cover-image rounded' src={image()}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col className='text-center' xs={{span: 6, offset: 3 }} style={{border: '3px solid Blue', borderRadius: '5px', marginBottom: 3}}>
+              <PublishAd loginId={login && login.id}
+                        eventId={thisEvent && thisEvent.id}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            
+              <Ads advertisements={ads()}/>
             </Col>
           </Row>
         </main>
@@ -47,4 +95,4 @@ const EventCompany = () => {
   );
 }
 
-export default EventCompany;
+export default EventStudent;

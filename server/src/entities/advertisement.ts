@@ -1,6 +1,7 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne} from "typeorm";
+import {BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany} from "typeorm";
 import {event} from "./event";
 import {company} from "./company";
+import {cvupload} from "./cvupload";
 @Entity()
 export class advertisement extends  BaseEntity{
 
@@ -21,4 +22,10 @@ export class advertisement extends  BaseEntity{
 
   @Column()
   status!:string;
+
+  @Column()
+  category!:string;
+
+  @OneToMany(type => cvupload, cvupload => cvupload.advertisement)
+  cvupload: cvupload[] | undefined;
 }
