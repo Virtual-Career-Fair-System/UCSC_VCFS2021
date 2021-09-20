@@ -26,6 +26,8 @@ import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCar
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
 // import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
+import Student from "../Pages/students/Student";
+
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
 import {useDispatch} from "react-redux";
@@ -36,11 +38,8 @@ import EventStudent from "../Pages/eventStudent/EventStudent";
 import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
-import AdminProfile from "../Pages/admin/AdminProfile";
-import AdminPost from "../Pages/admin/AdminPost";
-import DashBoard from "../Pages/admin/DashBoard";
-import Orders1 from "../Pages/admin/Orders1";
-import Orders from "../Pages/admin/Orders";
+import HomeComp from "../Pages/homeCompany/homeCompany";
+
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -64,14 +63,14 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/aboutUs" component={AboutUs}/>
-        <Route exact path="/companies" component={Companies}/>
+        <Route exact path="/companies" component={HomeComp}/>
         <Route exact path="/companyLogin" component={CompanyLogin}/>
         <Route exact path="/currentEvents" component={CurrentEvents}/>
         <Route exact path="/currentEvents/:event_code" component={Event}/>
         <Route exact path="/currentEvents/company/:event_code" component={EventCompany}/>
         <Route exact path="/currentEvents/admin/:event_code" component={EventAdmin}/>
         <Route  path="/currentEvents/student/:event_code" component={EventStudent}/>
-        <Route exact path="/students" component={Students}/>
+        <Route exact path="/students" component={Student}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/news" component={News}/>
         <Route exact path="/chooseRegisterForm" component={ChooseRegisterForm}/>
