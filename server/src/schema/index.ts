@@ -15,6 +15,7 @@ import { CREATE_CV } from "./mutations/studentcvu";
 
 import {GET_STUDENT} from "./mutations/student";
 import {GET_AVAILABLE} from "./mutations/student";
+import {APPROVE_EVENT} from "./mutations/admin";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -31,16 +32,13 @@ const Mutation = new GraphQLObjectType({
     createCompany: CREATE_COMPANY,
     login: LOGIN,
     uploadFile: CREATE_EVENT,
-
+    approveEvent:APPROVE_EVENT,
     createEmail: CREATE_EMAIL,
     createAd: CREATE_AD,
     createCv: CREATE_CV,
-
-
     updateStudent: UPDATE_STUDENT,
     getStudent:GET_STUDENT,
     changeAvailable:GET_AVAILABLE
-
   }
 });
 

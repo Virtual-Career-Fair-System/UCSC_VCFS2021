@@ -7,11 +7,11 @@ export interface ILoginState {
 }
 
 export interface IEvent {
-  id:number,
+  id:number|string,
   name:string,
   event_code:string,
   description:string,
-  organizer:string,
+  organizer:string|number,
   cover_image:string;
   rules:string,
   start_date:string;
