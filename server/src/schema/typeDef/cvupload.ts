@@ -1,11 +1,11 @@
 import {GraphQLObjectType, GraphQLID, GraphQLString} from "graphql";
 
 export const CvType = new GraphQLObjectType({
-  name: "advertisement",
+  name: "cvupload",
   fields: () => ({
     cv_id : {type: GraphQLID},
-    s_name: {type: GraphQLString},
-    s_email: {type: GraphQLString},
+    studentId: {type: GraphQLID},
+    advertisementAdId : {type: GraphQLID},
     cv_path1: {type: GraphQLString},
    
   })

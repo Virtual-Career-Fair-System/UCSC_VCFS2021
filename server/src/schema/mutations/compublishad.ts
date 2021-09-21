@@ -25,7 +25,7 @@ export const CREATE_AD = {
     const streamAd:any = tempAdPath1.createReadStream();
     const adPathName = path.join(__dirname, `../../../../client/src/assets/adverts/${tempAdPath1.filename}`)
     await streamAd.pipe(fs.createWriteStream(adPathName));
-    await advertisement.insert({ event:eventId, company:loginId, description: ad_description , image: tempAdPath1.filename});
+    await advertisement.insert({ event:eventId, company:loginId,description: ad_description, category: ad_description, image: tempAdPath1.filename});
     return {successful: true, message: 'successfully Inserted!'}
   }
 }

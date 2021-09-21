@@ -18,7 +18,11 @@ import {GET_ALL_STUDENT} from "./queries/student";
 import {GET_ALL_COMPANIES} from "./queries/company";
 import {ACCEPT_STUDENT} from "./mutations/student";
 import {ACCEPT_COMPANY} from "./mutations/company";
+
+import { GET_CV } from "./queries/cvupload";
+
 import {APPROVE_EVENT} from "./mutations/admin";
+
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -26,7 +30,8 @@ const RootQuery = new GraphQLObjectType({
     getAllEvents: GET_ALL_EVENTS,
     getAllAdvertisements: GET_ALL_ADVERTISEMENTS,
     getAllStudent: GET_ALL_STUDENT,
-    getAllCompany: GET_ALL_COMPANIES
+    getAllCompany: GET_ALL_COMPANIES,
+    getCv:GET_CV
   }
 });
 
