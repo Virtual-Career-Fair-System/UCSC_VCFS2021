@@ -117,16 +117,16 @@ const PublishAd = (props) => {
                                 id="dropdown-menu-align-right"
                                 onSelect={handleSelect}
                             >
-                                <Dropdown.Item eventKey="SE/Backend">Software Engineer(Backend)</Dropdown.Item>
-                                <Dropdown.Item eventKey="SE/java/.Net">Software Engineer(java / .Net)</Dropdown.Item>
-                                <Dropdown.Item eventKey="SEFS">Software Engineer(Full stack)</Dropdown.Item>
-                                <Dropdown.Item eventKey="QA">Quality Assuarance</Dropdown.Item>
-                                <Dropdown.Item eventKey="BA">Business Analysis</Dropdown.Item>
-                                <Dropdown.Item eventKey="DA">Data Analysis</Dropdown.Item>
-                                <Dropdown.Item eventKey="UI/UX">UI/UX Engineer</Dropdown.Item>
-                                <Dropdown.Item eventKey="DevOps">DevOps Engineer</Dropdown.Item>
-                                <Dropdown.Item eventKey="PM">Project Manager</Dropdown.Item>
-                                <Dropdown.Item eventKey="OTHER">Other Vacancies</Dropdown.Item>
+                                <Dropdown.Item eventKey="Software Engineer (Backend)">Software Engineer(Backend)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Software Engineer (Java/.Net)">Software Engineer(java / .Net)</Dropdown.Item>
+                                <Dropdown.Item eventKey="Software Engineer (Full stack)">Software Engineer(Full stack)</Dropdown.Item>
+                                <Dropdown.Item eventKey="quality assurance">Quality Assuarance</Dropdown.Item>
+                                <Dropdown.Item eventKey="business analyst">Business Analysis</Dropdown.Item>
+                                <Dropdown.Item eventKey="data analyst">Data Analysis</Dropdown.Item>
+                                <Dropdown.Item eventKey="UI/UX Engineer">UI/UX Engineer</Dropdown.Item>
+                                <Dropdown.Item eventKey="devops engineer">DevOps Engineer</Dropdown.Item>
+                                <Dropdown.Item eventKey="project manage">Project Manager</Dropdown.Item>
+                                <Dropdown.Item eventKey="other vacancies">Other Vacancies</Dropdown.Item>
                                 
                             </DropdownButton>
                             <Form.Control

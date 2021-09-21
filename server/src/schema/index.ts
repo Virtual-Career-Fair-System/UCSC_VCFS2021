@@ -15,13 +15,18 @@ import { CREATE_CV } from "./mutations/studentcvu";
 
 import {GET_STUDENT} from "./mutations/student";
 import {GET_AVAILABLE} from "./mutations/student";
+
+import { GET_CV } from "./queries/cvupload";
+
 import {APPROVE_EVENT} from "./mutations/admin";
+
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     getAllEvents: GET_ALL_EVENTS,
     getAllAdvertisements: GET_ALL_ADVERTISEMENTS,
+    getCv:GET_CV
   }
 });
 
