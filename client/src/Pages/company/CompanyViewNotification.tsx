@@ -36,7 +36,7 @@ const usePersonStyles = makeStyles(() => ({
   },
 }));
 
-const PersonItem = ({ src, name, friendCount }) => {
+const PersonItem = ({ src, name, friendCount }: any) => {
   const avatarStyles = useDynamicAvatarStyles({ size: 56 });
   const styles = usePersonStyles();
   return (
@@ -100,21 +100,21 @@ const useStyles = makeStyles(() => ({
 export const CompanyViewNotification = React.memo(function SocialCard() {
   const styles = useStyles();
   return (
-    <div align="center">
-      <CompanyHeader/>
+    <div >
+      <CompanyHeader title={''}/>
     {/* <h1>Company View Notification</h1> */}
       <NoSsr>
         <GoogleFontLoader fonts={[{ font: 'Barlow', weights: [400, 600] }]} />
       </NoSsr>
       <Column p={0} gap={0} className={styles.card}>
         <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
-        <div align="left">
+        <div >
           <Item stretched className={styles.headline}>New Notifications</Item>
           </div>
           
           
         </Row>
-        <div align="left">
+        <div >
         <PersonItem name={'Nimantha Aravinda'}  src={'https://storage.googleapis.com/kaggle-avatars/images/7043707-gr.jpg'} />
         <Divider variant={'middle'} className={styles.divider} />
         <PersonItem name={'Praveen Himantha'}  src={'data:image/jpeg;base64,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'} />
