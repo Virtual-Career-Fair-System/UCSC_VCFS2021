@@ -78,6 +78,6 @@ export class student extends BaseEntity {
   @Column()
   accept!:string;
 
-  @Column()
-  date!: Date;
+  @Column('date')
+  date!:string;
 }
