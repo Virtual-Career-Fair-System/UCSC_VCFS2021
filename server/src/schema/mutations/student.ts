@@ -1,11 +1,12 @@
-import {GraphQLInt, GraphQLString} from "graphql";
+import {GraphQLID, GraphQLInt, GraphQLString} from "graphql";
 import {student} from '../../entities/student';
 import {user} from "../../entities/user";
 import {RegisterResponseMessageType} from "../typeDef/messages";
 import {isExistEmail, isExistRegNo} from "../validations/userValidations";
 import crypto from "crypto";
 import {StudentType} from "../typeDef/student";
-import {CreateEventResponseEditProfileMessage
+import {
+  CreateEventResponseEditProfileMessage
 } from "../typeDef/messages";
 
 export const CREATE_STUDENT = {
@@ -21,39 +22,42 @@ export const CREATE_STUDENT = {
   async resolve(parent: any, args: any) {
     const {fname, lname, email, regNo, password} = args;
 
-    if(await isExistEmail(email)){
-      return{successful:false,message:'Email already taken'}
+    if (await isExistEmail(email)) {
+      return {successful: false, message: 'Email already taken'}
     }
 
-    if(await isExistRegNo(regNo)){
-      return{successful:false,message:'Registration number already taken'}
+    if (await isExistRegNo(regNo)) {
+      return {successful: false, message: 'Registration number already taken'}
     }
-
     const PasswordSh1 = crypto.createHash('md5').update(password).digest('hex');
-    const x:any=await user.insert({type:'student',email:email});
-    await student.insert({id:x.raw.insertId,f_name:fname, l_name:lname, password:PasswordSh1,reg_no:regNo,email:email});
-    return{successful:true,message:'Registered successfully!'}
+    const x: any = await user.insert({type: 'student', email: email});
+    await student.insert({
+      id: x.raw.insertId,
+      f_name: fname,
+      l_name: lname,
+      password: PasswordSh1,
+      reg_no: regNo,
+      email: email
+    });
+    return {successful: true, message: 'Registered successfully!'}
   }
 }
 
 
 export const GET_STUDENT = {
-  type:StudentType,
+  type: StudentType,
   args: {
     id: {type: GraphQLInt}
-
   },
-
   async resolve(parent: any, args: any) {
     const {id} = args;
-    return student.findOne({id:id});
+    return student.findOne({id: id});
   }
 }
 
 
-
 export const GET_AVAILABLE = {
-   type: CreateEventResponseEditProfileMessage,
+  type: CreateEventResponseEditProfileMessage,
 
   args: {
     id: {type: GraphQLInt},
@@ -61,12 +65,29 @@ export const GET_AVAILABLE = {
   },
 
   async resolve(parent: any, args: any) {
-    const {id,available} = args;
+    const {id, available} = args;
     await student.update({id: id}, {
       available: available
-     
     });
     return {successful: true, message: 'Profile updated successfully!'}
+  }
+}
+
+export const ACCEPT_STUDENT = {
+  type: CreateEventResponseEditProfileMessage,
+
+  args: {
+    studentId: {type: GraphQLID},
+    accept: {type: GraphQLString}
+  },
+
+  async resolve(parent: any, args: any) {
+    const {studentId, accept} = args;
+
+    await student.update({id: studentId}, {
+      accept: accept
+    });
+    return {successful: true, message:'Student '+accept+'ed!'}
   }
 }
 

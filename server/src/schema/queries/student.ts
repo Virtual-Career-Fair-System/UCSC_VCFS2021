@@ -17,3 +17,12 @@ export const GET_STUDENT = {
     return student.findOne({id:id});
   }
 }
+
+
+  export const GET_ALL_STUDENT = {
+    type:new GraphQLList(StudentType),
+    resolve() {
+      return student.find();
+    }
+  }
+  

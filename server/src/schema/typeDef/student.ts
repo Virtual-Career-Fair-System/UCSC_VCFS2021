@@ -23,6 +23,8 @@ export const StudentType = new GraphQLObjectType({
     projectDis3: {type: GraphQLString},
     project3: {type: GraphQLString},
     skills: {type: GraphQLString},
-    available:{type: GraphQLInt}
+    available:{type: GraphQLInt},
+    date:{type: GraphQLString},
+    accept:{type: GraphQLString}
   })
 });
