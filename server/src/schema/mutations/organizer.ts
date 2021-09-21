@@ -1,5 +1,5 @@
-import {GraphQLID, GraphQLString} from "graphql";
-import {CreateEventResponseMessage, RegisterResponseMessageType} from "../typeDef/messages";
+import {GraphQLID, GraphQLInt, GraphQLString} from "graphql";
+import {CreateEventResponseMessage, RegisterResponseMessageType, ResponseMessage} from "../typeDef/messages";
 import path from "path";
 import fs from 'fs';
 import {isExistEventName} from "../validations/userValidations";
@@ -8,7 +8,7 @@ import {event} from "../../entities/event";
 const {GraphQLUpload} = require('graphql-upload');
 
 export const CREATE_EVENT = {
-  type: CreateEventResponseMessage,
+  type: ResponseMessage,
   args: {
     name: {type: GraphQLString},
     startDate: {type: GraphQLString},
@@ -28,7 +28,7 @@ export const CREATE_EVENT = {
     const stream = createReadStream();
     const pathName: any = path.join(__dirname, `../../../../client/src/assets/image/eventCoverPhotos/${filename}`)
     await stream.pipe(fs.createWriteStream(pathName));
-    await event.insert({
+    const tempEvent:any=await event.insert({
       name: name,
       cover_image: filename,
       event_code: eventCode,
@@ -39,6 +39,18 @@ export const CREATE_EVENT = {
       organizer: organizer,
       status: 'requested'
     });
-    return {successful: true, message: 'Event Created successfully!'}
+    // console.log(tempEvent);tempEvent.raw.insertId,
+    return {successful: true, message: 'Event Created successfully!',event: {
+        id : tempEvent.raw.insertId,
+        name: name,
+        event_code: eventCode,
+        description: description,
+        organizer: organizer,
+        cover_image:filename,
+        rules: rules,
+        start_date: startDate,
+        end_date: endDate,
+        status: 'requested'
+      }}
   }
 }
