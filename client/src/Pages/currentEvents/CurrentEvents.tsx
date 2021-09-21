@@ -13,19 +13,10 @@ import {setInitEvents} from "../../state/actions/eventsActions";
 
 const CurrentEvents = () => {
 
-  const {data} = useQuery(GET_ALL_EVENTS);
-  const dispatch = useDispatch();
-
   const events: IEvent[] = useSelector((state: AppState) => state.events.events);
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
-  console.log(events[0]);
-
-  useEffect(() => {
-    if (data) {
-      console.log(data.getAllEvents);
-      dispatch(setInitEvents(data.getAllEvents));
-    }
-  },)
+  console.log('events');
+  console.log(events);
 
   const renderEvents = () => {
     if (!events) {

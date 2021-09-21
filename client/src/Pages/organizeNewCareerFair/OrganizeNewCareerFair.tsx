@@ -2,21 +2,24 @@ import React, {ChangeEvent, FormEvent, FormEventHandler, useCallback, useState} 
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
 import Header from '../../components/header/Header';
 import {Editor} from "react-draft-wysiwyg";
-import {EditorState, convertToRaw} from 'draft-js';
+import {EditorState} from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import draftToHtml from 'draftjs-to-html';
 import {convertToHTML} from 'draft-convert';
 import DOMPurify from 'dompurify';
 import {useMutation} from "@apollo/client";
 import {UPLOAD_FILE} from "../../grapgQl/organizer/organizerMutation";
-import Dropzone from "react-dropzone";
 import {ILoginData} from "../../types/login";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../state/reducers";
 import Footer from "../../components/footer/Footer";
 import Swal from "sweetalert2";
+import {createEvent} from "../../state/actions/eventsActions";
+import {IEvent} from "../../types/login";
 
 const OrganizeNewCareerFair: React.FC = () => {
+  const events: IEvent[] = useSelector((state: AppState) => state.events.events);
+  console.log('events');
+  console.log(events);
 
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const fileChange = ({
@@ -40,7 +43,7 @@ const OrganizeNewCareerFair: React.FC = () => {
     }
   })
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
-
+  const dispatch = useDispatch();
   const [editorDescriptionState, setEditorDescriptionState] = useState(() => EditorState.createEmpty(),);
   const [editorRulesState, setEditorRulesState] = useState(() => EditorState.createEmpty(),);
   const [convertedDescriptionContent, setConvertedDescriptionContent] = useState<string>('');
@@ -119,7 +122,7 @@ const OrganizeNewCareerFair: React.FC = () => {
     return !(errorNameTemp !== '' || errorStartDateTemp !== '' || errorEndDateTemp !== '' || errorDescriptionTemp !== '' || errorRulesTemp !== '' || errorCoverImageTemp !== '');
   }
 
-  const HandleOnSubmit = (event: FormEvent) => {
+  const HandleOnSubmit =  (event: FormEvent) => {
     event.preventDefault();
     console.log(typeof (startDate));
     console.log(event);
@@ -136,10 +139,18 @@ const OrganizeNewCareerFair: React.FC = () => {
           rules: convertedRulesContent,
           organizer: login.id
         }
-      }).then((data)=>{
+      }).then((data:any)=>{
+        console.log(data.data.uploadFile.event);
+        if(!data.data.uploadFile){
+          Toast.fire({
+            icon: 'success',
+            title: 'Something Went Wrong'
+          });
+        }
+         dispatch(createEvent(data.data.uploadFile.event))
         Toast.fire({
           icon: 'success',
-          title: data.data.login.message
+          title: data.data.uploadFile.message
         });
       })
     }
@@ -215,7 +226,6 @@ const OrganizeNewCareerFair: React.FC = () => {
               />;
             </Form.Group>
           </Row>
-          {/*<div className="preview" dangerouslySetInnerHTML={createMarkup(convertedDescriptionContent)}/>*/}
           <Row>
             <Col className='text-right'>
               <Button variant="primary" type="submit">

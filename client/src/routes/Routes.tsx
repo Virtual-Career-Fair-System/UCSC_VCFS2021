@@ -55,7 +55,7 @@ const Routes = () => {
     if (data) {
       dispatch(setInitEvents(data.getAllEvents));
     }
-  }, [])
+  }, )
 //        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
 
 
