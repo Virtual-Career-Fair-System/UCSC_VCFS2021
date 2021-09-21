@@ -113,7 +113,7 @@ const PublishAd = (props) => {
                         <Col className="pr-1" md="12">
                             <DropdownButton
                                 alignRight
-                                title="Select Job"
+                                title="Select Job Category"
                                 id="dropdown-menu-align-right"
                                 onSelect={handleSelect}
                             >
