@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
+import ucsccover from '../../assets/image/homePagePhotos/ucsccover.jpg';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
-    backgroundImage: careerFareCover,
+    backgroundImage: ucsccover,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -41,7 +41,7 @@ export default function MainFeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${careerFareCover})` }}>
+    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${ucsccover})` }}>
       {/* {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />} */}
       <div className={classes.overlay} />
       <Grid container>
