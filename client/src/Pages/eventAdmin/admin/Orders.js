@@ -55,9 +55,9 @@ const Orders = () => {
         if (!companies) {
             return [];
         }
-        return companies.map((company) => {
-            return createData(company.com_id, company.date, company.com_name, "Sri Lanka", "2525 2525",
-                <Button>Accept</Button>, <Button>Reject</Button>)
+        return companies.filter((company)=>company.accept==="processing").map((company) => {
+            return (createData(company.com_id, company.date, company.com_name, "Sri Lanka", "2525 2525",
+            <Button>Accept</Button>, <Button>Reject</Button>)) 
         })
     }
 
