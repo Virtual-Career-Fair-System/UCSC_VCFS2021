@@ -5,11 +5,11 @@ import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
 import {CREATE_EMAIL} from "./mutations/emailj";
-import {CREATE_AD} from "./mutations/compublishad";
-import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
-import {UPDATE_STUDENT} from "./mutations/editstudent";
+import { CREATE_AD } from "./mutations/compublishad";
+import { GET_ALL_ADVERTISEMENTS } from "./queries/advertisement";
+import { UPDATE_STUDENT } from "./mutations/editstudent";
 
-import {CREATE_CV} from "./mutations/studentcvu";
+import { CREATE_CV } from "./mutations/studentcvu";
 
 
 import {GET_STUDENT} from "./mutations/student";
@@ -18,6 +18,7 @@ import {GET_ALL_STUDENT} from "./queries/student";
 import {GET_ALL_COMPANIES} from "./queries/company";
 import {ACCEPT_STUDENT} from "./mutations/student";
 import {ACCEPT_COMPANY} from "./mutations/company";
+import {APPROVE_EVENT} from "./mutations/admin";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -36,7 +37,7 @@ const Mutation = new GraphQLObjectType({
     createCompany: CREATE_COMPANY,
     login: LOGIN,
     uploadFile: CREATE_EVENT,
-
+    approveEvent:APPROVE_EVENT,
     createEmail: CREATE_EMAIL,
     createAd: CREATE_AD,
     createCv: CREATE_CV,
@@ -50,7 +51,7 @@ const Mutation = new GraphQLObjectType({
     acceptCompany:ACCEPT_COMPANY
 
   }
-})
+});
 
 export const schema = new GraphQLSchema({
   query: RootQuery,

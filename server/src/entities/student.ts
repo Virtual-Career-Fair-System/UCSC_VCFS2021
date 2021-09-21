@@ -67,8 +67,10 @@ export class student extends BaseEntity {
   @Column()
   skills!:string;
 
+
   @Column()
   available!:string;
+
 
   @OneToMany(type => cvupload, cvupload => cvupload.student)
   cvupload: cvupload[] | undefined;

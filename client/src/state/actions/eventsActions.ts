@@ -13,3 +13,10 @@ export function setInitEvents(data: IEvent[]): any {
     payload: data
   }
 }
+
+export function changeEvent(id: string|number): any {
+  return {
+    type: ACTIONS.CHANGE_EVENT,
+    payload: id
+  }
+}
