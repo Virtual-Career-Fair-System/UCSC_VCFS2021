@@ -1,4 +1,4 @@
-import {GraphQLInt, GraphQLString} from "graphql";
+import {GraphQLID, GraphQLInt, GraphQLString} from "graphql";
 import {student} from '../../entities/student';
 import {user} from "../../entities/user";
 import {RegisterResponseMessageType} from "../typeDef/messages";
@@ -70,6 +70,24 @@ export const GET_AVAILABLE = {
       available: available
     });
     return {successful: true, message: 'Profile updated successfully!'}
+  }
+}
+
+export const ACCEPT_STUDENT = {
+  type: CreateEventResponseEditProfileMessage,
+
+  args: {
+    studentId: {type: GraphQLID},
+    accept: {type: GraphQLString}
+  },
+
+  async resolve(parent: any, args: any) {
+    const {studentId, accept} = args;
+
+    await student.update({id: studentId}, {
+      accept: accept
+    });
+    return {successful: true, message:'Student '+accept+'ed!'}
   }
 }
 

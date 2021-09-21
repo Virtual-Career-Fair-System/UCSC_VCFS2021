@@ -1,101 +1,118 @@
 import React, {useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
-import {useQuery} from "@apollo/client";
-import {GET_ALL_COMPANY} from "../../../grapgQl/company/companyQueries";
+import {useMutation, useQuery} from "@apollo/client";
 import Button from "@material-ui/core/Button";
 import {GET_ALL_STUDENT} from "../../../grapgQl/student/studentQuary";
-
-// Generate Order Data
-// function createData(id, date, name, shipTo, paymentMethod, amount) {
-//   return { id, date, name, shipTo, paymentMethod, amount };
-// }
-
-// const rows = [
-//   createData(0, '22 Jul, 2021', 'Randika chathuranga', '2018CS003', 'reduce lanka', 'Accept','Reject'),
-//   createData(1, '21 Jul, 2021', 'Dammika Bandara', '2018IS203', 'code navia', 'Accept','Reject'),
-//   createData(2, '21 Jul, 2021', ' Indhika de silva', '2016CS145', 'kmp code academy', 'Accept','Reject'),
-//   createData(3, '21 Jul, 2021', 'Buddhika mahesh', '2017IS132', 'academy codes', 'Accept','Reject'),
-//   createData(4, '20 Jul, 2021', 'yohani surangi', '2018IS032', 'unic codes', 'Accept','Reject'),
-// ];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
-
-const useStyles = makeStyles((theme) => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
+import {ACCEPT_STUDENT} from "../../../grapgQl/admin/adminMutation";
+import Swal from "sweetalert2";
 
 export default function Orders1() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+    const [acceptStudent] = useMutation(ACCEPT_STUDENT);
 
-  function createData(id, date, name, shipTo, paymentMethod, amount) {
-    return { id, date, name, shipTo, paymentMethod, amount };
-  }
-
-  const classes = useStyles();
-
-  const [students, setStudents] = useState(null);
-  const {data} = useQuery(GET_ALL_STUDENT);
-
-  useEffect(() => {
-    if (!data) {
-      return;
+    function preventDefault(event) {
+        event.preventDefault();
     }
-    console.log(data.getAllStudent);
-    setStudents(data.getAllStudent);
-  }, [data]);
 
-  const rows = () => {
-    if (!students) {
-      return [];
+    const useStyles = makeStyles((theme) => ({
+        seeMore: {
+            marginTop: theme.spacing(3),
+        },
+    }));
+
+    const handleOnClickAcceptStudent = (id, accept) => {
+        acceptStudent({variables: {studentId: Number(id), accept: accept}}).then((data) => {
+            Toast.fire({
+                icon: 'success',
+                title: data.data.acceptStudent.message
+            });
+            setStudents(students.filter((student) => {
+                return student.id !== id
+            }))
+        })
     }
-    return students.map((student) => {
-      return createData(student.id, student.date, (student.f_name+student.l_name), student.reg_no, "2525 2525",
-          <Button>Accept</Button>, <Button>Reject</Button>)
-    })
-  }
 
-  return (
-    <React.Fragment>
-      <Title>Recent Students</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Index</TableCell>
-            <TableCell>Current Company</TableCell>
-            <TableCell>Accept</TableCell>
-            <TableCell align="right">Reject</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows().map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell>Accept</TableCell>
-            <TableCell align="right">Reject</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
-    </React.Fragment>
-  );
+    function createData(id, date, name, reg_no, accept, reject) {
+        return {id, date, name, reg_no, accept, reject};
+    }
+
+    const classes = useStyles();
+    const [students, setStudents] = useState(null);
+    const {data} = useQuery(GET_ALL_STUDENT);
+
+    useEffect(() => {
+        if (!data) {
+            return;
+        }
+        console.log(data.getAllStudent);
+        setStudents(data.getAllStudent);
+    }, [data]);
+
+    const rows = () => {
+        if (!students) {
+            return [];
+        }
+        return students.filter((student) => student.accept === "processing").map((student) => {
+                return createData(
+                    student.id,
+                    student.date,
+                    (student.f_name + ' ' + student.l_name),
+                    student.reg_no,
+                    <Button color='primary'
+                            onClick={() => handleOnClickAcceptStudent(student.id, 'accept')}>Accept</Button>,
+                    <Button color='secondary'
+                            onClick={() => handleOnClickAcceptStudent(student.id, 'reject')}>Reject</Button>)
+            }
+        )
+    }
+
+    return (
+        <React.Fragment>
+            <Title>Recent Students</Title>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Date</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Register Number</TableCell>
+                        <TableCell>Accept</TableCell>
+                        <TableCell align="right">Reject</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows().map((row) => (
+                        <TableRow key={row.id}>
+                            <TableCell>{row.date}</TableCell>
+                            <TableCell>{row.name}</TableCell>
+                            <TableCell>{row.reg_no}</TableCell>
+                            <TableCell>{row.accept}</TableCell>
+                            <TableCell align="right">{row.reject}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+            <div className={classes.seeMore}>
+                <Link color="primary" href="#" onClick={preventDefault}>
+                    See more students
+                </Link>
+            </div>
+        </React.Fragment>
+    );
 }

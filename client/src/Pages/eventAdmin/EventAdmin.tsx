@@ -1,11 +1,7 @@
 import React, {useState} from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "../../components/header/Header";
 import {Container, Col, Row, Button} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
-import SideBarAdmin from "./SideBarAdmin";
-import {FaBars} from "react-icons/all";
-import {IoNotificationsCircle} from "react-icons/all";
 import Admin from "./Admin";
 
 const EventAdmin = () => {
@@ -24,7 +20,7 @@ const EventAdmin = () => {
   return (
     <React.Fragment>
       <Header title="Career Fair UCSC"/>
-      <Container fluid={true} className='current-events'>
+      <Container fluid={true} className='current-events2'>
         <Admin/>
       </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!"/>

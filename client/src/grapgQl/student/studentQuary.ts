@@ -29,6 +29,7 @@ export const GET_STUDENT = gql`
 export const GET_ALL_STUDENT = gql`
   query getAllStudent{
     getAllStudent{
+    id
     reg_no
     f_name
     l_name

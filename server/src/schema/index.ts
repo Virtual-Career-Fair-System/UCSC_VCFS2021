@@ -5,25 +5,27 @@ import {LOGIN} from "./mutations/userLogin";
 import {CREATE_EVENT} from "./mutations/organizer";
 import {GET_ALL_EVENTS} from "./queries/events";
 import {CREATE_EMAIL} from "./mutations/emailj";
-import { CREATE_AD } from "./mutations/compublishad";
-import { GET_ALL_ADVERTISEMENTS } from "./queries/advertisement";
-import { UPDATE_STUDENT } from "./mutations/editstudent";
+import {CREATE_AD} from "./mutations/compublishad";
+import {GET_ALL_ADVERTISEMENTS} from "./queries/advertisement";
+import {UPDATE_STUDENT} from "./mutations/editstudent";
 
-import { CREATE_CV } from "./mutations/studentcvu";
+import {CREATE_CV} from "./mutations/studentcvu";
 
 
 import {GET_STUDENT} from "./mutations/student";
 import {GET_AVAILABLE} from "./mutations/student";
-import { GET_ALL_STUDENT } from "./queries/student";
+import {GET_ALL_STUDENT} from "./queries/student";
 import {GET_ALL_COMPANIES} from "./queries/company";
+import {ACCEPT_STUDENT} from "./mutations/student";
+import {ACCEPT_COMPANY} from "./mutations/company";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     getAllEvents: GET_ALL_EVENTS,
     getAllAdvertisements: GET_ALL_ADVERTISEMENTS,
-    getAllStudent:GET_ALL_STUDENT,
-    getAllCompany:GET_ALL_COMPANIES
+    getAllStudent: GET_ALL_STUDENT,
+    getAllCompany: GET_ALL_COMPANIES
   }
 });
 
@@ -41,11 +43,14 @@ const Mutation = new GraphQLObjectType({
 
 
     updateStudent: UPDATE_STUDENT,
-    getStudent:GET_STUDENT,
-    changeAvailable:GET_AVAILABLE
+    getStudent: GET_STUDENT,
+    changeAvailable: GET_AVAILABLE,
+
+    acceptStudent: ACCEPT_STUDENT,
+    acceptCompany:ACCEPT_COMPANY
 
   }
-});
+})
 
 export const schema = new GraphQLSchema({
   query: RootQuery,
