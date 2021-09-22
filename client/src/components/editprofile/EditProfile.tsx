@@ -17,6 +17,7 @@ import Header from '../header/Header';
 import {useMutation} from "@apollo/client";
 import {UPDATE_STUDENT} from '../../grapgQl/student/editMutation';
 import {number} from "prop-types";
+import Footer from "../footer/Footer";
 
 
 const EditProfile = () => {
@@ -141,7 +142,7 @@ const EditProfile = () => {
       <Header title="Career Fair UCSC"/>
 
       {/* <h1>Edit Profile</h1> */}
-      <Container fluid={true} className='px-5'>
+      <Container >
         <Form onSubmit={updateProfile}>
           <Row style={{border: '1px solid green', borderRadius: '5px', marginBottom: 3}}>
             <Col className="pr-1" md="12">
@@ -381,16 +382,22 @@ const EditProfile = () => {
           {/*    </Form.Group>*/}
           {/*  </Col>*/}
           {/*</Row>*/}
-          <Button
-            className="btn-fill pull-right"
-            type="submit"
-          >
-            Update Profile
-          </Button>
+          <Row className='py-5'>
+            <Col className='text-right'>
+              <Button
+                className="btn-fill pull-right"
+                type="submit"
+              >
+                Update Profile
+              </Button>
+            </Col>
+          </Row>
+
           {(isRedirectAd || setEditprofile) && <Redirect to='/editprofile'/>}
           <div className="clearfix"></div>
         </Form>
       </Container>
+      <Footer title={'Career Fair UCSC'}/>
     </React.Fragment>
   )
 }

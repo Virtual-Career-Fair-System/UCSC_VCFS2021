@@ -13,7 +13,7 @@ export const CREATE_STUDENT = gql`
 
 
 export const CHANGE_AVAILABLE = gql`       
- mutation changeAvailable( $id:Int!, $available:String! ){
+ mutation changeAvailable( $id:Int!, $available:Int! ){
   changeAvailable( id : $id, available : $available ){
    successful
    message

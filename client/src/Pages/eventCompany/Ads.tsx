@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
-import GoogleFontLoader from 'react-google-font-loader';
-import NoSsr from '@material-ui/core/NoSsr';
+
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import {Column, Row, Item} from '@mui-treasury/components/flex';
+import {Column,Row, Item} from '@mui-treasury/components/flex';
 import {Info, InfoSubtitle, InfoTitle} from '@mui-treasury/components/info';
 import {useApexInfoStyles} from '@mui-treasury/styles/info/apex';
 import {useStyles} from "./AdsConstants";
 import {useHistory} from 'react-router-dom';
+import {Col,Row as Row2,Image} from "react-bootstrap";
+import PDFViewer from "pdf-viewer-reactjs";
+import {AiOutlineCloseCircle} from "react-icons/all";
 
 type AdsProps = {
   advertisements: any
@@ -24,7 +26,14 @@ const Ads: React.FC<AdsProps> = (props) => {
     history.push(`/currentEvents/company/${props.thisEvent.event_code}/${ad_id}`);
   }
 
-  const CustomCard = ({thumbnail, title, subtitle, description, joined = false, ad_id}: any) => {
+  const [previewAdd, setPreviewAdd] = useState<any>(null);
+
+  const handleONPreviewAdd = (add: string) => {
+    console.log(add);
+    setPreviewAdd(add);
+  }
+
+  const CustomCard = ({thumbnail, title, subtitle, description, joined = false, ad_id, ad_image}: any) => {
     return (
       <div className={styles.root}>
         <Column className={styles.card}>
@@ -53,7 +62,8 @@ const Ads: React.FC<AdsProps> = (props) => {
               </Button>
             </Item>
             <Item position={'middle-left'}>
-              <Button className={styles.join} variant={'contained'} color={'secondary'} disableRipple>
+              <Button className={styles.join} variant={'contained'} color={'secondary'} disableRipple
+                      onClick={() => handleONPreviewAdd(ad_image)}>
                 View Ad
               </Button>
             </Item>
@@ -78,16 +88,40 @@ const Ads: React.FC<AdsProps> = (props) => {
             subtitle={''}
             description={<b>{advertisement.description}</b>}
             ad_id={advertisement.ad_id}
+            ad_image={advertisement.image}
           />
         </Grid>)
     })
   }
+  const image = (previewAdd: string) => {
+    if (!previewAdd) {
+      return;
+    }
+    return require(`../../assets/adverts/${previewAdd}`).default;
+  }
+  const handleOnFormClose = () => {
+    setPreviewAdd(null);
+  }
 
   return (
     <React.Fragment>
-      <NoSsr>
-        <GoogleFontLoader fonts={[{font: 'Ubuntu', weights: [400, 700]}]}/>
-      </NoSsr>
+      {previewAdd &&
+      <Row2 >
+          <Col xs={{span: 6, offset: 3}}  style={{border: 'solid 2px blue'}} className='my-5'>
+          <Col xs={12} className='text-right'>
+              <AiOutlineCloseCircle color='red' size='2em' onClick={handleOnFormClose}/>
+          </Col>
+          <Col xs={12} className='px-5 py-5'>
+            { previewAdd.split('.')[1] == 'pdf' ?
+              <PDFViewer
+                  document={{
+                    url: image(previewAdd),
+                  }}
+              /> : <Image src={image(previewAdd)}/>}
+          </Col>
+          </Col>
+      </Row2>
+      }
       <Grid container spacing={4}>
         {renderAds()}
       </Grid>

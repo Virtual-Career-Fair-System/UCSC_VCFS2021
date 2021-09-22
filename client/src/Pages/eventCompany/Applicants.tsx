@@ -11,6 +11,7 @@ import {Col, Image} from "react-bootstrap";
 import PDFViewer from 'pdf-viewer-reactjs';
 import ScheduleMeeting from "../company/ScheduleMeeting";
 import {AiOutlineCloseCircle} from "react-icons/all";
+import {useHistory} from 'react-router-dom';
 
 const usePersonStyles = makeStyles(() => ({
     text: {
@@ -18,6 +19,11 @@ const usePersonStyles = makeStyles(() => ({
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden',
+      "&:hover": {
+        cursor:'pointer',
+        fontSize:'21px',
+        color:'#696969'
+      }
     },
     name: {
       fontWeight: 600,
@@ -71,10 +77,17 @@ const useStyles = makeStyles(() => ({
 
 const Applcants = (props: any) => {
   const styles = useStyles();
+  const history = useHistory();
+
 
   const handeOnClickPreviewCv = (cv_path1: any) => {
     console.log(cv_path1);
     setPreviewCv(cv_path1);
+  }
+
+  const goToProfile = (id:number) =>{
+    console.log(id)
+    history.push(`/profile/${id}`);
   }
 
   const PersonItem = ({src, name, email, cv_path1, available, applicant}: any) => {
@@ -87,7 +100,7 @@ const Applcants = (props: any) => {
         </Item>
         <Row wrap grow gap={0.5} minWidth={0}>
           <Item grow minWidth={0}>
-            <div className={cx(styles.name, styles.text)}>{name}</div>
+            <div className={cx(styles.name, styles.text)} onClick={()=>goToProfile(applicant.id)}>{name}</div>
             <div className={cx(styles.caption, styles.text)}>
               {available === 0 ? 'Available' : 'Unavailable'}
             </div>
@@ -127,7 +140,7 @@ const Applcants = (props: any) => {
 
   const renderImage = (image: string) => {
     try {
-      return require(`../../assets/image/profileImages/${image}.jpg`).default;
+      return require(`../../assets/image/profileImages/${image}`).default;
 
     } catch {
       return require(`../../assets/image/profileImages/user.jpg`).default;
@@ -141,7 +154,7 @@ const Applcants = (props: any) => {
     // @ts-ignore
     return applicants.map((applicant: any) => {
       return <PersonItem name={applicant.f_name + ' ' + applicant.l_name}
-                         src={renderImage(applicant.id)}
+                         src={renderImage(applicant.image)}
                          email={applicant.email}
                          cv_path1={applicant.cv_path1}
                          available={applicant.available}
@@ -151,6 +164,7 @@ const Applcants = (props: any) => {
   }
 
   const renderCv = (cv: string) => {
+    console.log(cv.split('.')[1])
     return require(`../../assets/cv/${cv}`).default;
   }
   const handleOnFormClose = () =>{
@@ -165,12 +179,15 @@ const Applcants = (props: any) => {
             <Col className='text-right'>
                 <AiOutlineCloseCircle color='red' size='2em' onClick={handleOnFormClose}/>
             </Col>
+          {
+            previewCv.cv_path1.split('.')[1] == 'pdf'?
+              <PDFViewer
+              document={{
+                url: renderCv(previewCv.cv_path1),
+              }}
+            />:<Image src={renderCv(previewCv.cv_path1)}/>
+          }
 
-            <PDFViewer
-                document={{
-                  url: renderCv(previewCv.cv_path1),
-                }}
-            />
 
           {previewCv.status==='notInvited' &&
             <ScheduleMeeting applicant={previewCv}
@@ -184,7 +201,7 @@ const Applcants = (props: any) => {
       <Column p={0} gap={0} className={styles.card}>
         <Row wrap p={2} alignItems={'baseline'} className={styles.header}>
           <div>
-            <Item stretched className={styles.headline}>New Notifications</Item>
+            <Item stretched className={styles.headline}>Applicants</Item>
           </div>
         </Row>
         <div>

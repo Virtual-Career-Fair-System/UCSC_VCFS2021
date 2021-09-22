@@ -45,8 +45,6 @@ setThisCompany(data.data.getCompany)
     }
   }
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <ProSidebar image={undefined} rtl={false} collapsed={false} toggled={toggled} breakPoint="md"
                 onToggle={handleToggleSidebar}>
@@ -58,12 +56,12 @@ setThisCompany(data.data.getCompany)
         </Row>
         <Row>
           <Col className='text-center py-2' style={styles}>
-            {thisCompany && thisCompany.com_name}
+            {
+              // @ts-ignore
+              thisCompany && thisCompany.com_name}
           </Col>
         </Row>
-        <Row>
-          <Col className='text-center py-2'><Button variant='info' size={'sm'}>Profile</Button></Col>
-        </Row>
+
       </SidebarHeader>
       <SidebarContent style={styles}>
         <Menu iconShape="circle">
@@ -84,9 +82,7 @@ setThisCompany(data.data.getCompany)
           </React.Fragment>
           }
         </Menu>
-        <Col>
-          <Calendar/>
-        </Col>
+
       </SidebarContent>
       <SidebarFooter style={styles}>
       </SidebarFooter>
