@@ -46,24 +46,17 @@ export default function Sidebar(props) {
       <>
       <Grid item xs={12} >
           <Typography component="h2" variant="h5" className={classes.title}>
-              About Us
+              Our Vision
           </Typography>
               <Card className={classes.card}>
                   <div className={classes.cardDetails}>
                       <CardContent>
                           <Typography variant="subtitle1" color="textSecondary">
-                              The UCSC Career fair is a vital student activity conducted annually by fourth-year
-                              undergraduates in collaboration with the Professional Development Center (PDC) of
-                              University of Colombo School of Computing. The Professional Development Centre (PDC)
-                              is one of the centers at UCSC, established to keep a close liaison with the IT industry
-                              to improve the academic activities through industry-academia partnership. The mission
-                              of the Professional Development Center is to produce socially responsible professionals
-                              with entrepreneurial skills, leadership qualities, and integrity.
-                              The center facilitates training programs to improve the professional
-                              skills of both the academic staff and the undergraduates.
-                              The PDC invites the IT industry to conduct awareness programs such as current
-                              trends in the IT industry, industrial practices, career paths in various disciplines,
-                              and, thus, creating value addition to enhance overall graduate quality and employability.
+                          Be a Global Leader in Computing, 
+                          Advancing the Frontiers of 
+                          new knowledge
+                           through Learning and 
+                           Research.
                           </Typography>
                       </CardContent>
                   </div>
@@ -76,7 +69,7 @@ export default function Sidebar(props) {
 
         <Grid item xs={12} >
             <Typography component="h2" variant="h5" className={classes.title}>
-                Our Vision
+                Our Mission
             </Typography>
                 <Card className={classes.card}>
                     <Hidden xsDown>
@@ -85,15 +78,9 @@ export default function Sidebar(props) {
                     <div className={classes.cardDetails}>
                         <CardContent>
                             <Typography variant="subtitle1" color="textSecondary">
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen
-                                book. It has survived not only five centuries,
-                                but also the leap into electronic typesetting,
-                                remaining essentially unchanged.
-                                It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like
-                                Aldus PageMaker including versions of Lorem Ipsum.",
+                            To advance and enhance computing knowledge, fostering global strategic alliances, 
+                            promoting cross disciplinary research, producing socially responsible professionals with entrepreneurial skills, 
+                            leadership qualities and integrity contributing  to  position the country as a knowledge hub in the region.
                             </Typography>
                         </CardContent>
                     </div>

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
-import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
+import ucsccover from '../../assets/image/homePagePhotos/ucsccover.jpg';
 import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
 import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
 
@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 const mainFeaturedPost = {
     title: 'UCSC Virual Career Fair 2021',
     description:
-        "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: careerFareCover,
+        "UCSC undergraduates and graduates!, Be a Global Leader in Computing, Advancing the frontiers of new knowledge through Learning and Research.",
+    image: ucsccover,
     imgText: 'main image description',
-    linkText: 'Continue…',
+    // linkText: 'Continue…',
 };
 
 const featuredPosts = [
