@@ -33,7 +33,7 @@ const featuredPosts = [
         title: 'Career Fair 2020',
         // date: 'Nov 12',
         description:
-            "2020 career fair conducted by university of colombo school of computing 15th batch. Over 300 students and over 100 companies registered in UCSC PDC. "+
+            "2020 career fair conducted by university of colombo school of computing next year graduate batch. Over 300 students and over 100 companies registered in UCSC PDC. "+
             "Career week conduct in 2020 December 3rd to 17th. MOre than 92% graduates and undergraduates got job oppertunities from this event. "+
             "Companies fulfilled their vacancy options after that event."+
             "We try to do our best as last year. "+

@@ -45,7 +45,7 @@ export default function MainFeaturedPost(props) {
       {/* {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />} */}
       <div className={classes.overlay} />
       <Grid container>
-        <Grid item md={6}>
+        <Grid item md={12}>
           <div className={classes.mainFeaturedPostContent}>
             <Typography component="h1" variant="h3" color="inherit" gutterBottom>
               {post.title}
