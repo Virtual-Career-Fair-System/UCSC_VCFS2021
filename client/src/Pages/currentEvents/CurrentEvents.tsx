@@ -26,6 +26,9 @@ const CurrentEvents = () => {
 
     } else if (login.type === 'student' || login.type === 'company' || login.type === 'unknown') {
       return events.map((event) => {
+        if(!event){
+          return ;
+        }
         return (event.status === 'requested' && Number(event.organizer) != login.id) ? '' :
           <Event event={event} key={event.event_code}/>
       })
