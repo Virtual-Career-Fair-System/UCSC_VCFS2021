@@ -87,7 +87,7 @@ const CvUpload = (props) => {
                                     document={{
                                         url: image(),
                                     }}
-                                /> : <Image src={image()}/>
+                                /> : <Image style={{width:'100%'}} src={image()}/>
                             }
                         </Col>
                     </Row>
