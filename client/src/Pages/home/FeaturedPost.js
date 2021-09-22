@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     flex: 1,
   },
   cardMedia: {
-    width: "160",
+    width: 160,
   },
 });
 
@@ -36,9 +36,9 @@ export default function FeaturedPost(props) {
               <Typography component="h2" variant="h5">
                 {post.title}
               </Typography>
-              {/* <Typography variant="subtitle1" color="textSecondary">
+              <Typography variant="subtitle1" color="textSecondary">
                 {post.date}
-              </Typography> */}
+              </Typography>
               <Typography variant="subtitle1" paragraph>
                 {post.description}
               </Typography>

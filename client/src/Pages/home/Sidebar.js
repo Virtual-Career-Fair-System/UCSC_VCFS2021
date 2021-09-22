@@ -76,7 +76,7 @@ export default function Sidebar(props) {
 
         <Grid item xs={12} >
             <Typography component="h2" variant="h5" className={classes.title}>
-                Our Mission
+                Our Vision
             </Typography>
                 <Card className={classes.card}>
                     <Hidden xsDown>
