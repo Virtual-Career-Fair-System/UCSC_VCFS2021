@@ -31,10 +31,14 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
   const {toggled, handleToggleSidebar} = props;
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
   const image = () => {
-    if (login.id) {
-      return require(`../../assets/image/profileImages/${login.id}.jpg`).default;
+    try {
+      if (login.id) {
+        return require(`../../assets/image/profileImages/${login.id}.jpg`).default;
+      }
+      return require(`../../assets/image/profileImages/user.jpg`).default;
+    }catch{
+      return require(`../../assets/image/profileImages/user.jpg`).default;
     }
-    return require(`../../assets/image/profileImages/user.jpg`).default;
   }
 
   return (
@@ -43,7 +47,7 @@ const SideBarStudent: React.FC<SideBarProps> = (props) => {
       <SidebarHeader>
         <Row>
           <Col className='text-center py-2'>
-            <Image className='profile-image' src={image()} roundedCircle/>
+            <Image className='profile-image' style={{height:'165px'}} src={image()} roundedCircle/>
           </Col>
         </Row>
         <Row>
