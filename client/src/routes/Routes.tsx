@@ -1,10 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import App from '../App/App';
 import AboutUs from "../Pages/aboutUs/AboutUs";
-import Companies from "../Pages/companies/Companies";
 import CurrentEvents from "../Pages/currentEvents/CurrentEvents";
-import Students from "../Pages/student/Students";
 import Login from "../components/login/Login";
 import RegisterStudent from "../Pages/registerStudent/RegisterStudent";
 import RegisterCompany from "../Pages/registerCompany/RegisterCompany";
@@ -24,14 +21,11 @@ import ScheduleMeeting from "../Pages/company/ScheduleMeeting";
 import CompanyLogin from "../Pages/LoginCompany/CompanyLogin";
 import OrganizeNewCareerFair from "../Pages/organizeNewCareerFair/OrganizeNewCareerFair";
 import ChooseRegisterForm from "../Pages/chooseRegisetForm/ChooseRegisterForm";
-// import DashBoard from "../Pages/admin/Dashboard";
 import Home from "../Pages/home/Home";
 import Student from "../Pages/students/Student";
-
 import {useEffect} from "react";
 import {login} from "../state/actions/loginActions";
 import {useDispatch} from "react-redux";
-import Profile1 from "../Pages/profile/profile1";
 import EventAdmin from "../Pages/eventAdmin/EventAdmin";
 import EventCompany from "../Pages/eventCompany/EventCompany";
 import EventStudent from "../Pages/eventStudent/EventStudent";
@@ -41,7 +35,8 @@ import {setInitEvents} from "../state/actions/eventsActions";
 import HomeComp from "../Pages/homeCompany/homeCompany";
 import ApplicantProfile from "../Pages/applicantProfile/ApplicantProfile";
 import Profile from "../Pages/profile/Profile";
-
+import EventAdminCompanyTable from "../Pages/eventAdmin/EventAdminCompanyTable";
+import EventAdminStudentTable from "../Pages/eventAdmin/EventAdminStudentTable";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -91,8 +86,9 @@ const Routes = () => {
         <Route exact path="/schedule" component={ScheduleMeeting}/>
         <Route exact path="/profileview" component={Profile}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        <Route exact path="/admin/company" component={EventAdminCompanyTable}/>
+        <Route exact path="/admin/student" component={EventAdminStudentTable}/>
         <Route exact path="/profile/:id" component={ApplicantProfile}/>
-        {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>
   );
