@@ -2,18 +2,46 @@ import React, {useEffect, useState} from "react";
 import {Button, Col, Row, Image} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import {ILoginData} from "../../../types/login";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../../state/reducers";
 import DOMPurify from "dompurify";
 import {BsBoxArrowInUp} from "react-icons/all";
+import {FetchResult, useMutation} from "@apollo/client";
+import {APPROVE_EVENT} from "../../../grapgQl/admin/adminMutation";
+import Swal from "sweetalert2";
+import {changeEvent} from "../../../state/actions/eventsActions";
+import {useHistory} from 'react-router-dom';
 
 type EventProps = {
   event: any
 }
 
 const Event: React.FC<EventProps> = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
+
+  const [approveEvent] = useMutation(APPROVE_EVENT)
   const [isRedirectToEvent, setIsRedirectToEvent] = useState(false);
   const handleOnRedirectToEvent = () => {
+    if(!login.id){
+      Toast.fire({
+        icon: 'info',
+        title: 'Please login '
+      });
+      history.push(`/login`);
+      return;
+    }
     setIsRedirectToEvent(true);
   }
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
@@ -35,6 +63,23 @@ const Event: React.FC<EventProps> = (props) => {
       return <label className='approved'>Approved</label>;
     }
   }
+
+  const handleOnClickApprove = () => {
+    approveEvent({variables: {event_id: Number(event.id)}}).then((data: any) => {
+      if(!data || data.data){
+        Toast.fire({
+          icon: 'error',
+          title: 'Something Went Wrong'
+        });
+      }
+      dispatch(changeEvent(Number(event.id)));
+      Toast.fire({
+        icon: 'success',
+        title: data.data.approveEvent.message
+      });
+    })
+  }
+
   return (
     <Row
       className={event.status === 'requested' ? 'event-requested' : event.status === 'upcoming' ? 'event-upcoming' : event.status === 'closed' ? 'event-closed' : 'event'}>
@@ -42,7 +87,8 @@ const Event: React.FC<EventProps> = (props) => {
         <Row>
           <Col className='event-name px-0'>{event && event.name}</Col>
           {(login.type === 'admin' && event.status === 'requested') &&
-          <Col className='text-right approve-button py-1'><Button size="sm" variant='success'> Approve</Button></Col>}
+          <Col className='text-right approve-button py-1'><Button size="sm" variant='success'
+                                                                  onClick={handleOnClickApprove}> Approve</Button></Col>}
           {(login.type === 'student' && login.id == event.organizer) &&
           <Col className='text-right status py-1'>{renderStatus(event.status)}</Col>}
         </Row>
@@ -59,7 +105,7 @@ const Event: React.FC<EventProps> = (props) => {
                 <Redirect to={`/currentEvents/admin/${event.event_code}`}/> : ''
         }
         <Row>
-          <Button className='go-event-button'size='sm' onClick={handleOnRedirectToEvent}>
+          <Button className='go-event-button' size='sm' onClick={handleOnRedirectToEvent}>
             {event.name}<i className='px-1'><BsBoxArrowInUp/></i>
           </Button>
         </Row>

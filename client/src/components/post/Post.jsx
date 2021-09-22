@@ -2,14 +2,14 @@ import "./post.css";
 import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../dummyData";
 import { useState } from "react";
-import SideBar from "../../Pages/currentEvents/SideBar";
+import SideBar from "../../Pages/profile/SideBar";
 
-export default function Post({ post }) {
+export default function Post({student}) {
 
 
   return (
     <div className="post">
-      <SideBar />
+      <SideBar student={student}/>
 
       <div className="postWrapper">
         <div className="postTop">

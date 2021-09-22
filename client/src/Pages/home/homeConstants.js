@@ -24,13 +24,13 @@ const mainFeaturedPost = {
         "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
     image: careerFareCover,
     imgText: 'main image description',
-    linkText: 'Continue…',
+    // linkText: 'Continue…',
 };
 
 const featuredPosts = [
     {
         title: 'Students',
-        date: 'Nov 12',
+        // date: 'Nov 12',
         description:
             'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, ' +
             'you should highlight your academic successes at the beginning of your resume, before the “Experience” ' +
@@ -42,7 +42,7 @@ const featuredPosts = [
     },
     {
         title: 'Companies',
-        date: 'Nov 11',
+        // date: 'Nov 11',
         description:
             'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and ' +
             'conduct interviews, recruitment, and company presentations to showcase their organization and to inform' +
@@ -62,17 +62,12 @@ const sidebar = {
     description1:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     archives: [
-        { title: 'March 2020', url: '#' },
-        { title: 'February 2020', url: '#' },
-        { title: 'January 2020', url: '#' },
-        { title: 'November 1999', url: '#' },
-        { title: 'October 1999', url: '#' },
-        { title: 'September 1999', url: '#' },
-        { title: 'August 1999', url: '#' },
-        { title: 'July 1999', url: '#' },
-        { title: 'June 1999', url: '#' },
-        { title: 'May 1999', url: '#' },
-        { title: 'April 1999', url: '#' },
+        { title: 'Career Fair 2020', url: '#' },
+        { title: 'Career Fair 2019', url: '#' },
+        { title: 'Career Fair 2018', url: '#' },
+        { title: 'Career Fair 2017', url: '#' },
+        { title: 'Career Fair 2016', url: '#' },
+        { title: 'Career Fair 2015', url: '#' }
     ]
 }
 

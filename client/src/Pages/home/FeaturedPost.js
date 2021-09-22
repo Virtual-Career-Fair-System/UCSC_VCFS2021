@@ -44,7 +44,7 @@ export default function FeaturedPost(props) {
               </Typography>
               <Typography variant="subtitle1" color="primary">
 
-               <Button >Continue reading..</Button>
+               {/* <Button >Continue reading..</Button> */}
               </Typography>
             </CardContent>
           </div>

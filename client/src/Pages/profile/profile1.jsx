@@ -2,15 +2,13 @@ import "./profile.css";
 import React, { useState } from 'react';
 import { Redirect } from "react-router-dom";
 import Rightbar from "../../components/rightbar/Rightbar";
-import Post from "../../components/post/Post";
-
 
 export default function Profile1() {
     const [isCvViewRedirect, setIsCvViewRedirect] = useState(false);
     const onclickCvViewRoute = () => {
       // console.log('Nim');
       setIsCvViewRedirect(true);
-  
+
     }
   return (
     <>
@@ -49,7 +47,7 @@ export default function Profile1() {
           </div>
           <div className="profileRightBottom">
 
-          
+
             {/* <Post /> */}
 
 

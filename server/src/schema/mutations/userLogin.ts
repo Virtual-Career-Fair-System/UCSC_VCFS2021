@@ -24,7 +24,12 @@ export const LOGIN = {
 
     if(tempUser?.type=='student'){
       const tempStudent:any= await student.findOne({email: email});
-      if(tempStudent?.password==PasswordSh1){
+
+      if(tempStudent?.accept=='processing'){
+        return{successful:false,message:"Your request is still processing. ",type:'',id:null}
+      }else if(tempStudent?.accept=='reject'){
+        return{successful:false,message:"You are rejected. ",type:'',id:null}
+      }else if(tempStudent?.password==PasswordSh1){
         return{successful:true,message:"Welcome to virtual career fair UCSC",type:'student',id:tempStudent?.id}
       }else {
         return{successful:false,message:"Wrong password. Try again or click ‘Forgot password’ to reset it. ",type:'',id:null}
@@ -32,10 +37,13 @@ export const LOGIN = {
 
     }else if(tempUser?.type=='company'){
       const tempCompany:any= await company.findOne({email: email});
-      if(tempCompany?.password==PasswordSh1){
+      if(tempCompany?.accept=='processing'){
+        return{successful:false,message:"Your request is still processing. ",type:'',id:null}
+      }else if(tempCompany?.accept=='reject'){
+        return{successful:false,message:"You are rejected. ",type:'',id:null}
+      }else if(tempCompany?.password==PasswordSh1){
         return{successful:true,message:"Welcome to virtual career fair UCSC",type:'company',id:tempCompany?.com_id}
-      }
-      else {
+      } else {
         return{successful:false,message:"Wrong password. Try again or click ‘Forgot password’ to reset it. ",type:'',id:null}
       }
 

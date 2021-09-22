@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import {Container} from "react-bootstrap";
 import Footer from "../../components/footer/Footer";
 import Profile from "../profile/Profile";
+// import Profile from "../profile/Profile";
 
 const Students = () => {
   return(

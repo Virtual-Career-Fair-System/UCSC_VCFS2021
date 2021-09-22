@@ -10,5 +10,10 @@ export interface setInitEvents {
   payload: IEvent
 }
 
+export interface changeEvent {
+  type: typeof ACTIONS.CHANGE_EVENT
+  payload: string|number
+}
 
-export type EventTypes=createEvent|setInitEvents;
+
+export type EventTypes=createEvent|setInitEvents|changeEvent;
