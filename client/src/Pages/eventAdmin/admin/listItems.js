@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,26 +9,47 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import { any } from 'prop-types';
+import { Redirect } from "react-router-dom";
 
-export const mainListItems = (
+
+export const MainListItems  = () =>{
+  const [isCompany, setIsCompanyRedirect] = useState(false);
+  const onclickCompanyRoute = () => {
+    console.log("mahinda mahattya")
+    setIsCompanyRedirect(true);
+}
+const [isStudent, setIsStudentRedirect] = useState(false);
+const onclickStudentRoute = () => {
+  console.log("mahinda mahattya")
+  setIsStudentRedirect(true);
+}
+return(
   <div>
     <ListItem button>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText  primary="Dashboard" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
       <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Students" />
+      <ListItemText
+       onClick={onclickStudentRoute}
+      primary="Students" />
+       {isStudent && <Redirect to='/admin/student' />}
+
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Companies" />
+      <ListItemText
+        onClick={onclickCompanyRoute}
+      primary="Companies" />
+      {isCompany && <Redirect to='/admin/company' />}
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -43,7 +64,8 @@ export const mainListItems = (
       <ListItemText primary="Organizer" />
     </ListItem>
   </div>
-);
+  )
+};
 
 export const secondaryListItems = (
   <div>

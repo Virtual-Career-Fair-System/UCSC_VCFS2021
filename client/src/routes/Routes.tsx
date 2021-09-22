@@ -40,6 +40,8 @@ import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
 import HomeComp from "../Pages/homeCompany/homeCompany";
 
+  import CompanyTable from "../Pages/eventAdmin/admin/companyTable";
+import StudentTable from "../Pages/eventAdmin/admin/studentTable";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -89,6 +91,9 @@ const Routes = () => {
         <Route exact path="/schedule" component={ScheduleMeeting}/>
         <Route exact path="/profileview" component={Profile1}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        <Route exact path="/admin/company" component={CompanyTable}/>
+        <Route exact path="/admin/student" component={StudentTable}/>
+
         {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>
