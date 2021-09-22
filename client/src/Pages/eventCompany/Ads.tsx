@@ -9,22 +9,22 @@ import {Column, Row, Item} from '@mui-treasury/components/flex';
 import {Info, InfoSubtitle, InfoTitle} from '@mui-treasury/components/info';
 import {useApexInfoStyles} from '@mui-treasury/styles/info/apex';
 import {useStyles} from "./AdsConstants";
-import { Redirect } from 'react-router';
+import {useHistory} from 'react-router-dom';
 
 type AdsProps = {
   advertisements: any
+  thisEvent: any
 }
 
 const Ads: React.FC<AdsProps> = (props) => {
   const styles = useStyles();
+  const history = useHistory();
   const [isCompanyViewNotificationRedirect, setIsCompanyViewNotificationRedirect] = useState(false);
-  const onclickCompanyViewNotificationRoute = () => {
-    // console.log('Nim');
-    setIsCompanyViewNotificationRedirect(true);
+  const onclickCompanyViewNotificationRoute = (ad_id: any) => {
+    history.push(`/currentEvents/company/${props.thisEvent.event_code}/${ad_id}`);
+  }
 
-}
-
-  const CustomCard = ({thumbnail, title, subtitle, description, joined = false}: any) => {
+  const CustomCard = ({thumbnail, title, subtitle, description, joined = false, ad_id}: any) => {
     return (
       <div className={styles.root}>
         <Column className={styles.card}>
@@ -46,27 +46,15 @@ const Ads: React.FC<AdsProps> = (props) => {
           </Box>
           <Row p={2} gap={2} position={'bottom'}>
             <Item position={'middle-left'}>
-              <Button
-                className={styles.join}
-                variant={'contained'}
-                color={'secondary'}
-                disableRipple
-                onClick={onclickCompanyViewNotificationRoute}
+              <Button className={styles.join} variant={'contained'} color={'secondary'} disableRipple
+                      onClick={() => onclickCompanyViewNotificationRoute(ad_id)}
               >
                 Applicants
-                {isCompanyViewNotificationRedirect && <Redirect to='/companyviewnotification' />}
               </Button>
             </Item>
             <Item position={'middle-left'}>
-              <Button
-                className={styles.join}
-                variant={'contained'}
-                color={'secondary'}
-                disableRipple
-                
-              >
+              <Button className={styles.join} variant={'contained'} color={'secondary'} disableRipple>
                 View Ad
-                
               </Button>
             </Item>
           </Row>
@@ -74,22 +62,24 @@ const Ads: React.FC<AdsProps> = (props) => {
       </div>
     );
   };
+
   const renderAds = () => {
-    if(!props.advertisements){
+    if (!props.advertisements) {
       return;
     }
     return props.advertisements.map((advertisement: any) => {
       return (
         <Grid item xs={12} md={6} lg={4}>
-        <CustomCard
-          thumbnail={
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
-          }
-          title={advertisement.com_name}
-          subtitle={''}
-          description={<b>{advertisement.description}</b>}
-        />
-      </Grid>)
+          <CustomCard
+            thumbnail={
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
+            }
+            title={advertisement.com_name}
+            subtitle={''}
+            description={<b>{advertisement.description}</b>}
+            ad_id={advertisement.ad_id}
+          />
+        </Grid>)
     })
   }
 

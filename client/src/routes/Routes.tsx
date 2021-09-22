@@ -54,7 +54,7 @@ const Routes = () => {
     if (data) {
       dispatch(setInitEvents(data.getAllEvents));
     }
-  }, )
+  },)
 //        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
 
 
@@ -67,9 +67,9 @@ const Routes = () => {
         <Route exact path="/companyLogin" component={CompanyLogin}/>
         <Route exact path="/currentEvents" component={CurrentEvents}/>
         <Route exact path="/currentEvents/:event_code" component={Event}/>
-        <Route exact path="/currentEvents/company/:event_code" component={EventCompany}/>
+        <Route path="/currentEvents/company/:event_code" component={EventCompany}/>
         <Route exact path="/currentEvents/admin/:event_code" component={EventAdmin}/>
-        <Route  path="/currentEvents/student/:event_code" component={EventStudent}/>
+        <Route path="/currentEvents/student/:event_code" component={EventStudent}/>
         <Route exact path="/students" component={Student}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/news" component={News}/>
