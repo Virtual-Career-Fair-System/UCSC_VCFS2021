@@ -39,6 +39,8 @@ import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
 import HomeComp from "../Pages/homeCompany/homeCompany";
+import ApplicantProfile from "../Pages/applicantProfile/ApplicantProfile";
+import Profile from "../Pages/profile/Profile";
 
 
 const Routes = () => {
@@ -54,7 +56,7 @@ const Routes = () => {
     if (data) {
       dispatch(setInitEvents(data.getAllEvents));
     }
-  }, )
+  },)
 //        <Route exact path="/Admin/DashBoard" component={DashBoard}/>
 
 
@@ -67,9 +69,9 @@ const Routes = () => {
         <Route exact path="/companyLogin" component={CompanyLogin}/>
         <Route exact path="/currentEvents" component={CurrentEvents}/>
         <Route exact path="/currentEvents/:event_code" component={Event}/>
-        <Route exact path="/currentEvents/company/:event_code" component={EventCompany}/>
+        <Route path="/currentEvents/company/:event_code" component={EventCompany}/>
         <Route exact path="/currentEvents/admin/:event_code" component={EventAdmin}/>
-        <Route  path="/currentEvents/student/:event_code" component={EventStudent}/>
+        <Route path="/currentEvents/student/:event_code" component={EventStudent}/>
         <Route exact path="/students" component={Student}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/news" component={News}/>
@@ -87,8 +89,9 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants}/>
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
-        <Route exact path="/profileview" component={Profile1}/>
+        <Route exact path="/profileview" component={Profile}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        <Route exact path="/profile/:id" component={ApplicantProfile}/>
         {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>

@@ -16,4 +16,6 @@ export class cvupload extends  BaseEntity{
   @ManyToOne(type => student, student => student.id)
   student: student | undefined;
 
+  @Column()
+  status!:string;
 }
