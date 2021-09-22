@@ -1,7 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import FacebookIcon from "@material-ui/icons/Facebook";
 import ucsccover from '../../assets/image/homePagePhotos/ucsccover.jpg';
 import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
 import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
