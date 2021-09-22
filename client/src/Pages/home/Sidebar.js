@@ -76,7 +76,7 @@ export default function Sidebar(props) {
 
         <Grid item xs={12} >
             <Typography component="h2" variant="h5" className={classes.title}>
-                Our Vision
+                Our Mission
             </Typography>
                 <Card className={classes.card}>
                     <Hidden xsDown>
@@ -85,15 +85,9 @@ export default function Sidebar(props) {
                     <div className={classes.cardDetails}>
                         <CardContent>
                             <Typography variant="subtitle1" color="textSecondary">
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen
-                                book. It has survived not only five centuries,
-                                but also the leap into electronic typesetting,
-                                remaining essentially unchanged.
-                                It was popularised in the 1960s with the release of Letraset sheets containing
-                                Lorem Ipsum passages, and more recently with desktop publishing software like
-                                Aldus PageMaker including versions of Lorem Ipsum.",
+                            To advance and enhance computing knowledge, fostering global strategic alliances, 
+                            promoting cross disciplinary research, producing socially responsible professionals with entrepreneurial skills, 
+                            leadership qualities and integrity contributing  to  position the country as a knowledge hub in the region.
                             </Typography>
                         </CardContent>
                     </div>

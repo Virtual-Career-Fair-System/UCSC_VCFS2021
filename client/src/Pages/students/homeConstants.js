@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import FacebookIcon from "@material-ui/icons/Facebook";
-import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
+import ucsccover from '../../assets/image/homePagePhotos/ucsccover.jpg';
 import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
 import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
 
@@ -14,43 +14,42 @@ const useStyles = makeStyles((theme) => ({
     },
     card:{
         marginTop: theme.spacing(3),
-        maxHeight:2
+        maxHeight:2,
+        width: '100vw',
     }
 }));
 
 const mainFeaturedPost = {
-    title: 'UCSC Virual Career Fair 2021',
+    title: 'Graduates of University of Colombo School of Computing',
     description:
-        "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: careerFareCover,
+        " ",
+    image: ucsccover,
     imgText: 'main image description',
-    linkText: 'Continue…',
+    // linkText: 'Continue…',
 };
 
 const featuredPosts = [
     {
-        title: 'Students',
-        date: 'Nov 12',
+        title: 'Career Fair 2020',
+        // date: 'Nov 12',
         description:
-            'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, ' +
-            'you should highlight your academic successes at the beginning of your resume, before the “Experience” ' +
-            'description. If you have completed any projects or taken courses related to the job you are applying for,' +
-            ' you can include these as well. Invitation to all UCSC undergraduates and graduates!, Invitation to all ' +
-            'UCSC undergraduates and graduates!.',
+            "2020 career fair conducted by university of colombo school of computing next year graduate batch. Over 300 students and over 100 companies registered in UCSC PDC. "+
+            "Career week conduct in 2020 December 3rd to 17th. MOre than 92% graduates and undergraduates got job oppertunities from this event. "+
+            "Companies fulfilled their vacancy options after that event."+
+            "We try to do our best as last year. "+
+            "Good Luck for your career future!",
+        
         image: studentPhoto,
-        imageText: 'Image Text',
+        // imageText: 'Image Text',
     },
-    {
-        title: 'Companies',
-        date: 'Nov 11',
-        description:
-            'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and ' +
-            'conduct interviews, recruitment, and company presentations to showcase their organization and to inform' +
-            ' of every available career opportunity.If you are looking for skilled, talented, and innovative fresh ' +
-            'graduates to make a difference in your company, Join Now.!Skilled and talented graduates await your call!!',
-        image: companyPhoto,
-        imageText: 'Image Text',
-    },
+    // {
+    //     title: 'Companies',
+    //     // date: 'Nov 11',
+    //     description:
+    //         "",
+    //     image: companyPhoto,
+    //     imageText: 'Image Text',
+    // },
 ];
 
 const sidebar = {

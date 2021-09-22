@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     flex: 1,
   },
   cardMedia: {
-    width: 160,
+    width: 500,
   },
 });
 
@@ -28,7 +28,7 @@ export default function FeaturedPost(props) {
   const { post } = props;
 
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={12} md={12}>
       <CardActionArea >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
@@ -44,7 +44,7 @@ export default function FeaturedPost(props) {
               </Typography>
               <Typography variant="subtitle1" color="primary">
 
-               <Button >Continue reading..</Button>
+               {/* <Button >Continue reading..</Button> */}
               </Typography>
             </CardContent>
           </div>
