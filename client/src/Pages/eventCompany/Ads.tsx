@@ -117,7 +117,7 @@ const Ads: React.FC<AdsProps> = (props) => {
                   document={{
                     url: image(previewAdd),
                   }}
-              /> : <Image src={image(previewAdd)}/>}
+              /> : <Image style={{width:'100%'}} src={image(previewAdd)}/>}
           </Col>
           </Col>
       </Row2>
