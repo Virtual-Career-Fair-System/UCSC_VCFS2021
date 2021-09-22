@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {mainListItems, secondaryListItems} from './listItems';
+import {MainListItems, secondaryListItems} from './listItems';
 import Chart from './Chart';
 import Chart1 from './Chart1';
 import Chart2 from './Chart2';
@@ -155,7 +155,7 @@ export default function Dashboard() {
                     </IconButton>
                 </div>
                 <Divider/>
-                <List>{mainListItems}</List>
+                <List><MainListItems/></List>
                 <Divider/>
                 <List>{secondaryListItems}</List>
             </Drawer>
