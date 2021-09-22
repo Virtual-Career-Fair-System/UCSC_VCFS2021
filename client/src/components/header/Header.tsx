@@ -16,12 +16,14 @@ import {ILoginData} from "../../types/login";
 import {AppState} from "../../state/reducers";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../state/actions/loginActions";
+import {useHistory} from 'react-router-dom';
 
 type HeaderProps = {
   title: string
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
+  const history = useHistory();
   const login: ILoginData = useSelector((state: AppState) => state.login.login);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -55,6 +57,9 @@ const Header: React.FC<HeaderProps> = (props) => {
   const onclickRouteCurrentEvents = () => {
     setIsRedirectCurrentEvents(true);
   }
+  const onclickRedirectProfile =()=>{
+    history.push(`/profileview`);
+  }
   // @ts-ignore
   return (
     <Container fluid={true} className='header sticky-top'>
@@ -69,9 +74,14 @@ const Header: React.FC<HeaderProps> = (props) => {
         >
           {title}
         </Typography>
-        <NotificationPanel/>
+
         {isRedirectLogin && <Redirect to='/login'/>}
 
+        {login.id && login.type==='student'&&
+          <Button className='mr-3' variant="contained" size="small" onClick={onclickRedirectProfile}>
+           Profile
+          </Button>
+        }
         {login.id ?
           <Button variant="outlined" size="small" onClick={onclickLogOut}>
             LOGOUT

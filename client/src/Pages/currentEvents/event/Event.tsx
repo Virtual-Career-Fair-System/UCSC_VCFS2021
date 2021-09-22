@@ -10,12 +10,14 @@ import {FetchResult, useMutation} from "@apollo/client";
 import {APPROVE_EVENT} from "../../../grapgQl/admin/adminMutation";
 import Swal from "sweetalert2";
 import {changeEvent} from "../../../state/actions/eventsActions";
+import {useHistory} from 'react-router-dom';
 
 type EventProps = {
   event: any
 }
 
 const Event: React.FC<EventProps> = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const Toast = Swal.mixin({
     toast: true,
@@ -32,6 +34,14 @@ const Event: React.FC<EventProps> = (props) => {
   const [approveEvent] = useMutation(APPROVE_EVENT)
   const [isRedirectToEvent, setIsRedirectToEvent] = useState(false);
   const handleOnRedirectToEvent = () => {
+    if(!login.id){
+      Toast.fire({
+        icon: 'info',
+        title: 'Please login '
+      });
+      history.push(`/login`);
+      return;
+    }
     setIsRedirectToEvent(true);
   }
   const login: ILoginData = useSelector((state: AppState) => state.login.login);

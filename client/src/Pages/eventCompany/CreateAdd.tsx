@@ -15,6 +15,8 @@ const CreateAdd = ({thisEvent}:any) => {
     if(!allAds){
       return;
     }
+
+    // @ts-ignore
     return allAds.filter((ad: any) => {
       return ad.event_code === thisEvent.event_code && ad.companyComId === login.id
     })

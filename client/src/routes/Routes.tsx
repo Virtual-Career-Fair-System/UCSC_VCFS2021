@@ -39,6 +39,8 @@ import {useQuery} from "@apollo/client";
 import {GET_ALL_EVENTS} from "../grapgQl/events/eventsQueries";
 import {setInitEvents} from "../state/actions/eventsActions";
 import HomeComp from "../Pages/homeCompany/homeCompany";
+import ApplicantProfile from "../Pages/applicantProfile/ApplicantProfile";
+import Profile from "../Pages/profile/Profile";
 
 
 const Routes = () => {
@@ -87,8 +89,9 @@ const Routes = () => {
         <Route exact path="/applicant" component={Applicants}/>
         <Route exact path="/cvview" component={Cv}/>
         <Route exact path="/schedule" component={ScheduleMeeting}/>
-        <Route exact path="/profileview" component={Profile1}/>
+        <Route exact path="/profileview" component={Profile}/>
         <Route exact path="/organizeNewCareerFair" component={OrganizeNewCareerFair}/>
+        <Route exact path="/profile/:id" component={ApplicantProfile}/>
         {/* <Route exact path="/admin" component={Orders}/> */}
       </Switch>
     </BrowserRouter>
