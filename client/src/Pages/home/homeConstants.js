@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 const mainFeaturedPost = {
     title: 'UCSC Virual Career Fair 2021',
     description:
-        "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+        "UCSC undergraduates and graduates!, Be a Global Leader in Computing, Advancing the frontiers of new knowledge through Learning and Research.",
     image: ucsccover,
     imgText: 'main image description',
-    linkText: 'Continue…',
+    // linkText: 'Continue…',
 };
 
 const featuredPosts = [
