@@ -84,7 +84,6 @@ const Album = (props) => {
     const onclickJobRoute = () => {
         console.log('Nim');
         setIsJobRedirect(true);
-
     }
     const styles = useStyles({color: '#203f52'});
     const styles2 = useStyles({color: '#4d137f'});
@@ -100,7 +99,7 @@ const Album = (props) => {
 
     return (
         <React.Fragment>
-            <Grid classes={gridStyles} container spacing={2} wrap={'nowrap'}>
+            <Grid classes={gridStyles} container spacing={2} >
                 <Grid item onClick={() => handleOnClickCategory('Software Engineer (Backend)')}>
                     <CustomCard
                         classes={styles}
@@ -141,7 +140,7 @@ const Album = (props) => {
                         image={"/assets/da.jfif"}/>
                 </Grid>
             </Grid>
-            <Grid classes={gridStyles} container spacing={2} wrap={'nowrap'}>
+            <Grid classes={gridStyles} container spacing={2} >
                 <Grid item onClick={() => handleOnClickCategory('UI/UX Engineer')}>
                     <CustomCard
                         classes={styles4}

@@ -67,6 +67,20 @@
     @include event(#fa7924, #ffd8d8)
   }
 }
+.current-events2 {
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+  .event-closed{
+    @include event(#565656, #c4c4c4)
+  }
+  .event-upcoming{
+    @include event(blue, #d0d0ff)
+  }
+  .event-requested{
+    @include event(#fa7924, #ffd8d8)
+  }
+}
 
 @media (max-width: $breakpoint-md) {
   .current-events {

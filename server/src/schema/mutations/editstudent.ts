@@ -1,9 +1,5 @@
 import {GraphQLID, GraphQLString} from "graphql";
-import {editstudent} from '../../entities/editstudent';
-import {user} from "../../entities/user";
 import {CreateEventResponseEditProfileMessage} from "../typeDef/messages";
-import {isExistEmail, isExistEventName, isExistRegNo} from "../validations/userValidations";
-import crypto from "crypto";
 import {GraphQLUpload} from "graphql-upload";
 import path from "path";
 import fs from "fs";
