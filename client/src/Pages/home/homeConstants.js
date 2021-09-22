@@ -1,5 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-import ucsccover from '../../assets/image/homePagePhotos/ucsccover.jpg';
+import GitHubIcon from "@material-ui/icons/GitHub";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import careerFareCover from '../../assets/image/homePagePhotos/careerFareCover.webp';
 import companyPhoto from '../../assets/image/homePagePhotos/company.webp';
 import studentPhoto from '../../assets/image/homePagePhotos/student.webp';
 
@@ -18,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 const mainFeaturedPost = {
     title: 'UCSC Virual Career Fair 2021',
     description:
-        "UCSC undergraduates and graduates!, Be a Global Leader in Computing, Advancing the frontiers of new knowledge through Learning and Research.",
-    image: ucsccover,
+        "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+    image: careerFareCover,
     imgText: 'main image description',
     // linkText: 'Continue…',
 };
@@ -27,7 +30,7 @@ const mainFeaturedPost = {
 const featuredPosts = [
     {
         title: 'Students',
-        date: 'Nov 12',
+        // date: 'Nov 12',
         description:
             'Invitation to all UCSC undergraduates and graduates!, Highlight Your Education. As a student, ' +
             'you should highlight your academic successes at the beginning of your resume, before the “Experience” ' +
@@ -39,7 +42,7 @@ const featuredPosts = [
     },
     {
         title: 'Companies',
-        date: 'Nov 11',
+        // date: 'Nov 11',
         description:
             'Organizations from the IT industry get an exclusive opportunity to meet with outstanding students and ' +
             'conduct interviews, recruitment, and company presentations to showcase their organization and to inform' +

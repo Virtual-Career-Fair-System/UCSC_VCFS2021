@@ -35,8 +35,6 @@ const Home: React.FC = () => {
         </Row>
         <main>
           <MainFeaturedPost post={mainFeaturedPost}/>
-
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <Grid container spacing={4}>
             {featuredPosts.map((post) => (
               <FeaturedPost key={post.title} post={post}/>
