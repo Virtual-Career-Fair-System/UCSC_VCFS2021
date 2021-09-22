@@ -61,7 +61,7 @@ export const GET_AVAILABLE = {
 
   args: {
     id: {type: GraphQLInt},
-    available: {type: GraphQLString}
+    available: {type: GraphQLInt}
   },
 
   async resolve(parent: any, args: any) {

@@ -1,8 +1,8 @@
 import {gql} from "@apollo/client";
 
 export const CREATE_STUDENT = gql`       
- mutation createStudent( $fname:String!, $lname:String!, $email: String!,$regNo: String!,$password: String!,$state: String! ){
-   createStudent( fname:$fname, lname:$lname, password:$password,regNo: $regNo,email:$email,state:$state ){
+ mutation createStudent( $fname:String!, $lname:String!, $email: String!,$regNo: String!,$password: String! ){
+   createStudent( fname:$fname, lname:$lname, password:$password,regNo: $regNo,email:$email ){
    successful
    message
    }
@@ -13,7 +13,7 @@ export const CREATE_STUDENT = gql`
 
 
 export const CHANGE_AVAILABLE = gql`       
- mutation changeAvailable( $id:Int!, $available:String! ){
+ mutation changeAvailable( $id:Int!, $available:Int! ){
   changeAvailable( id : $id, available : $available ){
    successful
    message

@@ -4,6 +4,10 @@ import Swal from 'sweetalert2';
 import {Badge, Button, Card, Form, Row, Col, Image} from "react-bootstrap";
 import {CREATE_CV} from '../../../grapgQl/student/studentMutation';
 import {useSelector} from "react-redux";
+import {Column} from "@mui-treasury/components/flex";
+import {AiOutlineCloseCircle} from "react-icons/all";
+import PDFViewer from "pdf-viewer-reactjs";
+import ScheduleMeeting from "../../company/ScheduleMeeting";
 
 const CvUpload = (props) => {
 
@@ -77,7 +81,13 @@ const CvUpload = (props) => {
                     <Row>
                         <Col className="pr-1" md="12">
                             {props.advertisement
-                            && <Image src={image()} style={{width: '100%'}}/>
+                            &&
+                            props.advertisement.image.split('.')[1] === 'pdf' ?
+                                <PDFViewer
+                                    document={{
+                                        url: image(),
+                                    }}
+                                /> : <Image style={{width:'100%'}} src={image()}/>
                             }
                         </Col>
                     </Row>
@@ -100,3 +110,28 @@ const CvUpload = (props) => {
 }
 
 export default CvUpload;
+
+// {
+//     previewCv &&
+//     <Column p={0} gap={0} className={styles.card}>
+//         <Col className='text-right'>
+//             <AiOutlineCloseCircle color='red' size='2em' onClick={handleOnFormClose}/>
+//         </Col>
+//         {
+//             previewCv.cv_path1.split('.')[1] == 'pdf'?
+//                 <PDFViewer
+//                     document={{
+//                         url: renderCv(previewCv.cv_path1),
+//                     }}
+//                 />:<Image src={renderCv(previewCv.cv_path1)}/>
+//         }
+//
+//
+//         {previewCv.status==='notInvited' &&
+//         <ScheduleMeeting applicant={previewCv}
+//                          setApplicants={setApplicants}
+//                          applicants={applicants}
+//         />
+//         }
+//     </Column>
+// }
