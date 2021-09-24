@@ -91,8 +91,7 @@ const ComTable = () => {
                         <TableCell>Date</TableCell>
                         <TableCell>Company Name</TableCell>
                         <TableCell>Country</TableCell>
-                        <TableCell>Accept</TableCell>
-                        <TableCell align="right">Reject</TableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -101,8 +100,7 @@ const ComTable = () => {
                             <TableCell>{row.date}</TableCell>
                             <TableCell>{row.name}</TableCell>
                             <TableCell>{row.country}</TableCell>
-                            <TableCell>{row.accept}</TableCell>
-                            <TableCell align="right">{row.Reject}</TableCell>
+
                         </TableRow>
                     ))}
                 </TableBody>
