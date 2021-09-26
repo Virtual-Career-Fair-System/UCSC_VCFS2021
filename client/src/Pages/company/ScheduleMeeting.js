@@ -22,7 +22,7 @@ export default function ScheduleMeeting(props) {
         getCompany({variables: {com_id: Number(login.id)}}).then((data) => {
             setThisCompany(data.data.getCompany)
         })
-    }, [])
+    }, []);
 
 
     const Toast = Swal.mixin({
