@@ -4,7 +4,6 @@ import emailjs from 'emailjs-com';
 import {Button, Card, Form, Row, Col} from "react-bootstrap";
 import {CREATE_EMAIL, GET_COMPANY} from '../../grapgQl/company/companyMutation';
 import Swal from 'sweetalert2';
-import {ILoginData} from "../../types/login";
 import {useSelector} from "react-redux";
 
 
@@ -23,7 +22,7 @@ export default function ScheduleMeeting(props) {
         getCompany({variables: {com_id: Number(login.id)}}).then((data) => {
             setThisCompany(data.data.getCompany)
         })
-    }, [])
+    }, []);
 
 
     const Toast = Swal.mixin({

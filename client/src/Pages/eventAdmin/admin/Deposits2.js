@@ -20,14 +20,14 @@ export default function Deposits() {
     <React.Fragment>
       <Title>UCSC PDC</Title>
       <Typography component="p" variant="h4">
-      vacancies filled: 162
+      vacancies filled: 2
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-         22 July, 2021
+          23 Sep, 2021
       </Typography>
       <div>
         <Link color="primary" href="#" onClick={preventDefault}>
-          View calendar 
+
         </Link>
       </div>
     </React.Fragment>
