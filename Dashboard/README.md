@@ -2,4 +2,4 @@
 <p>p>
 <hr>
 
-<img src="src/assets/screenshot.PNG" />
+<!-- <img src="src/assets/screenshot.PNG" /> -->
